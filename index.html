@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=402, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>TurboSportsbook – Home</title>
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root {
+    --pw: min(420px, 100vw);
+    --pw-inner: calc(min(420px, 100vw) - 32px);
     --bg-0: #0d0d0d;
     --bg-2: #1c1c1c;
     --bg-4: #292929;
@@ -28,7 +30,8 @@
     background: var(--bg-0);
     font-family: 'Exo', sans-serif;
     color: var(--text-default);
-    width: 402px;
+    max-width: 420px;
+    width: 100%;
     margin: 0 auto;
     overflow-x: hidden;
     outline: 1px solid rgba(255,255,255,0.04);
@@ -56,28 +59,45 @@
   .ic2 > .b, .ic2 > .v { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
 
   /* ── Sticky header ───────────────────────────────────────── */
-  .sticky-header {
+  .logo-bar {
     position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 100;
-    width: 402px;
-    height: 178px;
+    top: 0; left: 50%; transform: translateX(-50%);
+    z-index: 101;
+    width: var(--pw); height: 52px;
+    display: flex; align-items: center;
+    padding: 0 16px; gap: 12px;
     background: var(--bg-0);
   }
-  .mobile-header-img {
-    position: absolute;
-    top: 0; left: 0;
-    width: 402px;
-    height: 126px;
-    object-fit: cover;
+  .logo-mark {
+    width: 36px; height: 36px; flex-shrink: 0;
+  }
+  .logo-divider {
+    width: 1px; height: 24px; background: rgba(255,255,255,0.15); flex-shrink: 0;
+  }
+  .logo-search-icon {
+    width: 20px; height: 20px; opacity: 0.6; flex-shrink: 0;
+  }
+  .logo-spacer { flex: 1; }
+  .btn-registration {
+    height: 36px; padding: 0 18px;
+    background: #0081f9; border-radius: 100px;
+    font-size: 14px; font-weight: 600; color: #fff;
+    display: flex; align-items: center; white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .btn-login {
+    height: 36px; padding: 0 18px;
+    background: #2a2a2a; border-radius: 100px;
+    font-size: 14px; font-weight: 600; color: #fff;
+    display: flex; align-items: center; white-space: nowrap;
+    flex-shrink: 0;
   }
   .nav-bar {
-    position: absolute;
-    top: 122px; left: 0;
-    width: 402px;
-    height: 56px;
+    position: fixed;
+    top: 52px; left: 50%; transform: translateX(-50%);
+    z-index: 100;
+    width: var(--pw); height: 56px;
+    transition: transform 0.25s ease;
     background: var(--bg-2);
     display: flex;
     align-items: center;
@@ -120,14 +140,14 @@
 
   /* ── Page content ────────────────────────────────────────── */
   .page-content {
-    padding-top: 194px; /* 178px fixed header + 16px gap */
+    padding-top: 120px; /* 52px logo-bar + 56px nav-bar + 12px */
     background: var(--bg-0);
-    padding-bottom: 80px;
+    padding-bottom: 160px; /* space for footer + betslip */
   }
 
   /* ── Hero banner ─────────────────────────────────────────── */
   .hero-banner {
-    width: 370px;
+    width: var(--pw-inner);
     height: 64px;
     border-radius: 8px;
     position: relative;
@@ -163,7 +183,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 370px;
+    width: var(--pw-inner);
     height: 32px;
     margin-bottom: 16px;
   }
@@ -193,7 +213,7 @@
   .event-card {
     background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
     border-radius: 8px;
-    width: 370px; height: 185px;
+    width: var(--pw-inner); height: 185px;
     position: relative; flex-shrink: 0;
   }
   .event-card-sm { width: 320px; }
@@ -276,7 +296,7 @@
   .pagination {
     display: flex; align-items: center; justify-content: center;
     gap: 6px; margin-top: 6px;
-    width: 370px; margin-left: 16px;
+    width: var(--pw-inner); margin-left: 16px;
   }
   .dot { width: 6px; height: 6px; background: var(--bg-4); border-radius: 4px; }
   .dot-active { width: 16px; height: 6px; background: var(--bg-active); border-radius: 4px; }
@@ -290,7 +310,7 @@
 
   /* ── Swipe Bet ───────────────────────────────────────────── */
   .swipe-bet-card {
-    width: 370px; height: 64px;
+    width: var(--pw-inner); height: 64px;
     background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
     border-radius: 8px;
     display: flex; align-items: center; justify-content: space-between;
@@ -314,7 +334,7 @@
 
   /* ── Turbo Combo ─────────────────────────────────────────── */
   .turbo-combo-card {
-    width: 370px;
+    width: var(--pw-inner);
     background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
     border-radius: 8px; padding: 12px; margin: 0 16px;
     display: flex; flex-direction: column; gap: 8px;
@@ -391,7 +411,7 @@
   .win-amount { font-size: 14px; font-weight: 600; color: var(--text-default); }
 
   /* ── Leaderboard ─────────────────────────────────────────── */
-  .leaderboard-card { width: 370px; background: var(--bg-2); border-radius: 8px; overflow: hidden; margin: 0 16px; }
+  .leaderboard-card { width: var(--pw-inner); background: var(--bg-2); border-radius: 8px; overflow: hidden; margin: 0 16px; }
   .leaderboard-hero {
     position: relative; width: 100%; height: 200px; overflow: hidden;
     border-radius: 8px 8px 0 0; padding: 12px;
@@ -469,7 +489,7 @@
 
   /* ── Bet Builder ─────────────────────────────────────────── */
   .betbuilder-card {
-    width: 370px;
+    width: var(--pw-inner);
     background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
     border-radius: 8px; padding: 12px;
     display: flex; flex-direction: column; gap: 8px; margin: 0 16px;
@@ -492,13 +512,32 @@
   .bb-odds-num { font-size: 14px; font-weight: 600; color: var(--text-default); line-height: 20px; text-align: right; }
   .bb-win-num { font-size: 14px; font-weight: 600; color: var(--text-positive); line-height: 20px; text-align: right; }
 
-  /* ── Mobile footer ───────────────────────────────────────── */
-  .mobile-footer { width: 402px; height: 158px; margin-top: 32px; }
-  .mobile-footer img { width: 100%; height: 100%; object-fit: cover; }
+  /* ── Mobile footer nav ───────────────────────────────────── */
+  .mobile-footer-nav {
+    position: fixed;
+    bottom: 0; left: 50%; transform: translateX(-50%);
+    z-index: 99;
+    width: var(--pw); height: 72px;
+    background: #1c1c1c;
+    display: flex; align-items: center; justify-content: space-around;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-tab {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    flex: 1;
+  }
+  .footer-tab span { font-size: 10px; color: #8a8a8a; font-weight: 400; }
+  .footer-tab-active span { color: #0081f9; }
+  .footer-tab-circle {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: #0081f9;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: -22px;
+  }
 
   /* ── Collapsed Betslip (fixed) ───────────────────────────── */
   .betslip-bar {
-    position: fixed; bottom: 100px;
+    position: fixed; bottom: 80px;
     left: 50%; transform: translateX(-50%);
     z-index: 200; width: 269px; height: 56px;
     background: var(--darken-8); backdrop-filter: blur(4px);
@@ -546,10 +585,23 @@
 ═══════════════════════════════════════════════════════════ -->
 
 <!-- ─── STICKY HEADER ─────────────────────────────────────── -->
-<div class="sticky-header">
-  <img class="mobile-header-img"
-       src="assets/images/header-mobile.png" alt="">
-  <div class="nav-bar">
+<!-- Logo bar (fixed) -->
+<div class="logo-bar">
+    <svg class="logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="36" height="36" rx="8" fill="#0081f9"/>
+      <path d="M22.5 8H13.5C11.567 8 10 9.567 10 11.5C10 13.433 11.567 15 13.5 15H22.5C24.433 15 26 16.567 26 18.5C26 20.433 24.433 22 22.5 22H18V28H22.5C27.194 28 31 24.194 31 19.5C31 16.845 29.8 14.467 27.9 12.9C26.8 11.042 24.794 9.5 22.5 8Z" fill="white"/>
+      <path d="M13.5 22C11.567 22 10 23.567 10 25.5C10 27.433 11.567 29 13.5 29H18V22H13.5Z" fill="white"/>
+      <path d="M13.5 8C9.358 8 6 11.358 6 15.5C6 17.8 7.042 19.858 8.7 21.2C9.567 19.567 11.567 18 13.5 18H18V8H13.5Z" fill="white"/>
+    </svg>
+    <div class="logo-divider"></div>
+    <img class="logo-search-icon" src="assets/icons/search.svg" alt="">
+    <div class="logo-spacer"></div>
+    <div class="btn-registration">Registration</div>
+    <div class="btn-login">Login</div>
+  </div>
+</div>
+<!-- Nav bar (scroll-hide) -->
+<div class="nav-bar" id="scroll-nav">
     <!-- Search field -->
     <div class="nav-search">
       <div class="ic"><img class="iv" src="assets/icons/search.svg"></div>
@@ -557,14 +609,13 @@
     </div>
     <!-- My Bets button (single-layer icon works fine) -->
     <div class="nav-mybets">
-      <img class="icon-20" src="assets/images/icon-mybets.png">
+      <img class="icon-20" src="assets/icons/my-bets.svg">
       <span>My Bets</span>
     </div>
     <!-- Settings button (single-layer) -->
     <div class="nav-settings">
-      <img class="icon-20" src="assets/images/icon-settings.png">
+      <img class="icon-20" src="assets/icons/settings.svg">
     </div>
-  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -584,7 +635,7 @@
     <div class="block-header">
       <div class="block-heading">
         <!-- popular icon (single-layer) -->
-        <img class="icon-20" src="assets/images/icon-popular.png">
+        <img class="icon-20" src="assets/icons/popular.svg">
         <span class="block-heading-text">Picks for you</span>
       </div>
       <div class="dropdown-pill">
@@ -666,8 +717,8 @@
           <span class="league-link">USA. MLB</span>
           <div class="event-details-row">
             <div class="badge-time">9h</div>
-            <img class="icon-16" src="assets/images/icon-insights-base.png">
-            <img class="icon-16" src="assets/icons/hot.svg">
+            <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
+            <img class="icon-16" src="assets/icons/hot.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
           </div>
         </div>
         <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
@@ -713,15 +764,15 @@
   <!-- ─── TAGS ───────────────────────────────────────────────── -->
   <div class="tags-row" style="margin-bottom:32px;">
     <div class="tag-pill">
-      <img class="icon-20" src="assets/images/icon-live-tag.png">
+      <img class="icon-20" src="assets/icons/live.svg">
       <span>Live</span>
     </div>
     <div class="tag-pill">
-      <img class="icon-20" src="assets/images/icon-live-tag.png">
+      <img class="icon-20" src="assets/icons/icon-live-tag.svg">
       <span>Top events</span>
     </div>
     <div class="tag-pill">
-      <img class="icon-20" src="assets/images/icon-coming-up.png">
+      <img class="icon-20" src="assets/icons/icon-coming-up.svg">
       <span>Coming up</span>
     </div>
     <div class="tag-pill">
@@ -735,7 +786,9 @@
     <div class="turbo-combo-header">
       <span class="turbo-combo-title">Turbo combo</span>
       <div class="turbo-multiplier">
-        <div class="ic16"><img class="iv" src="assets/icons/quick-bet.svg"></div>
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+          <path d="M12.2417 1.84167L3.60833 9.57501C3.075 10.0583 3.375 10.95 4.09166 11.0167L10.8333 11.6667L6.79166 17.3C6.60833 17.5583 6.63333 17.9167 6.85833 18.1417C7.10833 18.3917 7.5 18.4 7.75833 18.1583L16.3917 10.425C16.925 9.94167 16.625 9.05001 15.9083 8.98334L9.16667 8.33334L13.2083 2.70001C13.3917 2.44167 13.3667 2.08334 13.1417 1.85834C12.8917 1.60834 12.5 1.60001 12.2417 1.84167Z" fill="#FF673C"/>
+        </svg>
         <span>x1.58</span>
       </div>
     </div>
@@ -895,7 +948,7 @@
           <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
           <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
           <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-          <img class="icon-16" src="assets/icons/hot.svg">
+          <img class="icon-16" src="assets/icons/hot.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
         </div>
       </div>
       <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
@@ -945,7 +998,7 @@
       <button class="leaderboard-rules-btn">Rules</button>
     </div>
     <div class="leaderboard-places">
-      <img class="lb-places-bg" src="assets/images/leaderboard-places-bg.png">
+      <img class="lb-places-bg" src="assets/icons/leaderboard-places-bg.svg">
       <div class="lb-places-content">
         <div class="lb-place">
           <img class="lb-avatar" src="assets/images/avatar-odds-master.png">
@@ -1010,7 +1063,7 @@
           <div class="badge-time">9h</div>
           <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
           <div class="badge-bb">BB</div>
-          <img class="icon-16" src="assets/icons/hot.svg">
+          <img class="icon-16" src="assets/icons/hot.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
         </div>
       </div>
       <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
@@ -1040,7 +1093,7 @@
           <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
           <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
           <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-          <img class="icon-16" src="assets/icons/hot.svg">
+          <img class="icon-16" src="assets/icons/hot.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
         </div>
       </div>
       <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
@@ -1070,7 +1123,7 @@
   <!-- ─── BET BUILDER CARD ───────────────────────────────────── -->
   <div class="betbuilder-card" style="margin-bottom:32px;">
     <div class="bb-heading">
-      <img class="icon-20" src="assets/icons/betbuilder.svg">
+      <img class="icon-20" src="assets/icons/betbuilder.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
       <span class="bb-title">Bet Builder</span>
       <!-- Close icon -->
       <div class="ic"><img class="iv" src="assets/icons/close.svg"></div>
@@ -1128,9 +1181,8 @@
         <img class="icon-20" src="assets/icons/football.svg">
         <span class="block-heading-text">Football</span>
       </div>
-      <button class="btn-see-all" style="position:relative;overflow:hidden;">
-        <img src="assets/images/btn-see-all-football-bg.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-        <span style="position:relative;z-index:1;">See all</span>
+      <button class="btn-see-all">
+        <span>See all</span>
       </button>
     </div>
   </div>
@@ -1141,7 +1193,7 @@
         <span class="league-link">FIFA World Cup 2026</span>
         <div class="event-details-row">
           <div class="badge-time">9h</div>
-          <img class="icon-16" src="assets/icons/hot.svg">
+          <img class="icon-16" src="assets/icons/hot.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
         </div>
       </div>
       <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
@@ -1169,7 +1221,7 @@
         <span class="league-link">FIFA World Cup 2026</span>
         <div class="event-details-row">
           <div class="badge-time">9h</div>
-          <img class="icon-16" src="assets/icons/hot.svg">
+          <img class="icon-16" src="assets/icons/hot.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
         </div>
       </div>
       <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
@@ -1196,12 +1248,35 @@
     <div class="dot"></div><div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
   </div>
 
-  <!-- ─── MOBILE FOOTER ─────────────────────────────────────── -->
-  <div class="mobile-footer">
-    <img src="assets/images/footer-mobile.png" alt="">
+  <!-- ─── MOBILE FOOTER placeholder for spacing ──────────── -->
+</div><!-- end page-content -->
+
+<!-- FIXED FOOTER NAV -->
+<div class="mobile-footer-nav" id="footer-nav">
+    <div class="footer-tab">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="#8a8a8a"/></svg>
+      <span>Menu</span>
+    </div>
+    <div class="footer-tab">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C9.243 2 7 4.243 7 7C7 8.279 7.478 9.44 8.257 10.33C6.329 11.197 5 13.145 5 15.5V17H7V15.5C7 13.57 8.57 12 10.5 12C11.328 12 12.09 12.3 12.686 12.8C11.661 13.66 11 14.953 11 16.4C11 19.0 13.0 21 15.6 21C18.2 21 20 19.0 20 16.4C20 14.953 19.339 13.66 18.314 12.8C18.91 12.3 19.672 12 20.5 12V10C18.57 10 17 8.43 17 6.5C17 4.57 15.43 3 13.5 3C13.109 3 12.733 3.064 12.378 3.18C12.258 2.509 12 2 12 2ZM13.5 5C14.328 5 15 5.672 15 6.5C15 7.328 14.328 8 13.5 8C12.672 8 12 7.328 12 6.5C12 5.672 12.672 5 13.5 5ZM15.6 14.6C16.926 14.6 18 15.674 18 17C18 18.326 16.926 19.4 15.6 19.4C14.274 19.4 13.2 18.326 13.2 17C13.2 15.674 14.274 14.6 15.6 14.6Z" fill="#8a8a8a"/></svg>
+      <span>Casino</span>
+    </div>
+    <div class="footer-tab footer-tab-active">
+      <div class="footer-tab-circle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="white"/></svg>
+      </div>
+      <span style="color:#0081f9;">Registration</span>
+    </div>
+    <div class="footer-tab">
+      <img src="assets/icons/football.svg" width="24" height="24" style="opacity:0.55;">
+      <span>Sports</span>
+    </div>
+    <div class="footer-tab">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 1C7.589 1 4 4.589 4 9C4 11.386 5.018 13.527 6.657 15.02L5.293 20.707L11 19.343C11.326 19.444 11.657 19.5 12 19.5C16.411 19.5 20 15.911 20 11.5V9C20 4.589 16.411 1 12 1ZM12 17.5C11.698 17.5 11.4 17.458 11.11 17.38L8.707 17.98L9.307 15.577C7.89 14.382 7 12.792 7 11C7 7.134 9.134 5 13 5C15.761 5 18 7.239 18 10C18 13.866 15.866 17.5 12 17.5Z" fill="#8a8a8a"/></svg>
+      <span>Support</span>
+    </div>
   </div>
 
-</div>
 
 <!-- ─── COLLAPSED BETSLIP (fixed) ────────────────────────── -->
 <div class="betslip-bar">
@@ -1220,5 +1295,24 @@
   </div>
 </div>
 
+
+<script>
+(function() {
+  var nav = document.getElementById('scroll-nav');
+  var lastY = window.scrollY;
+  var hidden = false;
+  window.addEventListener('scroll', function() {
+    var y = window.scrollY;
+    if (y > lastY && y > 60 && !hidden) {
+      nav.style.transform = 'translateX(-50%) translateY(-100%)';
+      hidden = true;
+    } else if (y < lastY && hidden) {
+      nav.style.transform = 'translateX(-50%) translateY(0)';
+      hidden = false;
+    }
+    lastY = y;
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>
