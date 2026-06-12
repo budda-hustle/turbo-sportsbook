@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=402, initial-scale=1.0">
+<title>TurboSportsbook – Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #0d0d0d;
+    --bg-2: #1c1c1c;
+    --bg-4: #292929;
+    --bg-6: #4d4d4d;
+    --bg-accent: #ff673c;
+    --bg-active: #0081f9;
+    --bg-sub-accent: rgba(255,103,60,0.12);
+    --text-default: #ffffff;
+    --text-secondary: #b8b8b8;
+    --text-accent: #ff673c;
+    --text-positive: #58cc00;
+    --text-contrast: #0d0d0d;
+    --lighten-2: rgba(255,255,255,0.12);
+    --darken-8: rgba(0,0,0,0.8);
+    --leaderboard-prize: #eccd2a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg-0);
+    font-family: 'Exo', sans-serif;
+    color: var(--text-default);
+    width: 402px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    outline: 1px solid rgba(255,255,255,0.04);
+  }
+
+  /* ── Icon containers ─────────────────────────────────────── */
+  /* Figma icons: transparent base + vector at specific sub-area */
+  .ic { position:relative; overflow:hidden; flex-shrink:0; display:inline-flex; width:20px; height:20px; }
+  .ic16 { position:relative; overflow:hidden; flex-shrink:0; display:inline-flex; width:16px; height:16px; }
+  /* Vector sub-area positions (match Figma layout exactly) */
+  .iv-arrow-down  { position:absolute; top:35.79%; left:25%;    right:25%;    bottom:33.33%; }
+  .iv-arrow-right { position:absolute; top:25%;    left:35.79%; right:33.33%; bottom:25%;    }
+  .iv-fav         { position:absolute; top:8.33%;  left:8.33%;  right:8.33%;  bottom:12.5%;  }
+  .iv-search      { position:absolute; top:12.5%;  left:12.5%;  right:14.63%; bottom:14.63%; }
+  .iv-quickbet    { position:absolute; top:8.33%;  left:16.68%; right:16.68%; bottom:8.33%;  }
+  .iv-close       { position:absolute; inset:20.83%; }
+  .iv-turbo       { position:absolute; top:8.33%;  left:8.33%;  right:11.3%;  bottom:11.26%; }
+  .iv-insights    { position:absolute; top:20.54%; left:8.33%;  right:8.33%;  bottom:20.54%; }
+  .iv-stream      { position:absolute; top:25%;    left:12.5%;  right:12.5%;  bottom:25%;    }
+  /* Vector image fill */
+  .iv { width:100%; height:100%; object-fit:contain; display:block; }
+
+  /* ── Legacy single-image icon ─────────────────────────────── */
+  .ic2 { position:relative; overflow:hidden; flex-shrink:0; display:inline-flex; width:20px; height:20px; }
+  .ic2 > .b, .ic2 > .v { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+
+  /* ── Sticky header ───────────────────────────────────────── */
+  .sticky-header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    width: 402px;
+    height: 178px;
+    background: var(--bg-0);
+  }
+  .mobile-header-img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 402px;
+    height: 126px;
+    object-fit: cover;
+  }
+  .nav-bar {
+    position: absolute;
+    top: 122px; left: 0;
+    width: 402px;
+    height: 56px;
+    background: var(--bg-2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+  }
+  .nav-search {
+    flex: 1;
+    height: 40px;
+    background: var(--bg-4);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 8px;
+  }
+  .nav-search span { font-size: 12px; color: var(--text-secondary); font-weight: 400; }
+  .nav-mybets {
+    width: 88px; height: 40px;
+    background: var(--bg-4);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 8px;
+    flex-shrink: 0;
+  }
+  .nav-mybets span { font-size: 12px; color: var(--text-secondary); font-weight: 400; }
+  .nav-settings {
+    width: 40px; height: 40px;
+    background: var(--bg-4);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .icon-20 { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; }
+  .icon-16 { width: 16px; height: 16px; object-fit: contain; flex-shrink: 0; }
+
+  /* ── Page content ────────────────────────────────────────── */
+  .page-content {
+    padding-top: 194px; /* 178px fixed header + 16px gap */
+    background: var(--bg-0);
+    padding-bottom: 80px;
+  }
+
+  /* ── Hero banner ─────────────────────────────────────────── */
+  .hero-banner {
+    width: 370px;
+    height: 64px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    margin: 0 16px 32px;
+  }
+  .hero-banner > img.hero-bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; border-radius: 8px;
+  }
+  .hero-timer {
+    position: relative; z-index: 1;
+    background: var(--lighten-2);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px; font-weight: 600;
+    color: var(--text-default); white-space: nowrap;
+  }
+  .hero-title {
+    position: relative; z-index: 1;
+    font-size: 18px; font-weight: 600;
+    color: var(--text-default); text-align: right; white-space: nowrap;
+  }
+
+  /* ── Block header ────────────────────────────────────────── */
+  .block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 370px;
+    height: 32px;
+    margin-bottom: 16px;
+  }
+  .block-heading { display: flex; align-items: center; gap: 8px; }
+  .block-heading-text { font-size: 20px; font-weight: 800; color: var(--text-default); line-height: 1.4; }
+  .btn-see-all {
+    background: var(--bg-6);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 14px; font-weight: 600;
+    color: var(--text-default); white-space: nowrap;
+    cursor: pointer; border: none; height: 32px;
+    font-family: 'Exo', sans-serif;
+  }
+  .dropdown-pill {
+    background: var(--bg-0);
+    border: 1px solid var(--bg-6);
+    border-radius: 8px;
+    padding: 6px 12px;
+    height: 32px;
+    display: flex; align-items: center; gap: 41px;
+    font-size: 12px; color: var(--text-default);
+    cursor: pointer;
+  }
+
+  /* ── Event card ──────────────────────────────────────────── */
+  .event-card {
+    background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
+    border-radius: 8px;
+    width: 370px; height: 185px;
+    position: relative; flex-shrink: 0;
+  }
+  .event-card-sm { width: 320px; }
+  .event-card .top-line {
+    position: absolute; top: 12px; left: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .league-link {
+    font-size: 12px; font-weight: 400;
+    color: var(--text-secondary);
+    text-decoration: underline; white-space: nowrap;
+    max-width: 140px; overflow: hidden; text-overflow: ellipsis;
+  }
+  .event-details-row { display: flex; align-items: center; gap: 4px; }
+  .badge-time {
+    background: var(--bg-6); border-radius: 12px;
+    padding: 1px 8px; font-size: 10px; font-weight: 600;
+    color: var(--text-secondary); white-space: nowrap;
+  }
+  .badge-live {
+    background: var(--bg-sub-accent); border-radius: 12px;
+    padding: 1px 8px; font-size: 10px; font-weight: 600;
+    color: var(--bg-accent);
+    display: flex; align-items: center; gap: 8px; white-space: nowrap;
+  }
+  .badge-live-dot { width: 4px; height: 4px; background: var(--bg-accent); border-radius: 50%; flex-shrink: 0; }
+  .badge-bb { background: var(--bg-accent); border-radius: 12px; padding: 1px 8px; font-size: 10px; font-weight: 600; color: var(--text-default); }
+  .badge-fb { background: var(--bg-active); border-radius: 12px; padding: 1px 8px; font-size: 10px; font-weight: 600; color: var(--text-default); }
+  .event-card .fav-icon { position: absolute; top: 12px; right: 12px; }
+  .event-card .team-row {
+    position: absolute; left: 12px;
+    display: flex; align-items: center; gap: 8px; height: 20px;
+  }
+  .event-card .team-row.team1 { top: 44px; }
+  .event-card .team-row.team2 { top: 72px; }
+  .team-name { font-size: 14px; font-weight: 400; color: var(--text-default); white-space: nowrap; }
+  .event-card .score {
+    position: absolute; right: 12px;
+    font-size: 14px; font-weight: 600; color: var(--text-default); line-height: 20px;
+  }
+  .event-card .score1 { top: 44px; }
+  .event-card .score2 { top: 72px; }
+  .market-divider {
+    position: absolute; top: 100px; left: 12px; right: 12px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--bg-4); }
+  .market-label { font-size: 12px; font-weight: 400; color: var(--text-secondary); white-space: nowrap; }
+  .odds-row {
+    position: absolute; top: 125px; left: 12px; right: 12px;
+    display: flex; align-items: center; gap: 4px; height: 48px;
+  }
+  .odd-btn {
+    flex: 1;
+    background: var(--bg-4); border-radius: 8px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 4px; padding: 5px 4px;
+    cursor: pointer; min-width: 0;
+  }
+  .odd-value { font-size: 14px; font-weight: 600; color: var(--text-default); line-height: 1.4; text-align: center; width: 100%; }
+  .odd-outcome { font-size: 10px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; text-align: center; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .view-more-btn {
+    width: 40px; height: 48px;
+    background: var(--bg-4); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; cursor: pointer;
+  }
+
+  /* ── Horizontal scroll ───────────────────────────────────── */
+  .h-scroll {
+    display: flex; gap: 8px;
+    overflow-x: auto;
+    padding-left: 16px; padding-right: 16px;
+    scrollbar-width: none;
+  }
+  .h-scroll::-webkit-scrollbar { display: none; }
+
+  /* ── Pagination dots ─────────────────────────────────────── */
+  .pagination {
+    display: flex; align-items: center; justify-content: center;
+    gap: 6px; margin-top: 6px;
+    width: 370px; margin-left: 16px;
+  }
+  .dot { width: 6px; height: 6px; background: var(--bg-4); border-radius: 4px; }
+  .dot-active { width: 16px; height: 6px; background: var(--bg-active); border-radius: 4px; }
+
+  /* ── Show more ───────────────────────────────────────────── */
+  .show-more {
+    display: flex; align-items: center; gap: 8px;
+    justify-content: center; margin-top: 16px; cursor: pointer;
+  }
+  .show-more span { font-size: 14px; font-weight: 600; color: var(--text-default); }
+
+  /* ── Swipe Bet ───────────────────────────────────────────── */
+  .swipe-bet-card {
+    width: 370px; height: 64px;
+    background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 12px; margin: 0 16px;
+  }
+  .swipe-bet-left { display: flex; align-items: center; gap: 12px; }
+  .swipe-bet-img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px 0 0 8px; flex-shrink: 0; }
+  .swipe-bet-title { font-size: 18px; font-weight: 600; color: var(--text-default); line-height: 1.4; }
+  .swipe-bet-sub { font-size: 12px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
+
+  /* ── Tags ────────────────────────────────────────────────── */
+  .tags-row { display: flex; gap: 8px; overflow-x: auto; padding: 0 16px; scrollbar-width: none; }
+  .tags-row::-webkit-scrollbar { display: none; }
+  .tag-pill {
+    background: var(--bg-2); border-radius: 20px;
+    height: 40px; display: flex; align-items: center;
+    gap: 8px; padding: 10px 12px;
+    white-space: nowrap; flex-shrink: 0; cursor: pointer;
+  }
+  .tag-pill span { font-size: 12px; font-weight: 400; color: var(--text-default); }
+
+  /* ── Turbo Combo ─────────────────────────────────────────── */
+  .turbo-combo-card {
+    width: 370px;
+    background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
+    border-radius: 8px; padding: 12px; margin: 0 16px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .turbo-combo-header { display: flex; align-items: center; justify-content: space-between; }
+  .turbo-combo-title { font-size: 14px; font-weight: 600; color: var(--text-default); }
+  .turbo-multiplier { display: flex; align-items: center; gap: 4px; }
+  .turbo-multiplier span { font-size: 14px; font-weight: 600; color: var(--text-accent); }
+  .divider-h { height: 1px; background: var(--bg-4); width: 100%; }
+  .show-selections-row { display: flex; align-items: center; justify-content: space-between; }
+  .show-selections-left { display: flex; align-items: center; gap: 8px; }
+  .show-selections-left span { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+  .team-logos-row { display: flex; align-items: center; gap: 2px; }
+  .team-logo-sm { width: 18px; height: 18px; object-fit: contain; border-radius: 2px; }
+  .odds-win-row { display: flex; align-items: center; justify-content: space-between; }
+  .odds-labels-left { display: flex; flex-direction: column; gap: 4px; width: 80px; }
+  .odds-labels-left span { font-size: 14px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
+  .odds-labels-right { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; width: 86px; }
+  .odds-values-row { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+  .odds-old { font-size: 13px; font-weight: 500; color: var(--text-secondary); opacity: 0.5; text-decoration: line-through; line-height: 16px; }
+  .odds-new { font-size: 14px; font-weight: 600; color: var(--text-default); line-height: 20px; text-align: right; }
+  .possible-win { font-size: 14px; font-weight: 600; color: var(--text-positive); text-align: right; line-height: 20px; }
+  .bet-input-row { display: flex; align-items: center; gap: 8px; height: 48px; }
+  .bet-amount-input {
+    flex: 1; height: 48px;
+    background: var(--bg-0); border-radius: 8px;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    padding: 4px 4px 4px 12px;
+  }
+  .bet-amount-texts { display: flex; flex-direction: column; gap: 2px; width: 65px; padding-top: 4px; }
+  .bet-label { font-size: 12px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
+  .bet-value { font-size: 14px; font-weight: 400; color: var(--text-default); line-height: 1.4; }
+  .max-bet-btn {
+    background: var(--bg-6); border-radius: 6px;
+    width: 80px; height: 40px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    cursor: pointer; font-family: 'Exo', sans-serif;
+  }
+  .max-btn-top { font-size: 12px; font-weight: 400; color: var(--text-default); line-height: 1.4; }
+  .max-btn-bot { font-size: 12px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
+  .place-bet-btn {
+    width: 86px; height: 48px;
+    background: var(--bg-active); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; color: var(--text-default);
+    cursor: pointer; flex-shrink: 0; border: none;
+    font-family: 'Exo', sans-serif;
+  }
+
+  /* ── Popular Plays ───────────────────────────────────────── */
+  .popular-card {
+    width: 320px;
+    background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
+    border-radius: 8px; padding: 12px;
+    display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;
+  }
+  .popular-top-line { display: flex; align-items: center; gap: 8px; }
+  .popular-event-line { display: flex; align-items: center; gap: 8px; }
+  .popular-event-name { font-size: 12px; font-weight: 400; color: var(--text-secondary); white-space: nowrap; }
+  .popular-outcome-row { display: flex; align-items: flex-start; justify-content: space-between; width: 100%; }
+  .popular-outcome-left { display: flex; align-items: flex-start; gap: 8px; }
+  .team-icon-lg { width: 40px; height: 40px; object-fit: contain; flex-shrink: 0; }
+  .popular-team-info { display: flex; flex-direction: column; gap: 4px; width: 103px; }
+  .popular-team-name { font-size: 14px; font-weight: 400; color: var(--text-default); line-height: 1.4; }
+  .popular-market { font-size: 12px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
+  .popular-odd { font-size: 14px; font-weight: 600; color: var(--text-default); text-align: right; line-height: 1.4; white-space: nowrap; }
+  .win-btn {
+    width: 100%; background: var(--bg-active); border-radius: 8px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 4px; gap: 3px; cursor: pointer; border: none;
+    font-family: 'Exo', sans-serif; height: 48px;
+  }
+  .win-entry { font-size: 12px; font-weight: 400; color: var(--text-default); }
+  .win-amount { font-size: 14px; font-weight: 600; color: var(--text-default); }
+
+  /* ── Leaderboard ─────────────────────────────────────────── */
+  .leaderboard-card { width: 370px; background: var(--bg-2); border-radius: 8px; overflow: hidden; margin: 0 16px; }
+  .leaderboard-hero {
+    position: relative; width: 100%; height: 200px; overflow: hidden;
+    border-radius: 8px 8px 0 0; padding: 12px;
+    display: flex; align-items: flex-start; justify-content: space-between;
+  }
+  .leaderboard-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .leaderboard-rules-btn {
+    position: relative; z-index: 1;
+    background: var(--darken-8); backdrop-filter: blur(8px);
+    border-radius: 8px; padding: 7px 12px 8px;
+    font-size: 12px; font-weight: 400; color: var(--text-default);
+    text-decoration: underline; cursor: pointer; border: none;
+    font-family: 'Exo', sans-serif;
+  }
+  .leaderboard-timer {
+    background: var(--lighten-2); border-radius: 8px;
+    padding: 4px 12px;
+    display: flex; align-items: center; gap: 4px;
+    margin-bottom: 12px; width: 158px;
+  }
+  .timer-unit { display: flex; flex-direction: column; align-items: center; min-width: 17px; }
+  .timer-num { font-size: 16px; font-weight: 600; color: var(--text-default); line-height: 1.4; }
+  .timer-label { font-size: 10px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
+  .timer-sep { font-size: 16px; font-weight: 600; color: var(--text-secondary); line-height: 1.4; }
+  .leaderboard-title { font-size: 24px; font-weight: 800; color: var(--text-default); line-height: 1.4; margin-bottom: 12px; }
+  .prize-pool-banner {
+    background: var(--leaderboard-prize); border-radius: 8px;
+    padding: 6px 12px; height: 40px;
+    display: flex; align-items: center; gap: 12px; width: 100%;
+  }
+  .prize-pool-label { font-size: 10px; font-weight: 600; color: var(--text-contrast); line-height: 1.4; white-space: nowrap; }
+  .prize-pool-amount { font-size: 20px; font-weight: 800; color: var(--text-contrast); white-space: nowrap; }
+  .leaderboard-left { position: relative; z-index: 1; }
+  .leaderboard-places { position: relative; height: 223px; overflow: hidden; }
+  .lb-places-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .lb-places-content {
+    position: absolute; inset: 12px;
+    display: flex; align-items: flex-end; gap: 8px;
+  }
+  .lb-place { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .lb-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+  .lb-username { font-size: 12px; font-weight: 400; color: var(--text-default); text-align: center; line-height: 1.4; }
+  .lb-podium { position: relative; width: 100%; }
+  .lb-podium-box {
+    background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
+    border-radius: 8px; padding: 24px 8px 8px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    margin-top: 24px;
+  }
+  .lb-cup-badge {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    background: var(--bg-6); border-radius: 6px;
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .lb-cup-img { width: 24px; height: 24px; object-fit: contain; }
+  .lb-prize { font-size: 12px; font-weight: 400; color: var(--leaderboard-prize); text-align: center; line-height: 1.4; width: 100%; }
+  .lb-divider { height: 1px; background: var(--bg-4); width: 100%; }
+  .lb-points { font-size: 10px; font-weight: 400; color: var(--text-secondary); text-align: center; line-height: 1.4; }
+  .lb-buttons { display: flex; width: 100%; }
+  .lb-btn-secondary {
+    flex: 1; height: 40px; background: var(--bg-6);
+    border-radius: 0 0 0 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; color: var(--text-default);
+    cursor: pointer; border: none; font-family: 'Exo', sans-serif;
+  }
+  .lb-btn-primary {
+    flex: 1; height: 40px; background: var(--bg-active);
+    border-radius: 0 0 8px 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; color: var(--text-default);
+    cursor: pointer; border: none; font-family: 'Exo', sans-serif;
+  }
+
+  /* ── Bet Builder ─────────────────────────────────────────── */
+  .betbuilder-card {
+    width: 370px;
+    background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
+    border-radius: 8px; padding: 12px;
+    display: flex; flex-direction: column; gap: 8px; margin: 0 16px;
+  }
+  .bb-heading { display: flex; align-items: center; gap: 8px; }
+  .bb-title { font-size: 14px; font-weight: 600; color: var(--text-default); }
+  .bb-odds-val-acc { font-size: 14px; font-weight: 600; color: var(--text-accent); }
+  .bb-event-date { font-size: 12px; font-weight: 400; color: var(--text-secondary); text-align: center; width: 100%; line-height: 1.4; }
+  .bb-teams-row { display: flex; align-items: center; justify-content: center; gap: 12px; }
+  .bb-team { display: flex; align-items: center; gap: 12px; }
+  .bb-team-logo { width: 36px; height: 36px; object-fit: contain; border-radius: 4px; }
+  .bb-team-name { font-size: 14px; font-weight: 600; color: var(--text-default); }
+  .bb-vs { font-size: 12px; font-weight: 400; color: var(--text-secondary); }
+  .bb-show-selections { display: flex; align-items: center; gap: 8px; }
+  .bb-show-sel-text { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+  .bb-odds-row { display: flex; align-items: center; justify-content: space-between; }
+  .bb-odds-labels { display: flex; flex-direction: column; gap: 4px; width: 120px; }
+  .bb-odds-label { font-size: 14px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
+  .bb-odds-vals { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+  .bb-odds-num { font-size: 14px; font-weight: 600; color: var(--text-default); line-height: 20px; text-align: right; }
+  .bb-win-num { font-size: 14px; font-weight: 600; color: var(--text-positive); line-height: 20px; text-align: right; }
+
+  /* ── Mobile footer ───────────────────────────────────────── */
+  .mobile-footer { width: 402px; height: 158px; margin-top: 32px; }
+  .mobile-footer img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── Collapsed Betslip (fixed) ───────────────────────────── */
+  .betslip-bar {
+    position: fixed; bottom: 100px;
+    left: 50%; transform: translateX(-50%);
+    z-index: 200; width: 269px; height: 56px;
+    background: var(--darken-8); backdrop-filter: blur(4px);
+    border-radius: 32px;
+    display: flex; align-items: center; gap: 8px; padding: 8px;
+  }
+  .betslip-btn {
+    background: var(--bg-2); border: 1px solid var(--lighten-2);
+    border-radius: 32px; height: 40px; width: 133px;
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 24px; flex-shrink: 0; cursor: pointer;
+  }
+  .betslip-label { font-size: 14px; font-weight: 600; color: var(--text-default); white-space: nowrap; line-height: 20px; }
+  .betslip-counter {
+    background: var(--bg-active); border-radius: 12px;
+    width: 32px; height: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 600; color: var(--text-default);
+    flex-shrink: 0;
+  }
+  .betslip-quickbet {
+    background: var(--bg-2); border-radius: 32px;
+    width: 64px; height: 40px;
+    display: flex; align-items: center; padding: 4px;
+    flex-shrink: 0; cursor: pointer;
+  }
+  .betslip-toggle-btn {
+    background: var(--bg-4); border: 1px solid var(--lighten-2);
+    border-radius: 32px; width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .betslip-spin {
+    background: var(--bg-2); border: 1px solid var(--lighten-2);
+    border-radius: 32px; width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ICON MACROS (HTML templates defined via data URIs is not
+     needed — we inline two-layer icons directly using .ic2 class)
+═══════════════════════════════════════════════════════════ -->
+
+<!-- ─── STICKY HEADER ─────────────────────────────────────── -->
+<div class="sticky-header">
+  <img class="mobile-header-img"
+       src="https://www.figma.com/api/mcp/asset/4079676d-d097-41f6-93a8-be187859cf9f" alt="">
+  <div class="nav-bar">
+    <!-- Search field -->
+    <div class="nav-search">
+      <div class="ic"><div class="iv-search"><img class="iv" src="https://www.figma.com/api/mcp/asset/851e3776-19d6-453f-a37f-39666792f64f"></div></div>
+      <span>Search</span>
+    </div>
+    <!-- My Bets button (single-layer icon works fine) -->
+    <div class="nav-mybets">
+      <img class="icon-20" src="https://www.figma.com/api/mcp/asset/bd64e901-be51-4d57-95a4-1b6ca6f0bcfd">
+      <span>My Bets</span>
+    </div>
+    <!-- Settings button (single-layer) -->
+    <div class="nav-settings">
+      <img class="icon-20" src="https://www.figma.com/api/mcp/asset/ef047c77-3a4d-4182-9bbc-fa099b03e240">
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE CONTENT
+═══════════════════════════════════════════════════════════ -->
+<div class="page-content">
+
+  <!-- ─── HERO BANNER ───────────────────────────────────────── -->
+  <div class="hero-banner">
+    <img class="hero-bg" src="https://www.figma.com/api/mcp/asset/5a3d05a4-922d-4af2-b670-086a616ae0bc" alt="">
+    <div class="hero-timer">00d : 22h : 18m</div>
+    <div class="hero-title">FIFA World Cup 2026</div>
+  </div>
+
+  <!-- ─── PICKS FOR YOU ─────────────────────────────────────── -->
+  <div style="padding:0 16px;margin-bottom:32px;">
+    <div class="block-header">
+      <div class="block-heading">
+        <!-- popular icon (single-layer) -->
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/fe63203c-5134-4c01-8e9e-4f25154e6351">
+        <span class="block-heading-text">Picks for you</span>
+      </div>
+      <div class="dropdown-pill">
+        <span style="font-size:12px;color:var(--text-default);">Match winner</span>
+        <!-- Arrow Down -->
+        <div class="ic"><div class="iv-arrow-down"><img class="iv" src="https://www.figma.com/api/mcp/asset/4a954766-ffa1-4610-873f-e0755452ccfa"></div></div>
+      </div>
+    </div>
+
+    <!-- Event card 1: Orlando Magic vs Indiana Pacers -->
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="event-card">
+        <div class="top-line">
+          <img class="icon-20" src="https://www.figma.com/api/mcp/asset/4a66bfb8-53d8-43d2-9778-a11a8c9599de">
+          <span class="league-link">Germany. Champions...</span>
+          <div class="event-details-row">
+            <div class="badge-time">10 Jun · 20:00</div>
+            <div class="badge-bb">BB</div>
+            <div class="badge-fb">FB</div>
+          </div>
+        </div>
+        <!-- Favorites -->
+        <div class="ic" style="position:absolute;top:12px;right:12px;"><div class="iv-fav"><img class="iv" src="https://www.figma.com/api/mcp/asset/ffa09a70-1fb6-4a7f-9f92-e2f0b38cdc23"></div></div>
+        <div class="team-row team1">
+          <img class="icon-20" src="https://www.figma.com/api/mcp/asset/88a3dcf9-9d78-4949-b529-22c34c1d8f8d">
+          <span class="team-name">Orlando Magic</span>
+        </div>
+        <span class="score score1">5</span>
+        <div class="team-row team2">
+          <img class="icon-20" src="https://www.figma.com/api/mcp/asset/eb039887-6a74-41de-890d-ac9796a1c66e">
+          <span class="team-name">Indiana Pacers</span>
+        </div>
+        <span class="score score2">3</span>
+        <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+        <div class="odds-row">
+          <div class="odd-btn"><div class="odd-value">3.5</div><div class="odd-outcome">Orlando Magic</div></div>
+          <div class="odd-btn"><div class="odd-value">5.55</div><div class="odd-outcome">Draw</div></div>
+          <div class="odd-btn"><div class="odd-value">2.21</div><div class="odd-outcome">Indiana Pacers</div></div>
+          <!-- Arrow Right view more: two-layer -->
+          <div class="view-more-btn"><div class="ic"><div class="iv-arrow-right"><img class="iv" src="https://www.figma.com/api/mcp/asset/e5641f46-66ba-4403-b7d1-89423751a2a2"></div></div></div>
+        </div>
+      </div>
+
+      <!-- Event card 2: Miami Heat vs Detroit Pistons (LIVE) -->
+      <div class="event-card">
+        <div class="top-line">
+          <img class="icon-20" src="https://www.figma.com/api/mcp/asset/4a66bfb8-53d8-43d2-9778-a11a8c9599de">
+          <span class="league-link">NBA</span>
+          <div class="event-details-row">
+            <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+            <div class="ic16"><div class="iv-insights"><img class="iv" src="https://www.figma.com/api/mcp/asset/704dd180-cca4-4beb-bae8-373842c53ba4"></div></div>
+            <div class="ic16"><div class="iv-stream"><img class="iv" src="https://www.figma.com/api/mcp/asset/67bfb4c9-0f2a-4933-b15a-88acdf5d2569"></div></div>
+          </div>
+        </div>
+        <div class="ic" style="position:absolute;top:12px;right:12px;"><div class="iv-fav"><img class="iv" src="https://www.figma.com/api/mcp/asset/ffa09a70-1fb6-4a7f-9f92-e2f0b38cdc23"></div></div>
+        <div class="team-row team1">
+          <img class="icon-20" src="https://www.figma.com/api/mcp/asset/f5fcad9a-1101-492d-bddf-75b3bc79e52f">
+          <span class="team-name">Miami Heat</span>
+        </div>
+        <span class="score score1">2</span>
+        <div class="team-row team2">
+          <img class="icon-20" src="https://www.figma.com/api/mcp/asset/ddb9f2d5-ef09-4df6-a0c4-d196dd1d855e">
+          <span class="team-name">Detroit Pistons</span>
+        </div>
+        <span class="score score2">2</span>
+        <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+        <div class="odds-row">
+          <div class="odd-btn"><div class="odd-value">2.5</div><div class="odd-outcome">Miami Heat</div></div>
+          <div class="odd-btn"><div class="odd-value">1.55</div><div class="odd-outcome">Draw</div></div>
+          <div class="odd-btn"><div class="odd-value">2.21</div><div class="odd-outcome">Detroit Pistons</div></div>
+          <div class="view-more-btn"><div class="ic"><div class="iv-arrow-right"><img class="iv" src="https://www.figma.com/api/mcp/asset/e5641f46-66ba-4403-b7d1-89423751a2a2"></div></div></div>
+        </div>
+      </div>
+
+      <!-- Event card 3: NY Yankees vs LA Dodgers -->
+      <div class="event-card">
+        <div class="top-line">
+          <img class="icon-20" src="https://www.figma.com/api/mcp/asset/e956016d-fff2-41da-9ef7-ae0d6ccc3aad">
+          <span class="league-link">USA. MLB</span>
+          <div class="event-details-row">
+            <div class="badge-time">9h</div>
+            <img class="icon-16" src="https://www.figma.com/api/mcp/asset/8105bf66-ea1b-4b25-8ea0-63ca3b160a20">
+            <img class="icon-16" src="https://www.figma.com/api/mcp/asset/d1d176e9-787d-42f4-b566-e59da104f80f">
+          </div>
+        </div>
+        <div class="ic" style="position:absolute;top:12px;right:12px;"><div class="iv-fav"><img class="iv" src="https://www.figma.com/api/mcp/asset/ffa09a70-1fb6-4a7f-9f92-e2f0b38cdc23"></div></div>
+        <div class="team-row team1">
+          <img class="icon-20" src="https://www.figma.com/api/mcp/asset/7825e65a-15c1-4a77-991c-40d770cde6d8">
+          <span class="team-name">New York Yankees</span>
+        </div>
+        <span class="score score1">1</span>
+        <div class="team-row team2">
+          <img class="icon-20" src="https://www.figma.com/api/mcp/asset/54589d76-54c4-426b-a3f2-a64ebafa35e3">
+          <span class="team-name">Los Angeles Dodgers</span>
+        </div>
+        <span class="score score2">3</span>
+        <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+        <div class="odds-row">
+          <div class="odd-btn"><div class="odd-value">3.5</div><div class="odd-outcome">NY Yankees</div></div>
+          <div class="odd-btn"><div class="odd-value">5.55</div><div class="odd-outcome">Draw</div></div>
+          <div class="odd-btn"><div class="odd-value">2.21</div><div class="odd-outcome">LA Dodgers</div></div>
+          <div class="view-more-btn"><div class="ic"><div class="iv-arrow-right"><img class="iv" src="https://www.figma.com/api/mcp/asset/e5641f46-66ba-4403-b7d1-89423751a2a2"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Show more -->
+    <div class="show-more">
+      <span>Show 12 more</span>
+      <div class="ic"><div class="iv-arrow-down"><img class="iv" src="https://www.figma.com/api/mcp/asset/4a954766-ffa1-4610-873f-e0755452ccfa"></div></div>
+    </div>
+  </div>
+
+  <!-- ─── SWIPE BET CARD ─────────────────────────────────────── -->
+  <div class="swipe-bet-card" style="margin-bottom:32px;">
+    <div class="swipe-bet-left">
+      <img class="swipe-bet-img" src="https://www.figma.com/api/mcp/asset/787f03ca-b43a-420f-98f7-0664439998c7">
+      <div>
+        <div class="swipe-bet-title">Swipe Bet</div>
+        <div class="swipe-bet-sub">Instant bets. Real-time odds</div>
+      </div>
+    </div>
+    <div class="ic"><div class="iv-arrow-right"><img class="iv" src="https://www.figma.com/api/mcp/asset/ece6289a-3eb3-4391-9557-ecf4d3fd81f9"></div></div>
+  </div>
+
+  <!-- ─── TAGS ───────────────────────────────────────────────── -->
+  <div class="tags-row" style="margin-bottom:32px;">
+    <div class="tag-pill">
+      <img class="icon-20" src="https://www.figma.com/api/mcp/asset/302c1309-6d25-4a0e-b7b9-91b45b4cfd74">
+      <span>Live</span>
+    </div>
+    <div class="tag-pill">
+      <img class="icon-20" src="https://www.figma.com/api/mcp/asset/302c1309-6d25-4a0e-b7b9-91b45b4cfd74">
+      <span>Top events</span>
+    </div>
+    <div class="tag-pill">
+      <img class="icon-20" src="https://www.figma.com/api/mcp/asset/dcc5c7ae-e5fe-4411-8587-af65d3d77dc6">
+      <span>Coming up</span>
+    </div>
+    <div class="tag-pill">
+      <div class="ic"><div class="iv-fav"><img class="iv" src="https://www.figma.com/api/mcp/asset/a9ba4a7d-53d0-4848-9685-c43a118728a3"></div></div>
+      <span>Favorites</span>
+    </div>
+  </div>
+
+  <!-- ─── TURBO COMBO CARD ───────────────────────────────────── -->
+  <div class="turbo-combo-card" style="margin-bottom:32px;">
+    <div class="turbo-combo-header">
+      <span class="turbo-combo-title">Turbo combo</span>
+      <div class="turbo-multiplier">
+        <div class="ic16"><div class="iv-turbo"><img class="iv" src="https://www.figma.com/api/mcp/asset/eb994d0a-c2c8-49ae-ba2a-539db4802758"></div></div>
+        <span>x1.58</span>
+      </div>
+    </div>
+    <div class="divider-h"></div>
+    <div class="show-selections-row">
+      <div class="show-selections-left">
+        <!-- Arrow Right turbo -->
+        <div class="ic"><div class="iv-arrow-right"><img class="iv" src="https://www.figma.com/api/mcp/asset/fd96ee48-ef04-424b-9d8e-938aa4e9a1ad"></div></div>
+        <span>Show Selections</span>
+      </div>
+      <div class="team-logos-row">
+        <img class="team-logo-sm" src="https://www.figma.com/api/mcp/asset/eb4f1a7c-a759-4f3c-bcf4-627494fe0297">
+        <img class="team-logo-sm" src="https://www.figma.com/api/mcp/asset/1824c7b0-9d6c-4bc0-887b-a811e1fbc982">
+        <img class="team-logo-sm" src="https://www.figma.com/api/mcp/asset/da43b0c5-0e6e-4aa8-a758-cd2a241cda91">
+        <img class="team-logo-sm" src="https://www.figma.com/api/mcp/asset/484b7cff-b371-4b22-bb0c-492409c669e5">
+        <img class="team-logo-sm" src="https://www.figma.com/api/mcp/asset/cc56d4f0-29f7-4db2-a13a-49b5406c1177">
+      </div>
+    </div>
+    <div class="divider-h"></div>
+    <div class="odds-win-row">
+      <div class="odds-labels-left">
+        <span>Total odds</span>
+        <span>Possible win</span>
+      </div>
+      <div class="odds-labels-right">
+        <div class="odds-values-row">
+          <span class="odds-old">180.60</span>
+          <span class="odds-new">270.5</span>
+        </div>
+        <span class="possible-win">$1,060.00</span>
+      </div>
+    </div>
+    <div class="bet-input-row">
+      <div class="bet-amount-input">
+        <div class="bet-amount-texts">
+          <span class="bet-label">Bet amount</span>
+          <span class="bet-value">$20</span>
+        </div>
+        <div class="max-bet-btn">
+          <span class="max-btn-top">Max</span>
+          <span class="max-btn-bot">$1,000.50</span>
+        </div>
+      </div>
+      <button class="place-bet-btn">Place bet</button>
+    </div>
+  </div>
+
+  <!-- ─── POPULAR PLAYS ──────────────────────────────────────── -->
+  <div style="padding:0 16px;margin-bottom:16px;">
+    <div style="font-size:20px;font-weight:800;color:var(--text-default);line-height:1.4;">Popular Plays</div>
+  </div>
+  <div class="h-scroll" style="margin-bottom:8px;">
+    <div class="popular-card">
+      <div class="popular-top-line">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/d0f9df43-fdbb-4ab4-ab29-d974c94efd07">
+        <span class="league-link">American Football</span>
+        <span style="color:var(--text-secondary);font-size:12px;">•</span>
+        <span class="league-link">NFL</span>
+      </div>
+      <div class="popular-event-line">
+        <span class="popular-event-name">New York Jets - Houston Texans</span>
+        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+      </div>
+      <div class="popular-outcome-row">
+        <div class="popular-outcome-left">
+          <img class="team-icon-lg" src="https://www.figma.com/api/mcp/asset/e80cad91-1ec6-47ef-ba33-f07fe13a0ee2">
+          <div class="popular-team-info">
+            <span class="popular-team-name">Houston Texans</span>
+            <span class="popular-market">Match Winner</span>
+          </div>
+        </div>
+        <span class="popular-odd">1.82</span>
+      </div>
+      <button class="win-btn">
+        <span class="win-entry">Popular Entry: $20</span>
+        <span class="win-amount">Win $36.39!</span>
+      </button>
+    </div>
+    <div class="popular-card">
+      <div class="popular-top-line">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/d0f9df43-fdbb-4ab4-ab29-d974c94efd07">
+        <span class="league-link">American Football</span>
+        <span style="color:var(--text-secondary);font-size:12px;">•</span>
+        <span class="league-link">NFL</span>
+      </div>
+      <div class="popular-event-line">
+        <span class="popular-event-name">New York Jets - Houston Texans</span>
+        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+      </div>
+      <div class="popular-outcome-row">
+        <div class="popular-outcome-left">
+          <img class="team-icon-lg" src="https://www.figma.com/api/mcp/asset/e80cad91-1ec6-47ef-ba33-f07fe13a0ee2">
+          <div class="popular-team-info">
+            <span class="popular-team-name">Houston Texans</span>
+            <span class="popular-market">Match Winner</span>
+          </div>
+        </div>
+        <span class="popular-odd">1.82</span>
+      </div>
+      <button class="win-btn">
+        <span class="win-entry">Popular Entry: $20</span>
+        <span class="win-amount">Win $36.39!</span>
+      </button>
+    </div>
+  </div>
+  <div class="pagination" style="margin-bottom:32px;">
+    <div class="dot"></div><div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+
+  <!-- ─── LIVE BLOCK ────────────────────────────────────────── -->
+  <div style="padding:0 16px;margin-bottom:0;">
+    <div class="block-header">
+      <div class="block-heading">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/5a8822b9-76a2-4b87-9681-26a6c094cf36">
+        <span class="block-heading-text">Live</span>
+      </div>
+      <button class="btn-see-all">See all</button>
+    </div>
+  </div>
+  <div class="h-scroll" style="margin-bottom:8px;">
+    <!-- Live card 1 -->
+    <div class="event-card event-card-sm">
+      <div class="top-line">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/4a66bfb8-53d8-43d2-9778-a11a8c9599de">
+        <span class="league-link">NBA</span>
+        <div class="event-details-row">
+          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+          <div class="ic16"><div class="iv-insights"><img class="iv" src="https://www.figma.com/api/mcp/asset/6e48260b-f2ae-4354-ac6d-2a3540074489"></div></div>
+          <div class="ic16"><div class="iv-stream"><img class="iv" src="https://www.figma.com/api/mcp/asset/6e1bedaf-ad1e-4d3e-88e4-c51e374060f3"></div></div>
+        </div>
+      </div>
+      <div class="ic" style="position:absolute;top:12px;right:12px;"><div class="iv-fav"><img class="iv" src="https://www.figma.com/api/mcp/asset/e942778c-e2cf-4246-96e5-1748a5a33270"></div></div>
+      <div class="team-row team1">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/392a768b-3a34-47db-aadd-0dc761d5c172">
+        <span class="team-name">Boston Celtics</span>
+      </div>
+      <span class="score score1">4</span>
+      <div class="team-row team2">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/d09018fc-997a-491c-9af9-a9d9a8558593">
+        <span class="team-name">Milwaukee Bucks</span>
+      </div>
+      <span class="score score2">2</span>
+      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+      <div class="odds-row">
+        <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">Boston Celtics</div></div>
+        <div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
+        <div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Milwaukee Bu...</div></div>
+        <div class="view-more-btn"><div class="ic"><div class="iv-arrow-right"><img class="iv" src="https://www.figma.com/api/mcp/asset/d19b1c19-82bb-4de6-997c-72c0fe20a544"></div></div></div>
+      </div>
+    </div>
+    <!-- Live card 2 -->
+    <div class="event-card event-card-sm">
+      <div class="top-line">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/4a66bfb8-53d8-43d2-9778-a11a8c9599de">
+        <span class="league-link">NBA</span>
+        <div class="event-details-row">
+          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+          <div class="ic16"><div class="iv-insights"><img class="iv" src="https://www.figma.com/api/mcp/asset/6e48260b-f2ae-4354-ac6d-2a3540074489"></div></div>
+          <div class="ic16"><div class="iv-stream"><img class="iv" src="https://www.figma.com/api/mcp/asset/6e1bedaf-ad1e-4d3e-88e4-c51e374060f3"></div></div>
+          <img class="icon-16" src="https://www.figma.com/api/mcp/asset/b7426c90-8050-4fe6-af13-d54057f808fd">
+        </div>
+      </div>
+      <div class="ic" style="position:absolute;top:12px;right:12px;"><div class="iv-fav"><img class="iv" src="https://www.figma.com/api/mcp/asset/e942778c-e2cf-4246-96e5-1748a5a33270"></div></div>
+      <div class="team-row team1">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/427911b2-6381-4d5d-99d3-0e2fd3b113d1">
+        <span class="team-name">New York Knicks</span>
+      </div>
+      <span class="score score1">4</span>
+      <div class="team-row team2">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/fec1fef8-ae44-4210-91e2-89ce86bb2b4b">
+        <span class="team-name">Cleveland Cavaliers</span>
+      </div>
+      <span class="score score2">2</span>
+      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+      <div class="odds-row">
+        <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">New York Knic...</div></div>
+        <div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
+        <div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Cleveland Cav...</div></div>
+        <div class="view-more-btn"><div class="ic"><div class="iv-arrow-right"><img class="iv" src="https://www.figma.com/api/mcp/asset/d19b1c19-82bb-4de6-997c-72c0fe20a544"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pagination" style="margin-bottom:32px;">
+    <div class="dot"></div><div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+
+  <!-- ─── LEADERBOARD ────────────────────────────────────────── -->
+  <div class="leaderboard-card" style="margin-bottom:32px;">
+    <div class="leaderboard-hero">
+      <img class="leaderboard-hero-bg" src="https://www.figma.com/api/mcp/asset/4c6d1d3d-0ebf-4f94-a67d-937bf5c8cdf6">
+      <div class="leaderboard-left">
+        <div class="leaderboard-timer">
+          <div class="timer-unit"><span class="timer-num">00</span><span class="timer-label">days</span></div>
+          <span class="timer-sep">:</span>
+          <div class="timer-unit"><span class="timer-num">22</span><span class="timer-label">hrs</span></div>
+          <span class="timer-sep">:</span>
+          <div class="timer-unit"><span class="timer-num">18</span><span class="timer-label">min</span></div>
+          <span class="timer-sep">:</span>
+          <div class="timer-unit"><span class="timer-num">18</span><span class="timer-label">sec</span></div>
+        </div>
+        <div class="leaderboard-title">Profit Kings<br>Battle for Glory</div>
+        <div class="prize-pool-banner">
+          <div class="prize-pool-label">PRIZE<br>POOL</div>
+          <span class="prize-pool-amount">$2 999 999</span>
+        </div>
+      </div>
+      <button class="leaderboard-rules-btn">Rules</button>
+    </div>
+    <div class="leaderboard-places">
+      <img class="lb-places-bg" src="https://www.figma.com/api/mcp/asset/b5bd3b5a-2482-4892-bcef-2e5aa5460e24">
+      <div class="lb-places-content">
+        <div class="lb-place">
+          <img class="lb-avatar" src="https://www.figma.com/api/mcp/asset/00599fa7-6590-44a3-a9c4-a510ad18a22f">
+          <span class="lb-username">oddsMaster</span>
+          <div class="lb-podium" style="height:124px;">
+            <div class="lb-cup-badge"><img class="lb-cup-img" src="https://www.figma.com/api/mcp/asset/5002286a-632d-437a-a267-aa1ed7e84060"></div>
+            <div class="lb-podium-box" style="height:100px;">
+              <span class="lb-prize">iPhone 16 Pro Max 128gb</span>
+              <div class="lb-divider"></div>
+              <span class="lb-points">189 points</span>
+            </div>
+          </div>
+        </div>
+        <div class="lb-place">
+          <img class="lb-avatar" src="https://www.figma.com/api/mcp/asset/2739a8e1-ae42-4d9f-a82e-810b8f941730">
+          <span class="lb-username">LuckySlip</span>
+          <div class="lb-podium" style="height:134px;">
+            <div class="lb-cup-badge"><img class="lb-cup-img" src="https://www.figma.com/api/mcp/asset/d460756e-00bf-4830-b38b-810b0111757a"></div>
+            <div class="lb-podium-box" style="height:110px;">
+              <span class="lb-prize">MacBook Pro 14'' M4</span>
+              <div class="lb-divider"></div>
+              <span class="lb-points">346 points</span>
+            </div>
+          </div>
+        </div>
+        <div class="lb-place">
+          <img class="lb-avatar" src="https://www.figma.com/api/mcp/asset/00599fa7-6590-44a3-a9c4-a510ad18a22f">
+          <span class="lb-username">Bet_sniper</span>
+          <div class="lb-podium" style="height:124px;">
+            <div class="lb-cup-badge"><img class="lb-cup-img" src="https://www.figma.com/api/mcp/asset/49cc341e-36d0-4831-9312-f27efe9f87d3"></div>
+            <div class="lb-podium-box" style="height:100px;">
+              <span class="lb-prize">200 Free Spins</span>
+              <div class="lb-divider"></div>
+              <span class="lb-points">77 points</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lb-buttons">
+      <button class="lb-btn-secondary">Full Leaderboard</button>
+      <button class="lb-btn-primary">Participate</button>
+    </div>
+  </div>
+
+  <!-- ─── TOP EVENTS BLOCK ───────────────────────────────────── -->
+  <div style="padding:0 16px;margin-bottom:0;">
+    <div class="block-header">
+      <div class="block-heading">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/9ee33c0c-2906-49ad-93aa-750217043814">
+        <span class="block-heading-text">Top Events</span>
+      </div>
+      <button class="btn-see-all">See all</button>
+    </div>
+  </div>
+  <div class="h-scroll" style="margin-bottom:8px;">
+    <div class="event-card event-card-sm">
+      <div class="top-line">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/28790b07-8a7d-4889-81d2-e5d48255458d">
+        <span class="league-link">NBA</span>
+        <div class="event-details-row">
+          <div class="badge-time">9h</div>
+          <div class="ic16"><div class="iv-insights"><img class="iv" src="https://www.figma.com/api/mcp/asset/9549d813-f173-4cad-bb15-f80c548bbcc5"></div></div>
+          <div class="badge-bb">BB</div>
+          <img class="icon-16" src="https://www.figma.com/api/mcp/asset/4f1a9d1a-1a28-454f-8b1a-b30bd29dca0e">
+        </div>
+      </div>
+      <div class="ic" style="position:absolute;top:12px;right:12px;"><div class="iv-fav"><img class="iv" src="https://www.figma.com/api/mcp/asset/05fa9f76-567d-4c80-a55b-267d08acfce7"></div></div>
+      <div class="team-row team1">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/cd2312d4-19c8-4930-b5ae-940d7e87062b">
+        <span class="team-name">Boston Celtics</span>
+      </div>
+      <span class="score score1">4</span>
+      <div class="team-row team2">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/26a2919c-2ca2-4cac-9788-0e7ebc166856">
+        <span class="team-name">Milwaukee Bucks</span>
+      </div>
+      <span class="score score2">2</span>
+      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+      <div class="odds-row">
+        <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">Boston Celtics</div></div>
+        <div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
+        <div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Milwaukee Bu...</div></div>
+        <div class="view-more-btn"><div class="ic"><div class="iv-arrow-right"><img class="iv" src="https://www.figma.com/api/mcp/asset/ccd18159-647b-4f34-a40d-9cc8b017d04e"></div></div></div>
+      </div>
+    </div>
+    <div class="event-card event-card-sm">
+      <div class="top-line">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/28790b07-8a7d-4889-81d2-e5d48255458d">
+        <span class="league-link">NBA</span>
+        <div class="event-details-row">
+          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+          <div class="ic16"><div class="iv-insights"><img class="iv" src="https://www.figma.com/api/mcp/asset/9549d813-f173-4cad-bb15-f80c548bbcc5"></div></div>
+          <div class="ic16"><div class="iv-stream"><img class="iv" src="https://www.figma.com/api/mcp/asset/dcc57b09-e308-44ab-a4c1-0851e14aa819"></div></div>
+          <img class="icon-16" src="https://www.figma.com/api/mcp/asset/4f1a9d1a-1a28-454f-8b1a-b30bd29dca0e">
+        </div>
+      </div>
+      <div class="ic" style="position:absolute;top:12px;right:12px;"><div class="iv-fav"><img class="iv" src="https://www.figma.com/api/mcp/asset/05fa9f76-567d-4c80-a55b-267d08acfce7"></div></div>
+      <div class="team-row team1">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/c7f99de3-70b5-4b91-b729-0eb13bb425a3">
+        <span class="team-name">New York Knicks</span>
+      </div>
+      <span class="score score1">4</span>
+      <div class="team-row team2">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/f24f2910-f554-4f44-b812-9f3c8f34b79a">
+        <span class="team-name">Cleveland Cavaliers</span>
+      </div>
+      <span class="score score2">2</span>
+      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+      <div class="odds-row">
+        <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">New York Knic...</div></div>
+        <div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
+        <div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Cleveland Cav...</div></div>
+        <div class="view-more-btn"><div class="ic"><div class="iv-arrow-right"><img class="iv" src="https://www.figma.com/api/mcp/asset/ccd18159-647b-4f34-a40d-9cc8b017d04e"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pagination" style="margin-bottom:32px;">
+    <div class="dot"></div><div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+
+  <!-- ─── BET BUILDER CARD ───────────────────────────────────── -->
+  <div class="betbuilder-card" style="margin-bottom:32px;">
+    <div class="bb-heading">
+      <img class="icon-20" src="https://www.figma.com/api/mcp/asset/25e28eb1-1490-4e3b-86da-2c846d7c5861">
+      <span class="bb-title">Bet Builder</span>
+      <!-- Close icon -->
+      <div class="ic"><div class="iv-close"><img class="iv" src="https://www.figma.com/api/mcp/asset/7ac2424d-dbcd-4448-b112-6ecf7c1bc406"></div></div>
+      <span class="bb-odds-val-acc">2.75</span>
+    </div>
+    <div class="divider-h"></div>
+    <div class="bb-event-date">28 Jun 2024 10:00</div>
+    <div class="bb-teams-row">
+      <div class="bb-team">
+        <img class="bb-team-logo" src="https://www.figma.com/api/mcp/asset/2d9da508-0a44-4777-8827-bff6c3d23ffa">
+        <span class="bb-team-name">Barcelona</span>
+      </div>
+      <span class="bb-vs">-</span>
+      <div class="bb-team">
+        <span class="bb-team-name">PSG</span>
+        <img class="bb-team-logo" src="https://www.figma.com/api/mcp/asset/bda8ee59-af74-4c95-8625-9f1ae181928b">
+      </div>
+    </div>
+    <div class="divider-h"></div>
+    <div class="bb-show-selections">
+      <!-- Arrow Right BB -->
+      <div class="ic"><div class="iv-arrow-right"><img class="iv" src="https://www.figma.com/api/mcp/asset/e539d56f-63e7-41a6-9e24-e3e2dd6b5888"></div></div>
+      <span class="bb-show-sel-text">Show 3 outcomes</span>
+    </div>
+    <div class="divider-h"></div>
+    <div class="bb-odds-row">
+      <div class="bb-odds-labels">
+        <span class="bb-odds-label">Betbuilder odds</span>
+        <span class="bb-odds-label">Possible win</span>
+      </div>
+      <div class="bb-odds-vals">
+        <span class="bb-odds-num">270.5</span>
+        <span class="bb-win-num">$1,060.00</span>
+      </div>
+    </div>
+    <div class="bet-input-row">
+      <div class="bet-amount-input">
+        <div class="bet-amount-texts">
+          <span class="bet-label">Bet amount</span>
+          <span class="bet-value">$20</span>
+        </div>
+        <div class="max-bet-btn">
+          <span class="max-btn-top">Max</span>
+          <span class="max-btn-bot">$1,000.50</span>
+        </div>
+      </div>
+      <button class="place-bet-btn">Place bet</button>
+    </div>
+  </div>
+
+  <!-- ─── FOOTBALL BLOCK ────────────────────────────────────── -->
+  <div style="padding:0 16px;margin-bottom:0;">
+    <div class="block-header">
+      <div class="block-heading">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/5b793cdb-a7b9-47ef-a6c6-c94f0df7f973">
+        <span class="block-heading-text">Football</span>
+      </div>
+      <button class="btn-see-all" style="position:relative;overflow:hidden;">
+        <img src="https://www.figma.com/api/mcp/asset/6b495089-b3f7-451c-bf8d-2e7fb6e95efc" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        <span style="position:relative;z-index:1;">See all</span>
+      </button>
+    </div>
+  </div>
+  <div class="h-scroll" style="margin-bottom:8px;">
+    <div class="event-card event-card-sm">
+      <div class="top-line">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/5b793cdb-a7b9-47ef-a6c6-c94f0df7f973">
+        <span class="league-link">FIFA World Cup 2026</span>
+        <div class="event-details-row">
+          <div class="badge-time">9h</div>
+          <img class="icon-16" src="https://www.figma.com/api/mcp/asset/07b9c26b-4830-4a09-9e0e-ae9480a30196">
+        </div>
+      </div>
+      <div class="ic" style="position:absolute;top:12px;right:12px;"><div class="iv-fav"><img class="iv" src="https://www.figma.com/api/mcp/asset/677cb11a-5353-4d0c-bc48-57195f082717"></div></div>
+      <div class="team-row team1">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/ba169886-378c-494a-a4de-c506e2bcb912">
+        <span class="team-name">Mexico</span>
+      </div>
+      <span class="score score1">4</span>
+      <div class="team-row team2">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/15f31b98-7fd0-4678-a18a-d35eb632e8bf">
+        <span class="team-name">South Africa</span>
+      </div>
+      <span class="score score2">2</span>
+      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+      <div class="odds-row">
+        <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">Mexico</div></div>
+        <div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
+        <div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">South Africa</div></div>
+        <div class="view-more-btn"><div class="ic"><div class="iv-arrow-right"><img class="iv" src="https://www.figma.com/api/mcp/asset/8a3090ea-863c-4200-8515-86b27efdc32a"></div></div></div>
+      </div>
+    </div>
+    <div class="event-card event-card-sm">
+      <div class="top-line">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/5b793cdb-a7b9-47ef-a6c6-c94f0df7f973">
+        <span class="league-link">FIFA World Cup 2026</span>
+        <div class="event-details-row">
+          <div class="badge-time">9h</div>
+          <img class="icon-16" src="https://www.figma.com/api/mcp/asset/07b9c26b-4830-4a09-9e0e-ae9480a30196">
+        </div>
+      </div>
+      <div class="ic" style="position:absolute;top:12px;right:12px;"><div class="iv-fav"><img class="iv" src="https://www.figma.com/api/mcp/asset/677cb11a-5353-4d0c-bc48-57195f082717"></div></div>
+      <div class="team-row team1">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/a28ebc7b-4467-4308-82de-5eb86ec2445c">
+        <span class="team-name">South Korea</span>
+      </div>
+      <span class="score score1">4</span>
+      <div class="team-row team2">
+        <img class="icon-20" src="https://www.figma.com/api/mcp/asset/af97f85a-1a5f-402e-9a04-2f49972b2cc8">
+        <span class="team-name">Czech Republic</span>
+      </div>
+      <span class="score score2">2</span>
+      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+      <div class="odds-row">
+        <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">South Korea</div></div>
+        <div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
+        <div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Czech Republic</div></div>
+        <div class="view-more-btn"><div class="ic"><div class="iv-arrow-right"><img class="iv" src="https://www.figma.com/api/mcp/asset/8a3090ea-863c-4200-8515-86b27efdc32a"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pagination" style="margin-bottom:0;">
+    <div class="dot"></div><div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+
+  <!-- ─── MOBILE FOOTER ─────────────────────────────────────── -->
+  <div class="mobile-footer">
+    <img src="https://www.figma.com/api/mcp/asset/d2ae54b3-9ea6-4ba1-8347-862078bc871a" alt="">
+  </div>
+
+</div>
+
+<!-- ─── COLLAPSED BETSLIP (fixed) ────────────────────────── -->
+<div class="betslip-bar">
+  <div class="betslip-btn">
+    <span class="betslip-label">Betslip</span>
+    <div class="betslip-counter">1</div>
+  </div>
+  <div class="betslip-quickbet">
+    <div class="betslip-toggle-btn">
+      <!-- Quick Bet icon -->
+      <div class="ic"><div class="iv-quickbet"><img class="iv" src="https://www.figma.com/api/mcp/asset/72fd5590-43a6-4452-97b4-00226b2b0ece"></div></div>
+    </div>
+  </div>
+  <div class="betslip-spin">
+    <img class="icon-20" src="https://www.figma.com/api/mcp/asset/78e97e9b-7f45-43ac-8c18-8797a60af7b1">
+  </div>
+</div>
+
+</body>
+</html>
