@@ -443,7 +443,9 @@
     border-radius: 8px;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 12px; margin: 0 16px;
+    cursor: pointer; transition: background 0.15s;
   }
+  .swipe-bet-card:hover { background: linear-gradient(180deg, var(--bg-6) 0%, var(--bg-4) 100%); }
   .swipe-bet-left { display: flex; align-items: center; gap: 12px; }
   .swipe-bet-img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px 0 0 8px; flex-shrink: 0; }
   .swipe-bet-title { font-size: 18px; font-weight: 600; color: var(--text-default); line-height: 1.4; }
@@ -457,7 +459,9 @@
     height: 40px; display: flex; align-items: center;
     gap: 8px; padding: 10px 12px;
     white-space: nowrap; flex-shrink: 0; cursor: pointer;
+    transition: background 0.15s;
   }
+  .tag-pill:hover { background: var(--bg-6); }
   .tag-pill span { font-size: 12px; font-weight: 400; color: var(--text-default); }
 
   /* ── Turbo Combo ─────────────────────────────────────────── */
