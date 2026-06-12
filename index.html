@@ -1143,7 +1143,7 @@
   <div style="padding:0 16px;margin-bottom:16px;">
     <div style="font-size:20px;font-weight:800;color:var(--text-default);line-height:1.4;">Popular Plays</div>
   </div>
-  <div class="h-scroll" style="margin-bottom:8px;">
+  <div class="h-scroll" style="margin-bottom:8px;" id="hs-popular">
     <div class="popular-card">
       <div class="popular-top-line">
         <img class="icon-20" src="assets/icons/american-football.svg">
@@ -1172,14 +1172,66 @@
     </div>
     <div class="popular-card">
       <div class="popular-top-line">
+        <img class="icon-20" src="assets/icons/football.svg">
+        <span class="league-link">Football</span>
+        <span style="color:var(--text-secondary);font-size:12px;">•</span>
+        <span class="league-link">UEFA Champions League</span>
+      </div>
+      <div class="popular-event-line">
+        <span class="popular-event-name">Barcelona - PSG</span>
+        <div class="badge-time">12 Jun • 20:00</div>
+      </div>
+      <div class="popular-outcome-row">
+        <div class="popular-outcome-left">
+          <img class="team-icon-lg" src="assets/images/team-barcelona.png">
+          <div class="popular-team-info">
+            <span class="popular-team-name">Barcelona</span>
+            <span class="popular-market">Match Winner</span>
+          </div>
+        </div>
+        <span class="popular-odd">1.85</span>
+      </div>
+      <button class="win-btn">
+        <span class="win-entry">Popular Entry: $20</span>
+        <span class="win-amount">Win $37.00!</span>
+      </button>
+    </div>
+    <div class="popular-card">
+      <div class="popular-top-line">
+        <img class="icon-20" src="assets/icons/basketball.svg">
+        <span class="league-link">Basketball</span>
+        <span style="color:var(--text-secondary);font-size:12px;">•</span>
+        <span class="league-link">NBA</span>
+      </div>
+      <div class="popular-event-line">
+        <span class="popular-event-name">Miami Heat - Indiana Pacers</span>
+        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '34</div>
+      </div>
+      <div class="popular-outcome-row">
+        <div class="popular-outcome-left">
+          <img class="team-icon-lg" src="assets/images/team-miami-heat.png">
+          <div class="popular-team-info">
+            <span class="popular-team-name">Miami Heat</span>
+            <span class="popular-market">Match Winner</span>
+          </div>
+        </div>
+        <span class="popular-odd">2.10</span>
+      </div>
+      <button class="win-btn">
+        <span class="win-entry">Popular Entry: $20</span>
+        <span class="win-amount">Win $42.00!</span>
+      </button>
+    </div>
+    <div class="popular-card">
+      <div class="popular-top-line">
         <img class="icon-20" src="assets/icons/american-football.svg">
         <span class="league-link">American Football</span>
         <span style="color:var(--text-secondary);font-size:12px;">•</span>
         <span class="league-link">NFL</span>
       </div>
       <div class="popular-event-line">
-        <span class="popular-event-name">New York Jets - Houston Texans</span>
-        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+        <span class="popular-event-name">Houston Texans - NY Giants</span>
+        <div class="badge-time">13 Jun • 22:00</div>
       </div>
       <div class="popular-outcome-row">
         <div class="popular-outcome-left">
@@ -1189,16 +1241,16 @@
             <span class="popular-market">Match Winner</span>
           </div>
         </div>
-        <span class="popular-odd">1.82</span>
+        <span class="popular-odd">1.65</span>
       </div>
       <button class="win-btn">
         <span class="win-entry">Popular Entry: $20</span>
-        <span class="win-amount">Win $36.39!</span>
+        <span class="win-amount">Win $33.00!</span>
       </button>
     </div>
   </div>
-  <div class="pagination" style="margin-bottom:32px;">
-    <div class="dot"></div><div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  <div class="pagination" style="margin-bottom:32px;" id="pg-popular">
+    <div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
   </div>
 
   <!-- ─── LIVE BLOCK ────────────────────────────────────────── -->
@@ -1211,7 +1263,7 @@
       <button class="btn-see-all">See all</button>
     </div>
   </div>
-  <div class="h-scroll" style="margin-bottom:8px;">
+  <div class="h-scroll" style="margin-bottom:8px;" id="hs-live">
     <!-- Live card 1 -->
     <div class="event-card event-card-sm">
       <div class="top-line">
@@ -1273,9 +1325,71 @@
         <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
       </div>
     </div>
+    <!-- Live card 3 -->
+    <div class="event-card event-card-sm">
+      <div class="top-line">
+        <img class="icon-20" src="assets/icons/basketball.svg">
+        <span class="league-link">NBA</span>
+        <div class="event-details-row">
+          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '43</div>
+          <div class="badge-fb">FB</div>
+          <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
+          <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
+        </div>
+      </div>
+      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
+      <div class="team-row team1">
+        <img class="icon-20" src="assets/images/team-miami-heat.png">
+        <span class="team-name">Miami Heat</span>
+      </div>
+      <span class="score score1">3</span>
+      <div class="team-row team2">
+        <img class="icon-20" src="assets/images/team-indiana-pacers.png">
+        <span class="team-name">Indiana Pacers</span>
+      </div>
+      <span class="score score2">1</span>
+      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+      <div class="odds-row">
+        <div class="odd-btn"><div class="odd-value">2.10</div><div class="odd-outcome">Miami Heat</div></div>
+        <div class="odd-btn"><div class="odd-value">4.20</div><div class="odd-outcome">Draw</div></div>
+        <div class="odd-btn"><div class="odd-value">2.75</div><div class="odd-outcome">Indiana Pacers</div></div>
+        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
+      </div>
+    </div>
+    <!-- Live card 4 -->
+    <div class="event-card event-card-sm">
+      <div class="top-line">
+        <img class="icon-20" src="assets/icons/football.svg">
+        <span class="league-link">UEFA Champions League</span>
+        <div class="event-details-row">
+          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '80</div>
+          <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
+          <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
+          <img class="icon-16" src="assets/icons/hot-orange.svg">
+        </div>
+      </div>
+      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
+      <div class="team-row team1">
+        <img class="icon-20" src="assets/images/team-barcelona.png">
+        <span class="team-name">Barcelona</span>
+      </div>
+      <span class="score score1">2</span>
+      <div class="team-row team2">
+        <img class="icon-20" src="assets/images/team-psg.png">
+        <span class="team-name">PSG</span>
+      </div>
+      <span class="score score2">1</span>
+      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+      <div class="odds-row">
+        <div class="odd-btn"><div class="odd-value">1.85</div><div class="odd-outcome">Barcelona</div></div>
+        <div class="odd-btn"><div class="odd-value">3.20</div><div class="odd-outcome">Draw</div></div>
+        <div class="odd-btn"><div class="odd-value">4.50</div><div class="odd-outcome">PSG</div></div>
+        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
+      </div>
+    </div>
   </div>
-  <div class="pagination" style="margin-bottom:32px;">
-    <div class="dot"></div><div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  <div class="pagination" style="margin-bottom:32px;" id="pg-live">
+    <div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
   </div>
 
   <!-- ─── LEADERBOARD ────────────────────────────────────────── -->
@@ -1357,7 +1471,7 @@
       <button class="btn-see-all">See all</button>
     </div>
   </div>
-  <div class="h-scroll" style="margin-bottom:8px;">
+  <div class="h-scroll" style="margin-bottom:8px;" id="hs-top">
     <div class="event-card event-card-sm">
       <div class="top-line">
         <img class="icon-20" src="assets/icons/basketball.svg">
@@ -1418,9 +1532,69 @@
         <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
       </div>
     </div>
+    <!-- Top Events card 3 -->
+    <div class="event-card event-card-sm">
+      <div class="top-line">
+        <img class="icon-20" src="assets/icons/football.svg">
+        <span class="league-link">UEFA Champions League</span>
+        <div class="event-details-row">
+          <div class="badge-time">12h</div>
+          <div class="badge-bb">BB</div>
+          <img class="icon-16" src="assets/icons/hot-orange.svg">
+        </div>
+      </div>
+      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
+      <div class="team-row team1">
+        <img class="icon-20" src="assets/images/team-barcelona.png">
+        <span class="team-name">Barcelona</span>
+      </div>
+      <span class="score score1">–</span>
+      <div class="team-row team2">
+        <img class="icon-20" src="assets/images/team-psg.png">
+        <span class="team-name">PSG</span>
+      </div>
+      <span class="score score2"></span>
+      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+      <div class="odds-row">
+        <div class="odd-btn"><div class="odd-value">1.85</div><div class="odd-outcome">Barcelona</div></div>
+        <div class="odd-btn"><div class="odd-value">3.20</div><div class="odd-outcome">Draw</div></div>
+        <div class="odd-btn"><div class="odd-value">4.50</div><div class="odd-outcome">PSG</div></div>
+        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
+      </div>
+    </div>
+    <!-- Top Events card 4 -->
+    <div class="event-card event-card-sm">
+      <div class="top-line">
+        <img class="icon-20" src="assets/icons/basketball.svg">
+        <span class="league-link">NBA</span>
+        <div class="event-details-row">
+          <div class="badge-time">6h</div>
+          <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
+          <img class="icon-16" src="assets/icons/hot-orange.svg">
+        </div>
+      </div>
+      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
+      <div class="team-row team1">
+        <img class="icon-20" src="assets/images/team-miami-heat.png">
+        <span class="team-name">Miami Heat</span>
+      </div>
+      <span class="score score1">–</span>
+      <div class="team-row team2">
+        <img class="icon-20" src="assets/images/team-orlando-magic.png">
+        <span class="team-name">Orlando Magic</span>
+      </div>
+      <span class="score score2"></span>
+      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+      <div class="odds-row">
+        <div class="odd-btn"><div class="odd-value">1.70</div><div class="odd-outcome">Miami Heat</div></div>
+        <div class="odd-btn"><div class="odd-value">4.00</div><div class="odd-outcome">Draw</div></div>
+        <div class="odd-btn"><div class="odd-value">3.10</div><div class="odd-outcome">Orlando Magic</div></div>
+        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
+      </div>
+    </div>
   </div>
-  <div class="pagination" style="margin-bottom:32px;">
-    <div class="dot"></div><div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  <div class="pagination" style="margin-bottom:32px;" id="pg-top">
+    <div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
   </div>
 
   <!-- ─── BET BUILDER CARD ───────────────────────────────────── -->
@@ -1489,7 +1663,7 @@
       </button>
     </div>
   </div>
-  <div class="h-scroll" style="margin-bottom:8px;">
+  <div class="h-scroll" style="margin-bottom:8px;" id="hs-football">
     <div class="event-card event-card-sm">
       <div class="top-line">
         <img class="icon-20" src="assets/icons/football.svg">
@@ -1546,9 +1720,69 @@
         <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
       </div>
     </div>
+    <!-- Football card 3 -->
+    <div class="event-card event-card-sm">
+      <div class="top-line">
+        <img class="icon-20" src="assets/icons/football.svg">
+        <span class="league-link">UEFA Champions League</span>
+        <div class="event-details-row">
+          <div class="badge-time">15 Jun • 21:00</div>
+          <div class="badge-bb">BB</div>
+          <img class="icon-16" src="assets/icons/hot-orange.svg">
+        </div>
+      </div>
+      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
+      <div class="team-row team1">
+        <img class="icon-20" src="assets/images/team-barcelona.png">
+        <span class="team-name">Barcelona</span>
+      </div>
+      <span class="score score1">–</span>
+      <div class="team-row team2">
+        <img class="icon-20" src="assets/images/team-psg.png">
+        <span class="team-name">PSG</span>
+      </div>
+      <span class="score score2"></span>
+      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+      <div class="odds-row">
+        <div class="odd-btn"><div class="odd-value">1.85</div><div class="odd-outcome">Barcelona</div></div>
+        <div class="odd-btn"><div class="odd-value">3.20</div><div class="odd-outcome">Draw</div></div>
+        <div class="odd-btn"><div class="odd-value">4.50</div><div class="odd-outcome">PSG</div></div>
+        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
+      </div>
+    </div>
+    <!-- Football card 4 -->
+    <div class="event-card event-card-sm">
+      <div class="top-line">
+        <img class="icon-20" src="assets/icons/football.svg">
+        <span class="league-link">FIFA World Cup 2026</span>
+        <div class="event-details-row">
+          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '55</div>
+          <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
+          <img class="icon-16" src="assets/icons/hot-orange.svg">
+        </div>
+      </div>
+      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
+      <div class="team-row team1">
+        <img class="icon-20" src="assets/images/team-mexico.png">
+        <span class="team-name">Mexico</span>
+      </div>
+      <span class="score score1">1</span>
+      <div class="team-row team2">
+        <img class="icon-20" src="assets/images/team-south-korea.png">
+        <span class="team-name">South Korea</span>
+      </div>
+      <span class="score score2">1</span>
+      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+      <div class="odds-row">
+        <div class="odd-btn"><div class="odd-value">2.30</div><div class="odd-outcome">Mexico</div></div>
+        <div class="odd-btn"><div class="odd-value">2.90</div><div class="odd-outcome">Draw</div></div>
+        <div class="odd-btn"><div class="odd-value">2.60</div><div class="odd-outcome">South Korea</div></div>
+        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
+      </div>
+    </div>
   </div>
-  <div class="pagination" style="margin-bottom:0;">
-    <div class="dot"></div><div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  <div class="pagination" style="margin-bottom:0;" id="pg-football">
+    <div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
   </div>
 
   <!-- ─── MOBILE FOOTER placeholder for spacing ──────────── -->
@@ -1642,6 +1876,29 @@
 
   setupOdds('.ec3-odd-btn', '.ec3');
   setupOdds('.odd-btn', '.event-card');
+})();
+
+(function() {
+  // ── Scroll pagination ─────────────────────────────────────
+  var pairs = [
+    ['hs-popular', 'pg-popular'],
+    ['hs-live',    'pg-live'],
+    ['hs-top',     'pg-top'],
+    ['hs-football','pg-football']
+  ];
+  pairs.forEach(function(pair) {
+    var scr = document.getElementById(pair[0]);
+    var pag = document.getElementById(pair[1]);
+    if (!scr || !pag) return;
+    var dots = pag.querySelectorAll('.dot, .dot-active');
+    scr.addEventListener('scroll', function() {
+      var first = scr.querySelector(':scope > *');
+      if (!first) return;
+      var step = first.offsetWidth + 8;
+      var idx = Math.min(Math.round(scr.scrollLeft / step), dots.length - 1);
+      dots.forEach(function(d, i) { d.className = i === idx ? 'dot-active' : 'dot'; });
+    }, { passive: true });
+  });
 })();
 
 (function() {
