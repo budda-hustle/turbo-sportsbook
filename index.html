@@ -378,8 +378,26 @@
     justify-content: center;
     padding: 14px 10px;
     flex-shrink: 0;
-    cursor: pointer;
+    cursor: default;
+    border: 1px solid transparent;
   }
+  .ec3-more-btn:hover { border-color: var(--bg-active); }
+
+  /* Odd button interactive states (ec3 + old cards) */
+  .ec3-odd-btn { border: 1px solid transparent; transition: border-color 0.15s, background 0.15s; }
+  .ec3-odd-btn:hover { border-color: var(--bg-active); }
+  .ec3-odd-btn.selected { background: var(--bg-active); border-color: var(--bg-active); }
+  .ec3-odd-btn.selected .ec3-odd-value,
+  .ec3-odd-btn.selected .ec3-odd-label { color: var(--text-default); }
+
+  .odd-btn { border: 1px solid transparent; transition: border-color 0.15s, background 0.15s; }
+  .odd-btn:hover { border-color: var(--bg-active); }
+  .odd-btn.selected { background: var(--bg-active); border-color: var(--bg-active); }
+  .odd-btn.selected .odd-value,
+  .odd-btn.selected .odd-outcome { color: var(--text-default); }
+
+  .view-more-btn { border: 1px solid transparent; transition: border-color 0.15s; cursor: default; }
+  .view-more-btn:hover { border-color: var(--bg-active); }
 
   /* ── Horizontal scroll ───────────────────────────────────── */
   .h-scroll {
@@ -805,7 +823,7 @@
             <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20Orlando%20Magic.png" alt="Orlando Magic">
             <span class="ec3-team-name">Orlando Magic</span>
           </div>
-          <span class="ec3-score">2:3</span>
+          <span class="ec3-score">2&nbsp;&nbsp;:&nbsp;&nbsp;3</span>
           <div class="ec3-team">
             <span class="ec3-team-name">Indiana Pacers</span>
             <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20Indiana%20Pacers.png" alt="Indiana Pacers">
@@ -864,10 +882,127 @@
 
     </div>
 
+    <!-- Hidden extra cards -->
+    <div id="picks-extra" style="display:none;flex-direction:column;gap:8px;margin-top:8px;">
+
+      <!-- Card 4: Bayern Munich vs Arsenal — Pre-match, UEFA CL -->
+      <div class="ec3">
+        <div class="ec3-top">
+          <div class="ec3-top-left">
+            <img class="icon-20" src="assets/icons/football.svg">
+            <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+          </div>
+          <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
+        </div>
+        <div class="ec3-details">
+          <div class="badge-time">15 Jun • 21:00</div>
+          <div class="badge-fb">FB</div>
+        </div>
+        <div class="ec3-teams">
+          <div class="ec3-team">
+            <img class="ec3-team-logo" src="assets/teams/Football%20-%20Bayern%20Munich.png" alt="Bayern Munich">
+            <span class="ec3-team-name">Bayern Munich</span>
+          </div>
+          <span class="ec3-dash">-</span>
+          <div class="ec3-team">
+            <span class="ec3-team-name">Arsenal</span>
+            <img class="ec3-team-logo" src="assets/teams/Football%20-%20Arsenal.png" alt="Arsenal">
+          </div>
+        </div>
+        <div class="ec3-market">
+          <div class="ec3-market-line"></div>
+          <span class="ec3-market-label">Match Winner</span>
+          <div class="ec3-market-line"></div>
+        </div>
+        <div class="ec3-odds">
+          <div class="ec3-odd-btn"><div class="ec3-odd-value">2.10</div><div class="ec3-odd-label">Bayern Munich</div></div>
+          <div class="ec3-odd-btn"><div class="ec3-odd-value">3.60</div><div class="ec3-odd-label">Draw</div></div>
+          <div class="ec3-odd-btn"><div class="ec3-odd-value">3.25</div><div class="ec3-odd-label">Arsenal</div></div>
+          <div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
+        </div>
+      </div>
+
+      <!-- Card 5: Milwaukee Bucks vs New York Knicks — LIVE, NBA -->
+      <div class="ec3">
+        <div class="ec3-top">
+          <div class="ec3-top-left">
+            <img class="icon-20" src="assets/icons/basketball.svg">
+            <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+          </div>
+          <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
+        </div>
+        <div class="ec3-details">
+          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '34</div>
+          <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
+        </div>
+        <div class="ec3-teams">
+          <div class="ec3-team">
+            <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20Milwaukee%20Bucks.png" alt="Milwaukee Bucks">
+            <span class="ec3-team-name">Milwaukee Bucks</span>
+          </div>
+          <span class="ec3-score">1&nbsp;&nbsp;:&nbsp;&nbsp;0</span>
+          <div class="ec3-team">
+            <span class="ec3-team-name">New York Knicks</span>
+            <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20New%20York%20Knicks.png" alt="New York Knicks">
+          </div>
+        </div>
+        <div class="ec3-market">
+          <div class="ec3-market-line"></div>
+          <span class="ec3-market-label">Match Winner</span>
+          <div class="ec3-market-line"></div>
+        </div>
+        <div class="ec3-odds">
+          <div class="ec3-odd-btn"><div class="ec3-odd-value">1.90</div><div class="ec3-odd-label">Milwaukee</div></div>
+          <div class="ec3-odd-btn"><div class="ec3-odd-value">4.10</div><div class="ec3-odd-label">Draw</div></div>
+          <div class="ec3-odd-btn"><div class="ec3-odd-value">2.75</div><div class="ec3-odd-label">NY Knicks</div></div>
+          <div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
+        </div>
+      </div>
+
+      <!-- Card 6: Liverpool vs Manchester City — Pre-match -->
+      <div class="ec3">
+        <div class="ec3-top">
+          <div class="ec3-top-left">
+            <img class="icon-20" src="assets/icons/football.svg">
+            <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+          </div>
+          <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
+        </div>
+        <div class="ec3-details">
+          <div class="badge-time">16 Jun • 19:45</div>
+          <div class="badge-bb">BB</div>
+          <img class="icon-16" src="assets/icons/hot-orange.svg">
+        </div>
+        <div class="ec3-teams">
+          <div class="ec3-team">
+            <img class="ec3-team-logo" src="assets/teams/Football%20-%20Liverpool.png" alt="Liverpool">
+            <span class="ec3-team-name">Liverpool</span>
+          </div>
+          <span class="ec3-dash">-</span>
+          <div class="ec3-team">
+            <span class="ec3-team-name">Man City</span>
+            <img class="ec3-team-logo" src="assets/teams/Football%20-%20Manchester%20City.png" alt="Manchester City">
+          </div>
+        </div>
+        <div class="ec3-market">
+          <div class="ec3-market-line"></div>
+          <span class="ec3-market-label">Match Winner</span>
+          <div class="ec3-market-line"></div>
+        </div>
+        <div class="ec3-odds">
+          <div class="ec3-odd-btn"><div class="ec3-odd-value">2.40</div><div class="ec3-odd-label">Liverpool</div></div>
+          <div class="ec3-odd-btn"><div class="ec3-odd-value">3.10</div><div class="ec3-odd-label">Draw</div></div>
+          <div class="ec3-odd-btn"><div class="ec3-odd-value">2.80</div><div class="ec3-odd-label">Man City</div></div>
+          <div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
+        </div>
+      </div>
+
+    </div>
+
     <!-- Show more -->
-    <div class="show-more">
-      <span>Show 12 more</span>
-      <div class="ic"><img class="iv" src="assets/icons/arrow-down.svg"></div>
+    <div class="show-more" id="picks-show-more" onclick="(function(){var el=document.getElementById('picks-extra');var btn=document.getElementById('picks-show-more');var img=btn.querySelector('img');if(el.style.display==='none'){el.style.display='flex';btn.querySelector('span').textContent='Show less';img.style.transform='rotate(180deg)';}else{el.style.display='none';btn.querySelector('span').textContent='Show more';img.style.transform='';}})()">
+      <span>Show more</span>
+      <div class="ic"><img class="iv" src="assets/icons/arrow-down.svg" style="transition:transform 0.2s;"></div>
     </div>
   </div>
 
@@ -1402,7 +1537,7 @@
 <div class="betslip-bar">
   <div class="betslip-btn">
     <span class="betslip-label">Betslip</span>
-    <div class="betslip-counter">1</div>
+    <div class="betslip-counter" id="betslip-count">0</div>
   </div>
   <div class="betslip-quickbet">
     <div class="betslip-toggle-btn">
@@ -1417,6 +1552,35 @@
 
 
 <script>
+(function() {
+  // ── Odds selection + betslip counter ──────────────────────
+  function getCount() { return parseInt(document.getElementById('betslip-count').textContent) || 0; }
+  function setCount(n) { document.getElementById('betslip-count').textContent = Math.max(0, n); }
+
+  function setupOdds(btnSel, cardSel) {
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest(btnSel);
+      if (!btn) return;
+      var card = btn.closest(cardSel);
+      if (!card) return;
+      var wasSelected = btn.classList.contains('selected');
+      // Deselect any selected in this card
+      card.querySelectorAll(btnSel + '.selected').forEach(function(b) {
+        b.classList.remove('selected');
+        setCount(getCount() - 1);
+      });
+      // Select clicked if it wasn't already selected
+      if (!wasSelected) {
+        btn.classList.add('selected');
+        setCount(getCount() + 1);
+      }
+    });
+  }
+
+  setupOdds('.ec3-odd-btn', '.ec3');
+  setupOdds('.odd-btn', '.event-card');
+})();
+
 (function() {
   var nav = document.getElementById('scroll-nav');
   var lastY = window.scrollY;
