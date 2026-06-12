@@ -384,25 +384,25 @@
     padding: 14px 10px;
     flex-shrink: 0;
     cursor: default;
-    border: 1px solid transparent;
+    transition: background 0.15s;
   }
-  .ec3-more-btn:hover { border-color: var(--bg-active); }
+  .ec3-more-btn:hover { background: var(--bg-6); }
 
   /* Odd button interactive states (ec3 + old cards) */
-  .ec3-odd-btn { border: 1px solid transparent; transition: border-color 0.15s, background 0.15s; }
-  .ec3-odd-btn:hover { border-color: var(--bg-active); }
-  .ec3-odd-btn.selected { background: var(--bg-active); border-color: var(--bg-active); }
+  .ec3-odd-btn { transition: background 0.15s; }
+  .ec3-odd-btn:hover { background: var(--bg-6); }
+  .ec3-odd-btn.selected { background: var(--bg-active); }
   .ec3-odd-btn.selected .ec3-odd-value,
   .ec3-odd-btn.selected .ec3-odd-label { color: var(--text-default); }
 
-  .odd-btn { border: 1px solid transparent; transition: border-color 0.15s, background 0.15s; }
-  .odd-btn:hover { border-color: var(--bg-active); }
-  .odd-btn.selected { background: var(--bg-active); border-color: var(--bg-active); }
+  .odd-btn { transition: background 0.15s; }
+  .odd-btn:hover { background: var(--bg-6); }
+  .odd-btn.selected { background: var(--bg-active); }
   .odd-btn.selected .odd-value,
   .odd-btn.selected .odd-outcome { color: var(--text-default); }
 
-  .view-more-btn { border: 1px solid transparent; transition: border-color 0.15s; cursor: default; }
-  .view-more-btn:hover { border-color: var(--bg-active); }
+  .view-more-btn { transition: background 0.15s; cursor: default; }
+  .view-more-btn:hover { background: var(--bg-6); }
 
   /* Favorites button */
   .fav-btn { cursor: pointer; }
