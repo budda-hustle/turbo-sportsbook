@@ -415,6 +415,12 @@
   .odd-btn.selected { background: var(--bg-active); }
   .odd-btn.selected .odd-value,
   .odd-btn.selected .odd-outcome { color: var(--text-default); }
+  .odd-btn.flash-up, .ec3-odd-btn.flash-up { background: rgba(88,204,0,0.18) !important; transition: background 0.35s ease !important; }
+  .odd-btn.flash-up .odd-value, .odd-btn.flash-up .ec3-odd-value,
+  .ec3-odd-btn.flash-up .ec3-odd-value { color: #58cc00 !important; transition: color 0.35s ease !important; }
+  .odd-btn.flash-down, .ec3-odd-btn.flash-down { background: rgba(255,60,60,0.18) !important; transition: background 0.35s ease !important; }
+  .odd-btn.flash-down .odd-value,
+  .ec3-odd-btn.flash-down .ec3-odd-value { color: #ff3c3c !important; transition: color 0.35s ease !important; }
 
   .view-more-btn { transition: background 0.15s; cursor: default; }
   .view-more-btn:hover { background: var(--bg-6); }
@@ -1943,6 +1949,34 @@
 
   tick();
   setInterval(tick, 1000);
+})();
+
+(function() {
+  // ── Live odds flicker ─────────────────────────────────────
+  function flickerOdds() {
+    var btns = Array.from(document.querySelectorAll('.odd-btn:not(.selected), .ec3-odd-btn:not(.selected)'));
+    if (!btns.length) return;
+
+    // Pick 1–2 random buttons, avoiding repeats
+    var count = Math.random() < 0.35 ? 2 : 1;
+    var shuffled = btns.sort(function() { return Math.random() - 0.5; }).slice(0, count);
+
+    shuffled.forEach(function(btn) {
+      var cls = Math.random() < 0.55 ? 'flash-up' : 'flash-down';
+      btn.classList.add(cls);
+      // Hold for 600–900ms then fade out
+      var holdMs = 600 + Math.random() * 300;
+      setTimeout(function() {
+        btn.classList.remove(cls);
+      }, holdMs);
+    });
+
+    // Schedule next flicker: 2.5–6s gap — feels alive but not distracting
+    setTimeout(flickerOdds, 2500 + Math.random() * 3500);
+  }
+
+  // Start after a short initial delay
+  setTimeout(flickerOdds, 1500 + Math.random() * 2000);
 })();
 
 (function() {
