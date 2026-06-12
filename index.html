@@ -161,7 +161,7 @@
     padding: 12px;
     margin: 0 16px 32px;
   }
-  .hero-banner > img.hero-bg {
+  .hero-banner > video.hero-bg {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover; border-radius: 8px;
@@ -585,14 +585,17 @@
   .leaderboard-rules-btn:hover { color: var(--bg-active); }
   .leaderboard-timer {
     background: var(--lighten-2); border-radius: 8px;
-    padding: 4px 12px;
+    padding: 4px 10px;
     display: flex; align-items: center; gap: 4px;
-    margin-bottom: 12px; width: 158px;
+    margin-bottom: 12px; width: fit-content;
   }
   .timer-unit { display: flex; flex-direction: column; align-items: center; min-width: 17px; }
   .timer-num { font-size: 16px; font-weight: 600; color: var(--text-default); line-height: 1.4; }
   .timer-label { font-size: 10px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
   .timer-sep { font-size: 16px; font-weight: 600; color: var(--text-secondary); line-height: 1.4; }
+  @keyframes timer-blink { 0%,49%{opacity:1} 50%,100%{opacity:0.2} }
+  .timer-blink { animation: timer-blink 1s step-end infinite; }
+  .hero-timer-blink { animation: timer-blink 1s step-end infinite; }
   .leaderboard-title { font-size: 24px; font-weight: 800; color: var(--text-default); line-height: 1.4; margin-bottom: 12px; }
   .prize-pool-banner {
     background: var(--leaderboard-prize); border-radius: 8px;
@@ -797,8 +800,8 @@
 
   <!-- ─── HERO BANNER ───────────────────────────────────────── -->
   <div class="hero-banner">
-    <img class="hero-bg" src="assets/images/hero-banner-bg.png" alt="">
-    <div class="hero-timer">00d : 22h : 18m</div>
+    <video class="hero-bg" src="assets/videos/hero-banner-bg.mp4" autoplay muted loop playsinline></video>
+    <div class="hero-timer"><span id="ht-d">00</span>d<span class="hero-timer-blink"> : </span><span id="ht-h">22</span>h<span class="hero-timer-blink"> : </span><span id="ht-m">18</span>m</div>
     <div class="hero-title">FIFA World Cup 2026</div>
   </div>
 
@@ -1404,13 +1407,13 @@
       <img class="leaderboard-hero-bg" src="assets/images/leaderboard-hero-bg.png">
       <div class="leaderboard-left">
         <div class="leaderboard-timer">
-          <div class="timer-unit"><span class="timer-num">00</span><span class="timer-label">days</span></div>
-          <span class="timer-sep">:</span>
-          <div class="timer-unit"><span class="timer-num">22</span><span class="timer-label">hrs</span></div>
-          <span class="timer-sep">:</span>
-          <div class="timer-unit"><span class="timer-num">18</span><span class="timer-label">min</span></div>
-          <span class="timer-sep">:</span>
-          <div class="timer-unit"><span class="timer-num">18</span><span class="timer-label">sec</span></div>
+          <div class="timer-unit"><span class="timer-num" id="lb-d">00</span><span class="timer-label">days</span></div>
+          <span class="timer-sep timer-blink">:</span>
+          <div class="timer-unit"><span class="timer-num" id="lb-h">22</span><span class="timer-label">hrs</span></div>
+          <span class="timer-sep timer-blink">:</span>
+          <div class="timer-unit"><span class="timer-num" id="lb-m">18</span><span class="timer-label">min</span></div>
+          <span class="timer-sep timer-blink">:</span>
+          <div class="timer-unit"><span class="timer-num" id="lb-s">18</span><span class="timer-label">sec</span></div>
         </div>
         <div class="leaderboard-title">Profit Kings<br>Battle for Glory</div>
         <div class="prize-pool-banner">
@@ -1882,6 +1885,52 @@
 
   setupOdds('.ec3-odd-btn', '.ec3');
   setupOdds('.odd-btn', '.event-card');
+})();
+
+(function() {
+  // ── Countdown timers ──────────────────────────────────────
+  var KEY = 'ts_timer_end';
+  var DURATION = (22 * 3600 + 18 * 60 + 18); // 22h 18m 18s in seconds
+  var end;
+  var stored = sessionStorage.getItem(KEY);
+  if (stored) {
+    end = parseInt(stored);
+  } else {
+    end = Math.floor(Date.now() / 1000) + DURATION;
+    sessionStorage.setItem(KEY, end);
+  }
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function tick() {
+    var now = Math.floor(Date.now() / 1000);
+    var rem = Math.max(0, end - now);
+    var d = Math.floor(rem / 86400);
+    var h = Math.floor((rem % 86400) / 3600);
+    var m = Math.floor((rem % 3600) / 60);
+    var s = rem % 60;
+
+    // Hero timer (no seconds)
+    var htD = document.getElementById('ht-d');
+    var htH = document.getElementById('ht-h');
+    var htM = document.getElementById('ht-m');
+    if (htD) htD.textContent = pad(d);
+    if (htH) htH.textContent = pad(h);
+    if (htM) htM.textContent = pad(m);
+
+    // Leaderboard timer (with seconds)
+    var lbD = document.getElementById('lb-d');
+    var lbH = document.getElementById('lb-h');
+    var lbM = document.getElementById('lb-m');
+    var lbS = document.getElementById('lb-s');
+    if (lbD) lbD.textContent = pad(d);
+    if (lbH) lbH.textContent = pad(h);
+    if (lbM) lbM.textContent = pad(m);
+    if (lbS) lbS.textContent = pad(s);
+  }
+
+  tick();
+  setInterval(tick, 1000);
 })();
 
 (function() {
