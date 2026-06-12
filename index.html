@@ -692,6 +692,25 @@
   .bb-odds-num { font-size: 14px; font-weight: 600; color: var(--text-default); line-height: 20px; text-align: right; }
   .bb-win-num { font-size: 14px; font-weight: 600; color: var(--text-positive); line-height: 20px; text-align: right; }
 
+  /* ── Scroll fade edges ───────────────────────────────────── */
+  .scroll-fade-top,
+  .scroll-fade-bottom {
+    position: fixed;
+    left: 50%; transform: translateX(-50%);
+    width: var(--pw);
+    height: 24px;
+    pointer-events: none;
+    z-index: 98;
+  }
+  .scroll-fade-top {
+    top: 108px; /* logo 52px + nav 56px */
+    background: linear-gradient(to bottom, var(--bg-0) 0%, transparent 100%);
+  }
+  .scroll-fade-bottom {
+    bottom: 72px; /* footer height */
+    background: linear-gradient(to top, var(--bg-0) 0%, transparent 100%);
+  }
+
   /* ── Mobile footer nav ───────────────────────────────────── */
   .mobile-footer-nav {
     position: fixed;
@@ -1814,6 +1833,9 @@
 
   <!-- ─── MOBILE FOOTER placeholder for spacing ──────────── -->
 </div><!-- end page-content -->
+
+<div class="scroll-fade-top"></div>
+<div class="scroll-fade-bottom"></div>
 
 <!-- FIXED FOOTER NAV -->
 <div class="mobile-footer-nav" id="footer-nav">
