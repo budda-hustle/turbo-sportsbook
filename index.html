@@ -65,11 +65,9 @@
     position: fixed;
     top: 0; left: 50%; transform: translateX(-50%);
     z-index: 101;
-    width: var(--pw);
-    height: calc(52px + env(safe-area-inset-top));
+    width: var(--pw); height: 52px;
     display: flex; align-items: center;
-    padding: env(safe-area-inset-top) 16px 0;
-    gap: 12px;
+    padding: 0 16px; gap: 12px;
     background: var(--bg-0);
   }
   .logo-mark {
@@ -98,7 +96,7 @@
   }
   .nav-bar {
     position: fixed;
-    top: calc(52px + env(safe-area-inset-top)); left: 50%; transform: translateX(-50%);
+    top: 52px; left: 50%; transform: translateX(-50%);
     z-index: 100;
     width: var(--pw); height: 56px;
     transition: transform 0.25s ease;
@@ -144,7 +142,7 @@
 
   /* ── Page content ────────────────────────────────────────── */
   .page-content {
-    padding-top: calc(120px + env(safe-area-inset-top));
+    padding-top: 120px; /* 52px logo-bar + 56px nav-bar + 12px */
     background: var(--bg-0);
     padding-bottom: 160px; /* space for footer + betslip */
   }
@@ -521,12 +519,9 @@
     position: fixed;
     bottom: 0; left: 50%; transform: translateX(-50%);
     z-index: 99;
-    width: var(--pw);
-    height: calc(72px + env(safe-area-inset-bottom));
+    width: var(--pw); height: 72px;
     background: #1c1c1c;
-    display: flex; align-items: flex-start; justify-content: space-around;
-    padding-top: 12px;
-    padding-bottom: env(safe-area-inset-bottom);
+    display: flex; align-items: center; justify-content: space-around;
     border-top: 1px solid rgba(255,255,255,0.08);
   }
   .footer-tab {
@@ -725,7 +720,7 @@
           <div class="event-details-row">
             <div class="badge-time">9h</div>
             <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-            <img class="icon-16" src="assets/icons/hot.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
+            <img class="icon-16" src="assets/icons/hot-orange.svg">
           </div>
         </div>
         <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
@@ -793,7 +788,7 @@
     <div class="turbo-combo-header">
       <span class="turbo-combo-title">Turbo combo</span>
       <div class="turbo-multiplier">
-        <img src="assets/icons/turbo-rocket.svg" width="16" height="16" style="flex-shrink:0;filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
+        <img src="assets/icons/turbo-rocket-orange.svg" width="16" height="16" style="flex-shrink:0;">
         <span>x1.58</span>
       </div>
     </div>
@@ -953,7 +948,7 @@
           <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
           <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
           <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-          <img class="icon-16" src="assets/icons/hot.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
+          <img class="icon-16" src="assets/icons/hot-orange.svg">
         </div>
       </div>
       <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
@@ -1068,7 +1063,7 @@
           <div class="badge-time">9h</div>
           <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
           <div class="badge-bb">BB</div>
-          <img class="icon-16" src="assets/icons/hot.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
+          <img class="icon-16" src="assets/icons/hot-orange.svg">
         </div>
       </div>
       <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
@@ -1098,7 +1093,7 @@
           <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
           <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
           <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-          <img class="icon-16" src="assets/icons/hot.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
+          <img class="icon-16" src="assets/icons/hot-orange.svg">
         </div>
       </div>
       <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
@@ -1128,7 +1123,7 @@
   <!-- ─── BET BUILDER CARD ───────────────────────────────────── -->
   <div class="betbuilder-card" style="margin-bottom:32px;">
     <div class="bb-heading">
-      <img class="icon-20" src="assets/icons/betbuilder.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
+      <img class="icon-20" src="assets/icons/betbuilder-orange.svg">
       <span class="bb-title">Bet Builder</span>
       <!-- Close icon -->
       <div class="ic"><img class="iv" src="assets/icons/close.svg"></div>
@@ -1198,7 +1193,7 @@
         <span class="league-link">FIFA World Cup 2026</span>
         <div class="event-details-row">
           <div class="badge-time">9h</div>
-          <img class="icon-16" src="assets/icons/hot.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
+          <img class="icon-16" src="assets/icons/hot-orange.svg">
         </div>
       </div>
       <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
@@ -1226,7 +1221,7 @@
         <span class="league-link">FIFA World Cup 2026</span>
         <div class="event-details-row">
           <div class="badge-time">9h</div>
-          <img class="icon-16" src="assets/icons/hot.svg" style="filter:brightness(0) saturate(100%) invert(51%) sepia(97%) saturate(2112%) hue-rotate(349deg) brightness(101%);">
+          <img class="icon-16" src="assets/icons/hot-orange.svg">
         </div>
       </div>
       <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
