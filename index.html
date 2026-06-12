@@ -698,17 +698,27 @@
     position: fixed;
     left: 50%; transform: translateX(-50%);
     width: var(--pw);
-    height: 24px;
     pointer-events: none;
-    z-index: 98;
   }
   .scroll-fade-top {
-    top: 108px; /* logo 52px + nav 56px */
-    background: linear-gradient(to bottom, var(--bg-0) 0%, transparent 100%);
+    top: 52px; /* right below client logo bar */
+    height: 48px;
+    z-index: 99; /* above content, below nav-bar (100) */
+    background: linear-gradient(to bottom,
+      var(--bg-0) 0%,
+      rgba(13,13,13,0.7) 40%,
+      rgba(13,13,13,0.2) 75%,
+      transparent 100%);
   }
   .scroll-fade-bottom {
-    bottom: 72px; /* footer height */
-    background: linear-gradient(to top, var(--bg-0) 0%, transparent 100%);
+    bottom: 72px;
+    height: 40px;
+    z-index: 98;
+    background: linear-gradient(to top,
+      var(--bg-0) 0%,
+      rgba(13,13,13,0.7) 40%,
+      rgba(13,13,13,0.2) 75%,
+      transparent 100%);
   }
 
   /* ── Mobile footer nav ───────────────────────────────────── */
