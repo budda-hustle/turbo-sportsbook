@@ -495,8 +495,10 @@
   .turbo-multiplier span { font-size: 14px; font-weight: 600; color: var(--text-accent); }
   .divider-h { height: 1px; background: var(--bg-4); width: 100%; }
   .show-selections-row { display: flex; align-items: center; justify-content: space-between; }
-  .show-selections-left { display: flex; align-items: center; gap: 8px; }
-  .show-selections-left span { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+  .show-selections-left { display: flex; align-items: center; gap: 8px; cursor: pointer; transition: color 0.15s; }
+  .show-selections-left span { font-size: 14px; font-weight: 400; color: var(--text-secondary); transition: color 0.15s; }
+  .show-selections-left:hover span { color: var(--bg-active); }
+  .show-selections-left:hover img { filter: brightness(0) saturate(100%) invert(40%) sepia(100%) saturate(1500%) hue-rotate(196deg) brightness(110%); }
   .team-logos-row { display: flex; align-items: center; gap: 2px; }
   .team-logo-sm { width: 18px; height: 18px; object-fit: contain; border-radius: 2px; }
   .odds-win-row { display: flex; align-items: center; justify-content: space-between; }
@@ -656,8 +658,10 @@
   .bb-team-logo { width: 36px; height: 36px; object-fit: contain; border-radius: 4px; }
   .bb-team-name { font-size: 14px; font-weight: 600; color: var(--text-default); }
   .bb-vs { font-size: 12px; font-weight: 400; color: var(--text-secondary); }
-  .bb-show-selections { display: flex; align-items: center; gap: 8px; }
-  .bb-show-sel-text { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+  .bb-show-selections { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  .bb-show-sel-text { font-size: 14px; font-weight: 400; color: var(--text-secondary); transition: color 0.15s; }
+  .bb-show-selections:hover .bb-show-sel-text { color: var(--bg-active); }
+  .bb-show-selections:hover img { filter: brightness(0) saturate(100%) invert(40%) sepia(100%) saturate(1500%) hue-rotate(196deg) brightness(110%); }
   .bb-odds-row { display: flex; align-items: center; justify-content: space-between; }
   .bb-odds-labels { display: flex; flex-direction: column; gap: 4px; width: 120px; }
   .bb-odds-label { font-size: 14px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
