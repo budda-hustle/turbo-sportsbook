@@ -231,13 +231,13 @@
   .event-card {
     background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
     border-radius: 8px;
-    width: var(--pw-inner); height: 185px;
+    width: var(--pw-inner); height: 210px;
     position: relative; flex-shrink: 0;
   }
   .event-card-sm { width: 320px; }
   .event-card .top-line {
-    position: absolute; top: 12px; left: 12px;
-    display: flex; align-items: center; gap: 8px;
+    position: absolute; top: 12px; left: 12px; right: 40px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
   }
   .league-link {
     font-size: 12px; font-weight: 400;
@@ -247,7 +247,7 @@
     cursor: pointer; transition: color 0.15s;
   }
   .league-link:hover { color: var(--bg-active); }
-  .event-details-row { display: flex; align-items: center; gap: 4px; }
+  .event-details-row { display: flex; align-items: center; gap: 4px; flex-basis: 100%; }
   .badge-time {
     background: var(--bg-6); border-radius: 12px;
     padding: 1px 8px; font-size: 10px; font-weight: 600;
@@ -267,23 +267,23 @@
     position: absolute; left: 12px;
     display: flex; align-items: center; gap: 8px; height: 20px;
   }
-  .event-card .team-row.team1 { top: 44px; }
-  .event-card .team-row.team2 { top: 72px; }
+  .event-card .team-row.team1 { top: 68px; }
+  .event-card .team-row.team2 { top: 96px; }
   .team-name { font-size: 14px; font-weight: 400; color: var(--text-default); white-space: nowrap; }
   .event-card .score {
     position: absolute; right: 12px;
     font-size: 14px; font-weight: 600; color: var(--text-default); line-height: 20px;
   }
-  .event-card .score1 { top: 44px; }
-  .event-card .score2 { top: 72px; }
+  .event-card .score1 { top: 68px; }
+  .event-card .score2 { top: 96px; }
   .market-divider {
-    position: absolute; top: 100px; left: 12px; right: 12px;
+    position: absolute; top: 124px; left: 12px; right: 12px;
     display: flex; align-items: center; gap: 12px;
   }
   .divider-line { flex: 1; height: 1px; background: var(--bg-4); }
   .market-label { font-size: 12px; font-weight: 400; color: var(--text-secondary); white-space: nowrap; }
   .odds-row {
-    position: absolute; top: 125px; left: 12px; right: 12px;
+    position: absolute; top: 150px; left: 12px; right: 12px;
     display: flex; align-items: center; gap: 4px; height: 48px;
   }
   .odd-btn {
