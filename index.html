@@ -100,7 +100,7 @@
     top: 52px; left: 50%; transform: translateX(-50%);
     z-index: 100;
     width: var(--pw); height: 56px;
-    transition: transform 0.25s ease;
+    transition: transform 0.25s ease, opacity 0.25s ease;
     background: var(--bg-2);
     display: flex;
     align-items: center;
@@ -2019,9 +2019,11 @@
     var y = window.scrollY;
     if (y > lastY && y > 60 && !hidden) {
       nav.style.transform = 'translateX(-50%) translateY(-100%)';
+      nav.style.opacity = '0';
       hidden = true;
     } else if (y < lastY && hidden) {
       nav.style.transform = 'translateX(-50%) translateY(0)';
+      nav.style.opacity = '1';
       hidden = false;
     }
     lastY = y;
