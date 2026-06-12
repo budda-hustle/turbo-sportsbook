@@ -427,7 +427,7 @@
 
   /* ── Show more ───────────────────────────────────────────── */
   .show-more {
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; gap: 4px;
     justify-content: center; margin-top: 16px; cursor: pointer;
     transition: color 0.15s;
   }
@@ -1024,7 +1024,7 @@
     </div>
 
     <!-- Show more -->
-    <div class="show-more" id="picks-show-more" onclick="(function(){var el=document.getElementById('picks-extra');var btn=document.getElementById('picks-show-more');var img=btn.querySelector('img');if(el.style.display==='none'){el.style.display='flex';btn.querySelector('span').textContent='Show less';img.style.transform='rotate(180deg)';}else{el.style.display='none';btn.querySelector('span').textContent='Show more';img.style.transform='';}})()">
+    <div class="show-more" id="picks-show-more" onclick="document.getElementById('picks-extra').style.display='flex';document.getElementById('picks-show-more').style.display='none';">
       <span>Show more</span>
       <div class="ic"><img class="iv" src="assets/icons/arrow-down.svg" style="transition:transform 0.2s;"></div>
     </div>
