@@ -1971,8 +1971,8 @@
       }, holdMs);
     });
 
-    // Schedule next flicker: 2.5–6s gap — feels alive but not distracting
-    setTimeout(flickerOdds, 2500 + Math.random() * 3500);
+    // Schedule next flicker: 0.8–2.5s gap
+    setTimeout(flickerOdds, 800 + Math.random() * 1700);
   }
 
   // Start after a short initial delay
