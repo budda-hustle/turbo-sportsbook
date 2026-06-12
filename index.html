@@ -228,7 +228,9 @@
     color: var(--text-secondary);
     text-decoration: underline; white-space: nowrap;
     max-width: 140px; overflow: hidden; text-overflow: ellipsis;
+    cursor: pointer; transition: color 0.15s;
   }
+  .league-link:hover { color: var(--bg-active); }
   .event-details-row { display: flex; align-items: center; gap: 4px; }
   .badge-time {
     background: var(--bg-6); border-radius: 12px;
@@ -318,7 +320,10 @@
     text-decoration: underline;
     line-height: 1.4;
     white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.15s;
   }
+  .ec3-league-link:hover { color: var(--bg-active); }
   .ec3-league-dot {
     width: 3px;
     height: 3px;
