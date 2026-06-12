@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0d0d0d">
 <title>TurboSportsbook – Home</title>
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
@@ -29,6 +30,7 @@
   html, body {
     background: var(--bg-0);
     font-family: 'Exo', sans-serif;
+    -webkit-overflow-scrolling: touch;
     color: var(--text-default);
     max-width: 420px;
     width: 100%;
@@ -63,9 +65,11 @@
     position: fixed;
     top: 0; left: 50%; transform: translateX(-50%);
     z-index: 101;
-    width: var(--pw); height: 52px;
+    width: var(--pw);
+    height: calc(52px + env(safe-area-inset-top));
     display: flex; align-items: center;
-    padding: 0 16px; gap: 12px;
+    padding: env(safe-area-inset-top) 16px 0;
+    gap: 12px;
     background: var(--bg-0);
   }
   .logo-mark {
@@ -94,7 +98,7 @@
   }
   .nav-bar {
     position: fixed;
-    top: 52px; left: 50%; transform: translateX(-50%);
+    top: calc(52px + env(safe-area-inset-top)); left: 50%; transform: translateX(-50%);
     z-index: 100;
     width: var(--pw); height: 56px;
     transition: transform 0.25s ease;
@@ -140,7 +144,7 @@
 
   /* ── Page content ────────────────────────────────────────── */
   .page-content {
-    padding-top: 120px; /* 52px logo-bar + 56px nav-bar + 12px */
+    padding-top: calc(120px + env(safe-area-inset-top));
     background: var(--bg-0);
     padding-bottom: 160px; /* space for footer + betslip */
   }
@@ -517,9 +521,12 @@
     position: fixed;
     bottom: 0; left: 50%; transform: translateX(-50%);
     z-index: 99;
-    width: var(--pw); height: 72px;
+    width: var(--pw);
+    height: calc(72px + env(safe-area-inset-bottom));
     background: #1c1c1c;
-    display: flex; align-items: center; justify-content: space-around;
+    display: flex; align-items: flex-start; justify-content: space-around;
+    padding-top: 12px;
+    padding-bottom: env(safe-area-inset-bottom);
     border-top: 1px solid rgba(255,255,255,0.08);
   }
   .footer-tab {
