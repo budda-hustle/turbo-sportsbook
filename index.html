@@ -681,7 +681,19 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 10px; font-weight: 600; color: var(--text-default);
     flex-shrink: 0;
+    transition: width 0.2s ease, opacity 0.2s ease, margin 0.2s ease;
+    overflow: hidden;
   }
+  .betslip-counter.hidden {
+    width: 0; opacity: 0; margin: 0; pointer-events: none;
+  }
+  @keyframes betslip-bounce {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.35); }
+    70%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
+  }
+  .betslip-counter.bounce { animation: betslip-bounce 0.3s cubic-bezier(0.36,0.07,0.19,0.97); }
   .betslip-quickbet {
     background: var(--bg-2); border-radius: 32px;
     width: 64px; height: 40px;
@@ -1562,8 +1574,23 @@
 <script>
 (function() {
   // ── Odds selection + betslip counter ──────────────────────
-  function getCount() { return parseInt(document.getElementById('betslip-count').textContent) || 0; }
-  function setCount(n) { document.getElementById('betslip-count').textContent = Math.max(0, n); }
+  var _el = document.getElementById('betslip-count');
+  _el.classList.add('hidden'); // start hidden (count is 0)
+
+  function getCount() { return parseInt(_el.textContent) || 0; }
+  function setCount(n) {
+    var val = Math.max(0, n);
+    _el.textContent = val;
+    if (val === 0) {
+      _el.classList.add('hidden');
+    } else {
+      _el.classList.remove('hidden');
+      // bounce animation
+      _el.classList.remove('bounce');
+      void _el.offsetWidth; // reflow to restart animation
+      _el.classList.add('bounce');
+    }
+  }
 
   function setupOdds(btnSel, cardSel) {
     document.addEventListener('click', function(e) {
