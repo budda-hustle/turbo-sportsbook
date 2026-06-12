@@ -429,8 +429,11 @@
   .show-more {
     display: flex; align-items: center; gap: 8px;
     justify-content: center; margin-top: 16px; cursor: pointer;
+    transition: color 0.15s;
   }
-  .show-more span { font-size: 14px; font-weight: 600; color: var(--text-default); }
+  .show-more span { font-size: 14px; font-weight: 600; color: var(--text-default); transition: color 0.15s; }
+  .show-more:hover span { color: var(--bg-active); }
+  .show-more:hover img { filter: brightness(0) saturate(100%) invert(40%) sepia(100%) saturate(1500%) hue-rotate(196deg) brightness(110%); }
 
   /* ── Swipe Bet ───────────────────────────────────────────── */
   .swipe-bet-card {
