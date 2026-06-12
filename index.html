@@ -165,7 +165,17 @@
     position: absolute; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover; border-radius: 8px;
+    filter: blur(4px);
+    transform: scale(1.05);
   }
+  .hero-banner::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.4);
+    border-radius: 8px;
+    z-index: 0;
+  }
+  .hero-banner > * { z-index: 1; }
   .hero-timer {
     position: relative; z-index: 1;
     background: var(--lighten-2);
