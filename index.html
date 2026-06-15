@@ -263,7 +263,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    align-self: flex-start;
+    align-self: center;
   }
   /* badges inside the pill lose their own bg/padding */
   .event-details-row .badge-live,
@@ -391,21 +391,39 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    align-self: flex-start;
+    align-self: center;
     width: auto;
   }
   .ec3-teams {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
     width: 100%;
   }
-  .ec3-team { display: flex; align-items: center; gap: 12px; }
-  .ec3-team-logo { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
-  .ec3-team-name { font-size: 14px; font-weight: 400; color: var(--text-default); white-space: nowrap; }
-  .ec3-score { font-size: 14px; font-weight: 600; color: var(--text-default); white-space: nowrap; }
-  .ec3-dash { font-size: 12px; font-weight: 400; color: var(--text-secondary); white-space: nowrap; }
+  .ec3-team-left {
+    display: flex; flex-direction: column;
+    align-items: flex-start; gap: 8px;
+    width: 123px;
+  }
+  .ec3-team-right {
+    display: flex; flex-direction: column;
+    align-items: flex-end; gap: 8px;
+    width: 117px;
+  }
+  .ec3-team-logo { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
+  .ec3-team-name {
+    font-size: 14px; font-weight: 400; color: var(--text-default);
+    line-height: 1.4; width: 100%;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;
+  }
+  .ec3-team-right .ec3-team-name { text-align: right; }
+  .ec3-score, .ec3-dash {
+    position: absolute; left: 50%; top: 21.5px;
+    transform: translate(-50%, -50%);
+    font-size: 18px; font-weight: 600; color: var(--text-default);
+    white-space: nowrap; z-index: 1;
+  }
   .ec3-market {
     display: flex;
     align-items: center;
@@ -916,14 +934,14 @@
           <img class="icon-16" src="assets/icons/hot-orange.svg">
         </div>
         <div class="ec3-teams">
-          <div class="ec3-team">
+          <div class="ec3-team-left">
             <img class="ec3-team-logo" src="assets/teams/Football%20-%20Barcelona.png" alt="Barcelona">
             <span class="ec3-team-name">Barcelona</span>
           </div>
           <span class="ec3-dash">-</span>
-          <div class="ec3-team">
-            <span class="ec3-team-name">PSG</span>
+          <div class="ec3-team-right">
             <img class="ec3-team-logo" src="assets/teams/Football%20-%20PSG.png" alt="PSG">
+            <span class="ec3-team-name">PSG</span>
           </div>
         </div>
         <div class="ec3-market">
@@ -954,14 +972,14 @@
           <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
         </div>
         <div class="ec3-teams">
-          <div class="ec3-team">
+          <div class="ec3-team-left">
             <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20Orlando%20Magic.png" alt="Orlando Magic">
             <span class="ec3-team-name">Orlando Magic</span>
           </div>
           <span class="ec3-score">2&nbsp;&nbsp;:&nbsp;&nbsp;3</span>
-          <div class="ec3-team">
-            <span class="ec3-team-name">Indiana Pacers</span>
+          <div class="ec3-team-right">
             <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20Indiana%20Pacers.png" alt="Indiana Pacers">
+            <span class="ec3-team-name">Indiana Pacers</span>
           </div>
         </div>
         <div class="ec3-market">
@@ -991,14 +1009,14 @@
           <img class="icon-16" src="assets/icons/hot-orange.svg">
         </div>
         <div class="ec3-teams">
-          <div class="ec3-team">
+          <div class="ec3-team-left">
             <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20Boston%20Celtics.png" alt="Boston Celtics">
             <span class="ec3-team-name">Boston Celtics</span>
           </div>
           <span class="ec3-dash">-</span>
-          <div class="ec3-team">
-            <span class="ec3-team-name">Miami Heat</span>
+          <div class="ec3-team-right">
             <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20Miami%20Heat.png" alt="Miami Heat">
+            <span class="ec3-team-name">Miami Heat</span>
           </div>
         </div>
         <div class="ec3-market">
@@ -1032,14 +1050,14 @@
           <div class="badge-time">15 Jun • 21:00</div>
         </div>
         <div class="ec3-teams">
-          <div class="ec3-team">
+          <div class="ec3-team-left">
             <img class="ec3-team-logo" src="assets/teams/Football%20-%20Bayern%20Munich.png" alt="Bayern Munich">
             <span class="ec3-team-name">Bayern Munich</span>
           </div>
           <span class="ec3-dash">-</span>
-          <div class="ec3-team">
-            <span class="ec3-team-name">Arsenal</span>
+          <div class="ec3-team-right">
             <img class="ec3-team-logo" src="assets/teams/Football%20-%20Arsenal.png" alt="Arsenal">
+            <span class="ec3-team-name">Arsenal</span>
           </div>
         </div>
         <div class="ec3-market">
@@ -1069,14 +1087,14 @@
           <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
         </div>
         <div class="ec3-teams">
-          <div class="ec3-team">
+          <div class="ec3-team-left">
             <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20Milwaukee%20Bucks.png" alt="Milwaukee Bucks">
             <span class="ec3-team-name">Milwaukee Bucks</span>
           </div>
           <span class="ec3-score">1&nbsp;&nbsp;:&nbsp;&nbsp;0</span>
-          <div class="ec3-team">
-            <span class="ec3-team-name">New York Knicks</span>
+          <div class="ec3-team-right">
             <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20New%20York%20Knicks.png" alt="New York Knicks">
+            <span class="ec3-team-name">New York Knicks</span>
           </div>
         </div>
         <div class="ec3-market">
@@ -1107,14 +1125,14 @@
           <img class="icon-16" src="assets/icons/hot-orange.svg">
         </div>
         <div class="ec3-teams">
-          <div class="ec3-team">
+          <div class="ec3-team-left">
             <img class="ec3-team-logo" src="assets/teams/Football%20-%20Liverpool.png" alt="Liverpool">
             <span class="ec3-team-name">Liverpool</span>
           </div>
           <span class="ec3-dash">-</span>
-          <div class="ec3-team">
-            <span class="ec3-team-name">Man City</span>
+          <div class="ec3-team-right">
             <img class="ec3-team-logo" src="assets/teams/Football%20-%20Manchester%20City.png" alt="Manchester City">
+            <span class="ec3-team-name">Man City</span>
           </div>
         </div>
         <div class="ec3-market">
