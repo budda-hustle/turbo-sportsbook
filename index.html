@@ -735,11 +735,13 @@
   .bb-title { font-size: 14px; font-weight: 600; color: var(--text-default); }
   .bb-odds-val-acc { font-size: 14px; font-weight: 600; color: var(--text-accent); }
   .bb-event-date { font-size: 12px; font-weight: 400; color: var(--text-secondary); text-align: center; width: 100%; line-height: 1.4; }
-  .bb-teams-row { display: flex; align-items: center; justify-content: center; gap: 12px; }
-  .bb-team { display: flex; align-items: center; gap: 12px; }
-  .bb-team-logo { width: 36px; height: 36px; object-fit: contain; border-radius: 4px; }
-  .bb-team-name { font-size: 14px; font-weight: 600; color: var(--text-default); }
-  .bb-vs { font-size: 12px; font-weight: 400; color: var(--text-secondary); }
+  .bb-teams-row { display: flex; justify-content: space-between; align-items: flex-start; position: relative; width: 100%; }
+  .bb-team { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; width: 123px; }
+  .bb-team.bb-team-right { align-items: flex-end; width: 117px; }
+  .bb-team-logo { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
+  .bb-team-name { font-size: 14px; font-weight: 600; color: var(--text-default); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; width: 100%; }
+  .bb-team.bb-team-right .bb-team-name { text-align: right; }
+  .bb-vs { position: absolute; left: 50%; top: 21.5px; transform: translate(-50%, -50%); font-size: 18px; font-weight: 600; color: var(--text-default); white-space: nowrap; z-index: 1; }
   .bb-show-selections { display: flex; align-items: center; gap: 8px; cursor: pointer; }
   .bb-show-sel-text { font-size: 14px; font-weight: 400; color: var(--text-secondary); transition: color 0.15s; }
   .bb-show-selections:hover .bb-show-sel-text { color: var(--bg-active); }
@@ -1748,9 +1750,9 @@
         <span class="bb-team-name">Barcelona</span>
       </div>
       <span class="bb-vs">-</span>
-      <div class="bb-team">
-        <span class="bb-team-name">PSG</span>
+      <div class="bb-team bb-team-right">
         <img class="bb-team-logo" src="assets/images/team-psg.png">
+        <span class="bb-team-name">PSG</span>
       </div>
     </div>
     <div class="divider-h"></div>
