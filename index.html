@@ -231,13 +231,18 @@
   .event-card {
     background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
     border-radius: 8px;
-    width: var(--pw-inner); height: 210px;
-    position: relative; flex-shrink: 0;
+    width: var(--pw-inner);
+    flex-shrink: 0;
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 12px;
   }
   .event-card-sm { width: 320px; }
-  .event-card .top-line {
-    position: absolute; top: 12px; left: 12px; right: 40px;
-    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  /* Row 1: league + fav */
+  .ec-top {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .ec-top-left {
+    display: flex; align-items: center; gap: 8px; min-width: 0;
   }
   .league-link {
     font-size: 12px; font-weight: 400;
@@ -247,7 +252,11 @@
     cursor: pointer; transition: color 0.15s;
   }
   .league-link:hover { color: var(--bg-active); }
-  .event-details-row { display: flex; align-items: center; gap: 4px; flex-basis: 100%; }
+  /* Row 2: details centered */
+  .event-details-row {
+    display: flex; align-items: center; gap: 4px;
+    align-self: center;
+  }
   .badge-time {
     background: var(--bg-6); border-radius: 12px;
     padding: 1px 8px; font-size: 10px; font-weight: 600;
@@ -262,29 +271,24 @@
   .badge-live-dot { width: 4px; height: 4px; background: var(--bg-accent); border-radius: 50%; flex-shrink: 0; }
   .badge-bb { background: var(--bg-sub-accent); border-radius: 12px; padding: 1px 8px; font-size: 10px; font-weight: 600; color: var(--text-accent); }
   .badge-fb { background: var(--bg-sub-active); border-radius: 12px; padding: 1px 8px; font-size: 10px; font-weight: 600; color: var(--bg-active); }
-  .event-card .fav-icon { position: absolute; top: 12px; right: 12px; }
-  .event-card .team-row {
-    position: absolute; left: 12px;
-    display: flex; align-items: center; gap: 8px; height: 20px;
+  /* Row 3: teams centered */
+  .ec-teams {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  .event-card .team-row.team1 { top: 68px; }
-  .event-card .team-row.team2 { top: 96px; }
   .team-name { font-size: 14px; font-weight: 400; color: var(--text-default); white-space: nowrap; }
-  .event-card .score {
-    position: absolute; right: 12px;
-    font-size: 14px; font-weight: 600; color: var(--text-default); line-height: 20px;
+  .ec-vs {
+    font-size: 14px; font-weight: 600; color: var(--text-secondary);
+    padding: 0 4px; white-space: nowrap;
   }
-  .event-card .score1 { top: 68px; }
-  .event-card .score2 { top: 96px; }
+  /* Row 4: market divider */
   .market-divider {
-    position: absolute; top: 124px; left: 12px; right: 12px;
     display: flex; align-items: center; gap: 12px;
   }
   .divider-line { flex: 1; height: 1px; background: var(--bg-4); }
   .market-label { font-size: 12px; font-weight: 400; color: var(--text-secondary); white-space: nowrap; }
+  /* Row 5: odds */
   .odds-row {
-    position: absolute; top: 150px; left: 12px; right: 12px;
-    display: flex; align-items: center; gap: 4px; height: 48px;
+    display: flex; align-items: center; gap: 4px;
   }
   .odd-btn {
     flex: 1;
@@ -1313,26 +1317,25 @@
   <div class="h-scroll" style="margin-bottom:8px;" id="hs-live">
     <!-- Live card 1 -->
     <div class="event-card event-card-sm">
-      <div class="top-line">
-        <img class="icon-20" src="assets/icons/basketball.svg">
-        <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-        <div class="event-details-row">
-          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
-          <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-          <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
+      <div class="ec-top">
+        <div class="ec-top-left">
+          <img class="icon-20" src="assets/icons/basketball.svg">
+          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
         </div>
+        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
-      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      <div class="team-row team1">
+      <div class="event-details-row">
+        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
+        <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
+      </div>
+      <div class="ec-teams">
         <img class="icon-20" src="assets/images/team-boston-celtics.png">
         <span class="team-name">Boston Celtics</span>
-      </div>
-      <span class="score score1">4</span>
-      <div class="team-row team2">
-        <img class="icon-20" src="assets/images/team-milwaukee-bucks.png">
+        <span class="ec-vs">4 : 2</span>
         <span class="team-name">Milwaukee Bucks</span>
+        <img class="icon-20" src="assets/images/team-milwaukee-bucks.png">
       </div>
-      <span class="score score2">2</span>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
         <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">Boston Celtics</div></div>
@@ -1343,27 +1346,26 @@
     </div>
     <!-- Live card 2 -->
     <div class="event-card event-card-sm">
-      <div class="top-line">
-        <img class="icon-20" src="assets/icons/basketball.svg">
-        <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-        <div class="event-details-row">
-          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
-          <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-          <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-          <img class="icon-16" src="assets/icons/hot-orange.svg">
+      <div class="ec-top">
+        <div class="ec-top-left">
+          <img class="icon-20" src="assets/icons/basketball.svg">
+          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
         </div>
+        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
-      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      <div class="team-row team1">
+      <div class="event-details-row">
+        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
+        <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
+        <img class="icon-16" src="assets/icons/hot-orange.svg">
+      </div>
+      <div class="ec-teams">
         <img class="icon-20" src="assets/images/team-ny-knicks.png">
         <span class="team-name">New York Knicks</span>
-      </div>
-      <span class="score score1">4</span>
-      <div class="team-row team2">
-        <img class="icon-20" src="assets/images/team-cleveland-cavs.png">
+        <span class="ec-vs">4 : 2</span>
         <span class="team-name">Cleveland Cavaliers</span>
+        <img class="icon-20" src="assets/images/team-cleveland-cavs.png">
       </div>
-      <span class="score score2">2</span>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
         <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">New York Knic...</div></div>
@@ -1374,27 +1376,26 @@
     </div>
     <!-- Live card 3 -->
     <div class="event-card event-card-sm">
-      <div class="top-line">
-        <img class="icon-20" src="assets/icons/basketball.svg">
-        <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-        <div class="event-details-row">
-          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '43</div>
-          <div class="badge-fb">FB</div>
-          <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-          <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
+      <div class="ec-top">
+        <div class="ec-top-left">
+          <img class="icon-20" src="assets/icons/basketball.svg">
+          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
         </div>
+        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
-      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      <div class="team-row team1">
+      <div class="event-details-row">
+        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '43</div>
+        <div class="badge-fb">FB</div>
+        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
+        <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
+      </div>
+      <div class="ec-teams">
         <img class="icon-20" src="assets/images/team-miami-heat.png">
         <span class="team-name">Miami Heat</span>
-      </div>
-      <span class="score score1">3</span>
-      <div class="team-row team2">
-        <img class="icon-20" src="assets/images/team-indiana-pacers.png">
+        <span class="ec-vs">3 : 1</span>
         <span class="team-name">Indiana Pacers</span>
+        <img class="icon-20" src="assets/images/team-indiana-pacers.png">
       </div>
-      <span class="score score2">1</span>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
         <div class="odd-btn"><div class="odd-value">2.10</div><div class="odd-outcome">Miami Heat</div></div>
@@ -1405,27 +1406,26 @@
     </div>
     <!-- Live card 4 -->
     <div class="event-card event-card-sm">
-      <div class="top-line">
-        <img class="icon-20" src="assets/icons/football.svg">
-        <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
-        <div class="event-details-row">
-          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '80</div>
-          <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-          <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-          <img class="icon-16" src="assets/icons/hot-orange.svg">
+      <div class="ec-top">
+        <div class="ec-top-left">
+          <img class="icon-20" src="assets/icons/football.svg">
+          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
         </div>
+        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
-      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      <div class="team-row team1">
+      <div class="event-details-row">
+        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '80</div>
+        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
+        <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
+        <img class="icon-16" src="assets/icons/hot-orange.svg">
+      </div>
+      <div class="ec-teams">
         <img class="icon-20" src="assets/images/team-barcelona.png">
         <span class="team-name">Barcelona</span>
-      </div>
-      <span class="score score1">2</span>
-      <div class="team-row team2">
-        <img class="icon-20" src="assets/images/team-psg.png">
+        <span class="ec-vs">2 : 1</span>
         <span class="team-name">PSG</span>
+        <img class="icon-20" src="assets/images/team-psg.png">
       </div>
-      <span class="score score2">1</span>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
         <div class="odd-btn"><div class="odd-value">1.85</div><div class="odd-outcome">Barcelona</div></div>
@@ -1520,27 +1520,26 @@
   </div>
   <div class="h-scroll" style="margin-bottom:8px;" id="hs-top">
     <div class="event-card event-card-sm">
-      <div class="top-line">
-        <img class="icon-20" src="assets/icons/basketball.svg">
-        <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-        <div class="event-details-row">
-          <div class="badge-time">9h</div>
-          <div class="badge-bb">BB</div>
-          <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-          <img class="icon-16" src="assets/icons/hot-orange.svg">
+      <div class="ec-top">
+        <div class="ec-top-left">
+          <img class="icon-20" src="assets/icons/basketball.svg">
+          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
         </div>
+        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
-      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      <div class="team-row team1">
+      <div class="event-details-row">
+        <div class="badge-time">9h</div>
+        <div class="badge-bb">BB</div>
+        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
+        <img class="icon-16" src="assets/icons/hot-orange.svg">
+      </div>
+      <div class="ec-teams">
         <img class="icon-20" src="assets/images/team-boston-celtics-2.png">
         <span class="team-name">Boston Celtics</span>
-      </div>
-      <span class="score score1">4</span>
-      <div class="team-row team2">
-        <img class="icon-20" src="assets/images/team-milwaukee-bucks-2.png">
+        <span class="ec-vs">-</span>
         <span class="team-name">Milwaukee Bucks</span>
+        <img class="icon-20" src="assets/images/team-milwaukee-bucks-2.png">
       </div>
-      <span class="score score2">2</span>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
         <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">Boston Celtics</div></div>
@@ -1550,27 +1549,26 @@
       </div>
     </div>
     <div class="event-card event-card-sm">
-      <div class="top-line">
-        <img class="icon-20" src="assets/icons/basketball.svg">
-        <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-        <div class="event-details-row">
-          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
-          <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-          <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-          <img class="icon-16" src="assets/icons/hot-orange.svg">
+      <div class="ec-top">
+        <div class="ec-top-left">
+          <img class="icon-20" src="assets/icons/basketball.svg">
+          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
         </div>
+        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
-      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      <div class="team-row team1">
+      <div class="event-details-row">
+        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
+        <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
+        <img class="icon-16" src="assets/icons/hot-orange.svg">
+      </div>
+      <div class="ec-teams">
         <img class="icon-20" src="assets/images/team-ny-knicks-2.png">
         <span class="team-name">New York Knicks</span>
-      </div>
-      <span class="score score1">4</span>
-      <div class="team-row team2">
-        <img class="icon-20" src="assets/images/team-cleveland-cavs-2.png">
+        <span class="ec-vs">4 : 2</span>
         <span class="team-name">Cleveland Cavaliers</span>
+        <img class="icon-20" src="assets/images/team-cleveland-cavs-2.png">
       </div>
-      <span class="score score2">2</span>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
         <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">New York Knic...</div></div>
@@ -1581,26 +1579,25 @@
     </div>
     <!-- Top Events card 3 -->
     <div class="event-card event-card-sm">
-      <div class="top-line">
-        <img class="icon-20" src="assets/icons/football.svg">
-        <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
-        <div class="event-details-row">
-          <div class="badge-time">12h</div>
-          <div class="badge-bb">BB</div>
-          <img class="icon-16" src="assets/icons/hot-orange.svg">
+      <div class="ec-top">
+        <div class="ec-top-left">
+          <img class="icon-20" src="assets/icons/football.svg">
+          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
         </div>
+        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
-      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      <div class="team-row team1">
+      <div class="event-details-row">
+        <div class="badge-time">12h</div>
+        <div class="badge-bb">BB</div>
+        <img class="icon-16" src="assets/icons/hot-orange.svg">
+      </div>
+      <div class="ec-teams">
         <img class="icon-20" src="assets/images/team-barcelona.png">
         <span class="team-name">Barcelona</span>
-      </div>
-      <span class="score score1">–</span>
-      <div class="team-row team2">
-        <img class="icon-20" src="assets/images/team-psg.png">
+        <span class="ec-vs">-</span>
         <span class="team-name">PSG</span>
+        <img class="icon-20" src="assets/images/team-psg.png">
       </div>
-      <span class="score score2"></span>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
         <div class="odd-btn"><div class="odd-value">1.85</div><div class="odd-outcome">Barcelona</div></div>
@@ -1611,26 +1608,25 @@
     </div>
     <!-- Top Events card 4 -->
     <div class="event-card event-card-sm">
-      <div class="top-line">
-        <img class="icon-20" src="assets/icons/basketball.svg">
-        <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-        <div class="event-details-row">
-          <div class="badge-time">6h</div>
-          <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-          <img class="icon-16" src="assets/icons/hot-orange.svg">
+      <div class="ec-top">
+        <div class="ec-top-left">
+          <img class="icon-20" src="assets/icons/basketball.svg">
+          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
         </div>
+        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
-      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      <div class="team-row team1">
+      <div class="event-details-row">
+        <div class="badge-time">6h</div>
+        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
+        <img class="icon-16" src="assets/icons/hot-orange.svg">
+      </div>
+      <div class="ec-teams">
         <img class="icon-20" src="assets/images/team-miami-heat.png">
         <span class="team-name">Miami Heat</span>
-      </div>
-      <span class="score score1">–</span>
-      <div class="team-row team2">
-        <img class="icon-20" src="assets/images/team-orlando-magic.png">
+        <span class="ec-vs">-</span>
         <span class="team-name">Orlando Magic</span>
+        <img class="icon-20" src="assets/images/team-orlando-magic.png">
       </div>
-      <span class="score score2"></span>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
         <div class="odd-btn"><div class="odd-value">1.70</div><div class="odd-outcome">Miami Heat</div></div>
@@ -1712,25 +1708,24 @@
   </div>
   <div class="h-scroll" style="margin-bottom:8px;" id="hs-football">
     <div class="event-card event-card-sm">
-      <div class="top-line">
-        <img class="icon-20" src="assets/icons/football.svg">
-        <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
-        <div class="event-details-row">
-          <div class="badge-time">9h</div>
-          <img class="icon-16" src="assets/icons/hot-orange.svg">
+      <div class="ec-top">
+        <div class="ec-top-left">
+          <img class="icon-20" src="assets/icons/football.svg">
+          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
         </div>
+        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
-      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      <div class="team-row team1">
+      <div class="event-details-row">
+        <div class="badge-time">9h</div>
+        <img class="icon-16" src="assets/icons/hot-orange.svg">
+      </div>
+      <div class="ec-teams">
         <img class="icon-20" src="assets/images/team-mexico.png">
         <span class="team-name">Mexico</span>
-      </div>
-      <span class="score score1">4</span>
-      <div class="team-row team2">
-        <img class="icon-20" src="assets/images/team-south-africa.png">
+        <span class="ec-vs">-</span>
         <span class="team-name">South Africa</span>
+        <img class="icon-20" src="assets/images/team-south-africa.png">
       </div>
-      <span class="score score2">2</span>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
         <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">Mexico</div></div>
@@ -1740,25 +1735,24 @@
       </div>
     </div>
     <div class="event-card event-card-sm">
-      <div class="top-line">
-        <img class="icon-20" src="assets/icons/football.svg">
-        <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
-        <div class="event-details-row">
-          <div class="badge-time">9h</div>
-          <img class="icon-16" src="assets/icons/hot-orange.svg">
+      <div class="ec-top">
+        <div class="ec-top-left">
+          <img class="icon-20" src="assets/icons/football.svg">
+          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
         </div>
+        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
-      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      <div class="team-row team1">
+      <div class="event-details-row">
+        <div class="badge-time">9h</div>
+        <img class="icon-16" src="assets/icons/hot-orange.svg">
+      </div>
+      <div class="ec-teams">
         <img class="icon-20" src="assets/images/team-south-korea.png">
         <span class="team-name">South Korea</span>
-      </div>
-      <span class="score score1">4</span>
-      <div class="team-row team2">
-        <img class="icon-20" src="assets/images/team-czech-republic.png">
+        <span class="ec-vs">-</span>
         <span class="team-name">Czech Republic</span>
+        <img class="icon-20" src="assets/images/team-czech-republic.png">
       </div>
-      <span class="score score2">2</span>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
         <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">South Korea</div></div>
@@ -1769,26 +1763,25 @@
     </div>
     <!-- Football card 3 -->
     <div class="event-card event-card-sm">
-      <div class="top-line">
-        <img class="icon-20" src="assets/icons/football.svg">
-        <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
-        <div class="event-details-row">
-          <div class="badge-time">15 Jun • 21:00</div>
-          <div class="badge-bb">BB</div>
-          <img class="icon-16" src="assets/icons/hot-orange.svg">
+      <div class="ec-top">
+        <div class="ec-top-left">
+          <img class="icon-20" src="assets/icons/football.svg">
+          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
         </div>
+        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
-      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      <div class="team-row team1">
+      <div class="event-details-row">
+        <div class="badge-time">15 Jun • 21:00</div>
+        <div class="badge-bb">BB</div>
+        <img class="icon-16" src="assets/icons/hot-orange.svg">
+      </div>
+      <div class="ec-teams">
         <img class="icon-20" src="assets/images/team-barcelona.png">
         <span class="team-name">Barcelona</span>
-      </div>
-      <span class="score score1">–</span>
-      <div class="team-row team2">
-        <img class="icon-20" src="assets/images/team-psg.png">
+        <span class="ec-vs">-</span>
         <span class="team-name">PSG</span>
+        <img class="icon-20" src="assets/images/team-psg.png">
       </div>
-      <span class="score score2"></span>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
         <div class="odd-btn"><div class="odd-value">1.85</div><div class="odd-outcome">Barcelona</div></div>
@@ -1799,26 +1792,25 @@
     </div>
     <!-- Football card 4 -->
     <div class="event-card event-card-sm">
-      <div class="top-line">
-        <img class="icon-20" src="assets/icons/football.svg">
-        <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
-        <div class="event-details-row">
-          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '55</div>
-          <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-          <img class="icon-16" src="assets/icons/hot-orange.svg">
+      <div class="ec-top">
+        <div class="ec-top-left">
+          <img class="icon-20" src="assets/icons/football.svg">
+          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
         </div>
+        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
-      <div class="ic" style="position:absolute;top:12px;right:12px;"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      <div class="team-row team1">
+      <div class="event-details-row">
+        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '55</div>
+        <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
+        <img class="icon-16" src="assets/icons/hot-orange.svg">
+      </div>
+      <div class="ec-teams">
         <img class="icon-20" src="assets/images/team-mexico.png">
         <span class="team-name">Mexico</span>
-      </div>
-      <span class="score score1">1</span>
-      <div class="team-row team2">
-        <img class="icon-20" src="assets/images/team-south-korea.png">
+        <span class="ec-vs">1 : 1</span>
         <span class="team-name">South Korea</span>
+        <img class="icon-20" src="assets/images/team-south-korea.png">
       </div>
-      <span class="score score2">1</span>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
         <div class="odd-btn"><div class="odd-value">2.30</div><div class="odd-outcome">Mexico</div></div>
