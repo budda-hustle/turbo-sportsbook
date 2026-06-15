@@ -229,7 +229,7 @@
 
   /* ── Event card ──────────────────────────────────────────── */
   .event-card {
-    background: var(--bg-2);
+    background: linear-gradient(to bottom, #292929, #1c1c1c);
     border-radius: 8px;
     width: var(--pw-inner);
     flex-shrink: 0;
@@ -259,25 +259,26 @@
     background: var(--bg-2);
     border-radius: 12px;
     padding: 1px 8px;
-    height: 20px;
+    height: 24px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     align-self: flex-start;
   }
   /* badges inside the pill lose their own bg/padding */
-  .event-details-row .badge-live {
+  .event-details-row .badge-live,
+  .ec3-details .badge-live {
     background: none; padding: 0; border-radius: 0;
     font-size: 10px; font-weight: 600; color: var(--bg-accent);
     display: inline; white-space: nowrap;
   }
-  .event-details-row .badge-live-dot { display: none; }
-  .event-details-row .badge-time {
+  .event-details-row .badge-live-dot,
+  .ec3-details .badge-live-dot { display: none; }
+  .event-details-row .badge-time,
+  .ec3-details .badge-time {
     background: none; padding: 0; border-radius: 0;
     font-size: 10px; font-weight: 600; color: var(--text-secondary); white-space: nowrap;
   }
-  .badge-bb { background: var(--bg-sub-accent); border-radius: 12px; padding: 1px 6px; font-size: 10px; font-weight: 600; color: var(--text-accent); }
-  .badge-fb { background: var(--bg-sub-active); border-radius: 12px; padding: 1px 6px; font-size: 10px; font-weight: 600; color: var(--bg-active); }
   /* Row 3: teams — logo on top, name below, score absolutely centered */
   .ec-teams {
     display: flex;
@@ -299,18 +300,16 @@
   .team-name {
     font-size: 14px; font-weight: 400; color: var(--text-default);
     line-height: 1.4; width: 100%;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    display: block;
   }
   .ec-team-right .team-name { text-align: right; }
   .icon-24 { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
   .icon-32 { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
   .ec-vs {
-    position: absolute; left: 50%; top: 16px;
+    position: absolute; left: 50%; top: 21.5px;
     transform: translate(-50%, -50%);
-    font-size: 16px; font-weight: 600; color: var(--text-default);
+    font-size: 18px; font-weight: 600; color: var(--text-default);
     white-space: nowrap; z-index: 1;
   }
   /* Row 4: market divider */
@@ -318,7 +317,7 @@
     display: flex; align-items: center; gap: 12px;
   }
   .divider-line { flex: 1; height: 1px; background: var(--bg-4); }
-  .market-label { font-size: 12px; font-weight: 400; color: var(--text-secondary); white-space: nowrap; }
+  .market-label { font-size: 10px; font-weight: 400; color: var(--text-secondary); white-space: nowrap; }
   /* Row 5: odds */
   .odds-row {
     display: flex; align-items: center; gap: 4px;
@@ -385,11 +384,15 @@
     flex-shrink: 0;
   }
   .ec3-details {
-    display: flex;
+    background: var(--bg-2);
+    border-radius: 12px;
+    padding: 1px 8px;
+    height: 24px;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 4px;
-    width: 100%;
+    gap: 8px;
+    align-self: flex-start;
+    width: auto;
   }
   .ec3-teams {
     display: flex;
@@ -410,7 +413,7 @@
     width: 100%;
   }
   .ec3-market-line { flex: 1; height: 1px; background: #292929; min-width: 0; }
-  .ec3-market-label { font-size: 12px; font-weight: 400; color: var(--text-secondary); white-space: nowrap; }
+  .ec3-market-label { font-size: 10px; font-weight: 400; color: var(--text-secondary); white-space: nowrap; }
   .ec3-odds { display: flex; align-items: center; gap: 4px; width: 100%; }
   .ec3-odd-btn {
     flex: 1;
@@ -903,13 +906,13 @@
         <div class="ec3-top">
           <div class="ec3-top-left">
             <img class="icon-20" src="assets/icons/football.svg">
-            <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+            <span class="ec3-league-link">UEFA Champions League</span>
           </div>
           <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
         </div>
         <div class="ec3-details">
           <div class="badge-time">12 Jun • 20:00</div>
-          <div class="badge-bb">BB</div>
+          <img class="icon-16" src="assets/icons/betbuilder.svg">
           <img class="icon-16" src="assets/icons/hot-orange.svg">
         </div>
         <div class="ec3-teams">
@@ -941,13 +944,12 @@
         <div class="ec3-top">
           <div class="ec3-top-left">
             <img class="icon-20" src="assets/icons/basketball.svg">
-            <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+            <span class="ec3-league-link">NBA</span>
           </div>
           <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
         </div>
         <div class="ec3-details">
-          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
-          <div class="badge-fb">FB</div>
+          <div class="badge-live">● LIVE '67</div>
           <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
           <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
         </div>
@@ -980,7 +982,7 @@
         <div class="ec3-top">
           <div class="ec3-top-left">
             <img class="icon-20" src="assets/icons/basketball.svg">
-            <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+            <span class="ec3-league-link">NBA</span>
           </div>
           <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
         </div>
@@ -1022,13 +1024,12 @@
         <div class="ec3-top">
           <div class="ec3-top-left">
             <img class="icon-20" src="assets/icons/football.svg">
-            <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+            <span class="ec3-league-link">UEFA Champions League</span>
           </div>
           <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
         </div>
         <div class="ec3-details">
           <div class="badge-time">15 Jun • 21:00</div>
-          <div class="badge-fb">FB</div>
         </div>
         <div class="ec3-teams">
           <div class="ec3-team">
@@ -1059,12 +1060,12 @@
         <div class="ec3-top">
           <div class="ec3-top-left">
             <img class="icon-20" src="assets/icons/basketball.svg">
-            <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+            <span class="ec3-league-link">NBA</span>
           </div>
           <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
         </div>
         <div class="ec3-details">
-          <div class="badge-live"><div class="badge-live-dot"></div>LIVE '34</div>
+          <div class="badge-live">● LIVE '34</div>
           <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
         </div>
         <div class="ec3-teams">
@@ -1096,13 +1097,13 @@
         <div class="ec3-top">
           <div class="ec3-top-left">
             <img class="icon-20" src="assets/icons/football.svg">
-            <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+            <span class="ec3-league-link">UEFA Champions League</span>
           </div>
           <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
         </div>
         <div class="ec3-details">
           <div class="badge-time">16 Jun • 19:45</div>
-          <div class="badge-bb">BB</div>
+          <img class="icon-16" src="assets/icons/betbuilder.svg">
           <img class="icon-16" src="assets/icons/hot-orange.svg">
         </div>
         <div class="ec3-teams">
@@ -1353,13 +1354,13 @@
       <div class="ec-top">
         <div class="ec-top-left">
           <img class="icon-20" src="assets/icons/basketball.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+          <span class="ec3-league-link">NBA</span>
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
 
       <div class="event-details-row">
-        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+        <div class="badge-live">● LIVE '67</div>
         <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
         <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
       </div>
@@ -1387,13 +1388,13 @@
       <div class="ec-top">
         <div class="ec-top-left">
           <img class="icon-20" src="assets/icons/basketball.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+          <span class="ec3-league-link">NBA</span>
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
 
       <div class="event-details-row">
-        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+        <div class="badge-live">● LIVE '67</div>
         <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
         <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
         <img class="icon-16" src="assets/icons/hot-orange.svg">
@@ -1422,14 +1423,13 @@
       <div class="ec-top">
         <div class="ec-top-left">
           <img class="icon-20" src="assets/icons/basketball.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+          <span class="ec3-league-link">NBA</span>
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
 
       <div class="event-details-row">
-        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '43</div>
-        <div class="badge-fb">FB</div>
+        <div class="badge-live">● LIVE '43</div>
         <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
         <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
       </div>
@@ -1457,13 +1457,13 @@
       <div class="ec-top">
         <div class="ec-top-left">
           <img class="icon-20" src="assets/icons/football.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+          <span class="ec3-league-link">UEFA Champions League</span>
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
 
       <div class="event-details-row">
-        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '80</div>
+        <div class="badge-live">● LIVE '80</div>
         <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
         <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
         <img class="icon-16" src="assets/icons/hot-orange.svg">
@@ -1576,14 +1576,14 @@
       <div class="ec-top">
         <div class="ec-top-left">
           <img class="icon-20" src="assets/icons/basketball.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+          <span class="ec3-league-link">NBA</span>
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
 
       <div class="event-details-row">
         <div class="badge-time">9h</div>
-        <div class="badge-bb">BB</div>
+        <img class="icon-16" src="assets/icons/betbuilder.svg">
         <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
@@ -1610,13 +1610,13 @@
       <div class="ec-top">
         <div class="ec-top-left">
           <img class="icon-20" src="assets/icons/basketball.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+          <span class="ec3-league-link">NBA</span>
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
 
       <div class="event-details-row">
-        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+        <div class="badge-live">● LIVE '67</div>
         <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
         <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
         <img class="icon-16" src="assets/icons/hot-orange.svg">
@@ -1645,14 +1645,14 @@
       <div class="ec-top">
         <div class="ec-top-left">
           <img class="icon-20" src="assets/icons/football.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+          <span class="ec3-league-link">UEFA Champions League</span>
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
 
       <div class="event-details-row">
         <div class="badge-time">12h</div>
-        <div class="badge-bb">BB</div>
+        <img class="icon-16" src="assets/icons/betbuilder.svg">
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
       <div class="ec-teams">
@@ -1679,7 +1679,7 @@
       <div class="ec-top">
         <div class="ec-top-left">
           <img class="icon-20" src="assets/icons/basketball.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+          <span class="ec3-league-link">NBA</span>
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
@@ -1784,7 +1784,7 @@
       <div class="ec-top">
         <div class="ec-top-left">
           <img class="icon-20" src="assets/icons/football.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
+          <span class="ec3-league-link">FIFA World Cup 2026</span>
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
@@ -1816,7 +1816,7 @@
       <div class="ec-top">
         <div class="ec-top-left">
           <img class="icon-20" src="assets/icons/football.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
+          <span class="ec3-league-link">FIFA World Cup 2026</span>
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
@@ -1849,14 +1849,14 @@
       <div class="ec-top">
         <div class="ec-top-left">
           <img class="icon-20" src="assets/icons/football.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+          <span class="ec3-league-link">UEFA Champions League</span>
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
 
       <div class="event-details-row">
         <div class="badge-time">15 Jun • 21:00</div>
-        <div class="badge-bb">BB</div>
+        <img class="icon-16" src="assets/icons/betbuilder.svg">
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
       <div class="ec-teams">
@@ -1883,13 +1883,13 @@
       <div class="ec-top">
         <div class="ec-top-left">
           <img class="icon-20" src="assets/icons/football.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
+          <span class="ec3-league-link">FIFA World Cup 2026</span>
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
 
       <div class="event-details-row">
-        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '55</div>
+        <div class="badge-live">● LIVE '55</div>
         <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
@@ -2173,51 +2173,6 @@
   }, { passive: true });
 })();
 
-// Team name: try 12px if overflows 2-line clamp, then 1-line ellipsis; also sync 2-word wrapping
-(function() {
-  function adjustTeamNames() {
-    document.querySelectorAll('.event-card .team-name').forEach(function(el) {
-      el.style.fontSize = '';
-      el.style.whiteSpace = '';
-      el.style.overflow = '';
-      el.style.textOverflow = '';
-      el.style.display = '';
-      if (el.dataset.orig) el.innerHTML = el.dataset.orig;
-      else el.dataset.orig = el.innerHTML;
-
-      if (el.scrollHeight > el.offsetHeight + 2) {
-        el.style.fontSize = '12px';
-        if (el.scrollHeight > el.offsetHeight + 2) {
-          el.style.fontSize = '';
-          el.style.display = 'block';
-          el.style.whiteSpace = 'nowrap';
-          el.style.overflow = 'hidden';
-          el.style.textOverflow = 'ellipsis';
-        }
-      }
-    });
-
-    document.querySelectorAll('.event-card').forEach(function(card) {
-      var leftEl = card.querySelector('.ec-team-left .team-name');
-      var rightEl = card.querySelector('.ec-team-right .team-name');
-      if (!leftEl || !rightEl) return;
-      if (leftEl.style.textOverflow || rightEl.style.textOverflow) return;
-      var lWords = leftEl.textContent.trim().split(/\s+/);
-      var rWords = rightEl.textContent.trim().split(/\s+/);
-      if (lWords.length < 2 || rWords.length < 2) return;
-      var lh = parseFloat(getComputedStyle(leftEl).lineHeight) || 20;
-      var lWraps = leftEl.scrollHeight > lh * 1.3;
-      var rWraps = rightEl.scrollHeight > lh * 1.3;
-      if (lWraps !== rWraps) {
-        var target = lWraps ? rightEl : leftEl;
-        var words = (target === leftEl) ? lWords : rWords;
-        target.innerHTML = words[0] + '<br>' + words.slice(1).join(' ');
-      }
-    });
-  }
-  requestAnimationFrame(function() { requestAnimationFrame(adjustTeamNames); });
-  window.addEventListener('resize', adjustTeamNames);
-})();
 </script>
 </body>
 </html>
