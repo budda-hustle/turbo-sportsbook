@@ -229,11 +229,11 @@
 
   /* ── Event card ──────────────────────────────────────────── */
   .event-card {
-    background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
+    background: var(--bg-2);
     border-radius: 8px;
     width: var(--pw-inner);
     flex-shrink: 0;
-    display: flex; flex-direction: column; gap: 8px;
+    display: flex; flex-direction: column; gap: 12px;
     padding: 12px;
   }
   .event-card-sm { width: 320px; }
@@ -243,6 +243,10 @@
   }
   .ec-top-left {
     display: flex; align-items: center; gap: 8px; min-width: 0;
+  }
+  /* Thin divider after league row */
+  .ec-divider {
+    height: 1px; background: var(--bg-4); flex-shrink: 0;
   }
   .league-link {
     font-size: 12px; font-weight: 400;
@@ -271,14 +275,27 @@
   .badge-live-dot { width: 4px; height: 4px; background: var(--bg-accent); border-radius: 50%; flex-shrink: 0; }
   .badge-bb { background: var(--bg-sub-accent); border-radius: 12px; padding: 1px 8px; font-size: 10px; font-weight: 600; color: var(--text-accent); }
   .badge-fb { background: var(--bg-sub-active); border-radius: 12px; padding: 1px 8px; font-size: 10px; font-weight: 600; color: var(--bg-active); }
-  /* Row 3: teams centered */
+  /* Row 3: teams — 3-column grid: left | score | right */
   .ec-teams {
-    display: flex; align-items: center; justify-content: center; gap: 8px;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    align-items: center; gap: 8px;
   }
-  .team-name { font-size: 14px; font-weight: 400; color: var(--text-default); white-space: nowrap; }
+  .ec-team-left {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .ec-team-right {
+    display: flex; align-items: center; gap: 12px;
+    justify-content: flex-end;
+  }
+  .team-name {
+    font-size: 14px; font-weight: 400; color: var(--text-default);
+    line-height: 1.4; white-space: normal;
+  }
+  .ec-team-right .team-name { text-align: right; }
+  .icon-24 { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
   .ec-vs {
-    font-size: 14px; font-weight: 600; color: var(--text-secondary);
-    padding: 0 4px; white-space: nowrap;
+    font-size: 14px; font-weight: 600; color: var(--text-default);
+    white-space: nowrap; text-align: center;
   }
   /* Row 4: market divider */
   .market-divider {
@@ -1324,17 +1341,22 @@
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
+      <div class="ec-divider"></div>
       <div class="event-details-row">
         <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
         <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
         <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
       </div>
       <div class="ec-teams">
-        <img class="icon-20" src="assets/images/team-boston-celtics.png">
-        <span class="team-name">Boston Celtics</span>
+        <div class="ec-team-left">
+          <img class="icon-24" src="assets/images/team-boston-celtics.png">
+          <span class="team-name">Boston Celtics</span>
+        </div>
         <span class="ec-vs">4 : 2</span>
-        <span class="team-name">Milwaukee Bucks</span>
-        <img class="icon-20" src="assets/images/team-milwaukee-bucks.png">
+        <div class="ec-team-right">
+          <span class="team-name">Milwaukee Bucks</span>
+          <img class="icon-24" src="assets/images/team-milwaukee-bucks.png">
+        </div>
       </div>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
@@ -1353,6 +1375,7 @@
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
+      <div class="ec-divider"></div>
       <div class="event-details-row">
         <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
         <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
@@ -1360,11 +1383,15 @@
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
       <div class="ec-teams">
-        <img class="icon-20" src="assets/images/team-ny-knicks.png">
-        <span class="team-name">New York Knicks</span>
+        <div class="ec-team-left">
+          <img class="icon-24" src="assets/images/team-ny-knicks.png">
+          <span class="team-name">New York Knicks</span>
+        </div>
         <span class="ec-vs">4 : 2</span>
-        <span class="team-name">Cleveland Cavaliers</span>
-        <img class="icon-20" src="assets/images/team-cleveland-cavs.png">
+        <div class="ec-team-right">
+          <span class="team-name">Cleveland Cavaliers</span>
+          <img class="icon-24" src="assets/images/team-cleveland-cavs.png">
+        </div>
       </div>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
@@ -1383,6 +1410,7 @@
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
+      <div class="ec-divider"></div>
       <div class="event-details-row">
         <div class="badge-live"><div class="badge-live-dot"></div>LIVE '43</div>
         <div class="badge-fb">FB</div>
@@ -1390,11 +1418,15 @@
         <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
       </div>
       <div class="ec-teams">
-        <img class="icon-20" src="assets/images/team-miami-heat.png">
-        <span class="team-name">Miami Heat</span>
+        <div class="ec-team-left">
+          <img class="icon-24" src="assets/images/team-miami-heat.png">
+          <span class="team-name">Miami Heat</span>
+        </div>
         <span class="ec-vs">3 : 1</span>
-        <span class="team-name">Indiana Pacers</span>
-        <img class="icon-20" src="assets/images/team-indiana-pacers.png">
+        <div class="ec-team-right">
+          <span class="team-name">Indiana Pacers</span>
+          <img class="icon-24" src="assets/images/team-indiana-pacers.png">
+        </div>
       </div>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
@@ -1413,6 +1445,7 @@
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
+      <div class="ec-divider"></div>
       <div class="event-details-row">
         <div class="badge-live"><div class="badge-live-dot"></div>LIVE '80</div>
         <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
@@ -1420,11 +1453,15 @@
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
       <div class="ec-teams">
-        <img class="icon-20" src="assets/images/team-barcelona.png">
-        <span class="team-name">Barcelona</span>
+        <div class="ec-team-left">
+          <img class="icon-24" src="assets/images/team-barcelona.png">
+          <span class="team-name">Barcelona</span>
+        </div>
         <span class="ec-vs">2 : 1</span>
-        <span class="team-name">PSG</span>
-        <img class="icon-20" src="assets/images/team-psg.png">
+        <div class="ec-team-right">
+          <span class="team-name">PSG</span>
+          <img class="icon-24" src="assets/images/team-psg.png">
+        </div>
       </div>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
@@ -1527,6 +1564,7 @@
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
+      <div class="ec-divider"></div>
       <div class="event-details-row">
         <div class="badge-time">9h</div>
         <div class="badge-bb">BB</div>
@@ -1534,11 +1572,15 @@
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
       <div class="ec-teams">
-        <img class="icon-20" src="assets/images/team-boston-celtics-2.png">
-        <span class="team-name">Boston Celtics</span>
+        <div class="ec-team-left">
+          <img class="icon-24" src="assets/images/team-boston-celtics-2.png">
+          <span class="team-name">Boston Celtics</span>
+        </div>
         <span class="ec-vs">-</span>
-        <span class="team-name">Milwaukee Bucks</span>
-        <img class="icon-20" src="assets/images/team-milwaukee-bucks-2.png">
+        <div class="ec-team-right">
+          <span class="team-name">Milwaukee Bucks</span>
+          <img class="icon-24" src="assets/images/team-milwaukee-bucks-2.png">
+        </div>
       </div>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
@@ -1556,6 +1598,7 @@
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
+      <div class="ec-divider"></div>
       <div class="event-details-row">
         <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
         <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
@@ -1563,11 +1606,15 @@
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
       <div class="ec-teams">
-        <img class="icon-20" src="assets/images/team-ny-knicks-2.png">
-        <span class="team-name">New York Knicks</span>
+        <div class="ec-team-left">
+          <img class="icon-24" src="assets/images/team-ny-knicks-2.png">
+          <span class="team-name">New York Knicks</span>
+        </div>
         <span class="ec-vs">4 : 2</span>
-        <span class="team-name">Cleveland Cavaliers</span>
-        <img class="icon-20" src="assets/images/team-cleveland-cavs-2.png">
+        <div class="ec-team-right">
+          <span class="team-name">Cleveland Cavaliers</span>
+          <img class="icon-24" src="assets/images/team-cleveland-cavs-2.png">
+        </div>
       </div>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
@@ -1586,17 +1633,22 @@
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
+      <div class="ec-divider"></div>
       <div class="event-details-row">
         <div class="badge-time">12h</div>
         <div class="badge-bb">BB</div>
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
       <div class="ec-teams">
-        <img class="icon-20" src="assets/images/team-barcelona.png">
-        <span class="team-name">Barcelona</span>
+        <div class="ec-team-left">
+          <img class="icon-24" src="assets/images/team-barcelona.png">
+          <span class="team-name">Barcelona</span>
+        </div>
         <span class="ec-vs">-</span>
-        <span class="team-name">PSG</span>
-        <img class="icon-20" src="assets/images/team-psg.png">
+        <div class="ec-team-right">
+          <span class="team-name">PSG</span>
+          <img class="icon-24" src="assets/images/team-psg.png">
+        </div>
       </div>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
@@ -1615,17 +1667,22 @@
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
+      <div class="ec-divider"></div>
       <div class="event-details-row">
         <div class="badge-time">6h</div>
         <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
       <div class="ec-teams">
-        <img class="icon-20" src="assets/images/team-miami-heat.png">
-        <span class="team-name">Miami Heat</span>
+        <div class="ec-team-left">
+          <img class="icon-24" src="assets/images/team-miami-heat.png">
+          <span class="team-name">Miami Heat</span>
+        </div>
         <span class="ec-vs">-</span>
-        <span class="team-name">Orlando Magic</span>
-        <img class="icon-20" src="assets/images/team-orlando-magic.png">
+        <div class="ec-team-right">
+          <span class="team-name">Orlando Magic</span>
+          <img class="icon-24" src="assets/images/team-orlando-magic.png">
+        </div>
       </div>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
@@ -1715,16 +1772,21 @@
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
+      <div class="ec-divider"></div>
       <div class="event-details-row">
         <div class="badge-time">9h</div>
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
       <div class="ec-teams">
-        <img class="icon-20" src="assets/images/team-mexico.png">
-        <span class="team-name">Mexico</span>
+        <div class="ec-team-left">
+          <img class="icon-24" src="assets/images/team-mexico.png">
+          <span class="team-name">Mexico</span>
+        </div>
         <span class="ec-vs">-</span>
-        <span class="team-name">South Africa</span>
-        <img class="icon-20" src="assets/images/team-south-africa.png">
+        <div class="ec-team-right">
+          <span class="team-name">South Africa</span>
+          <img class="icon-24" src="assets/images/team-south-africa.png">
+        </div>
       </div>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
@@ -1742,16 +1804,21 @@
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
+      <div class="ec-divider"></div>
       <div class="event-details-row">
         <div class="badge-time">9h</div>
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
       <div class="ec-teams">
-        <img class="icon-20" src="assets/images/team-south-korea.png">
-        <span class="team-name">South Korea</span>
+        <div class="ec-team-left">
+          <img class="icon-24" src="assets/images/team-south-korea.png">
+          <span class="team-name">South Korea</span>
+        </div>
         <span class="ec-vs">-</span>
-        <span class="team-name">Czech Republic</span>
-        <img class="icon-20" src="assets/images/team-czech-republic.png">
+        <div class="ec-team-right">
+          <span class="team-name">Czech Republic</span>
+          <img class="icon-24" src="assets/images/team-czech-republic.png">
+        </div>
       </div>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
@@ -1770,17 +1837,22 @@
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
+      <div class="ec-divider"></div>
       <div class="event-details-row">
         <div class="badge-time">15 Jun • 21:00</div>
         <div class="badge-bb">BB</div>
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
       <div class="ec-teams">
-        <img class="icon-20" src="assets/images/team-barcelona.png">
-        <span class="team-name">Barcelona</span>
+        <div class="ec-team-left">
+          <img class="icon-24" src="assets/images/team-barcelona.png">
+          <span class="team-name">Barcelona</span>
+        </div>
         <span class="ec-vs">-</span>
-        <span class="team-name">PSG</span>
-        <img class="icon-20" src="assets/images/team-psg.png">
+        <div class="ec-team-right">
+          <span class="team-name">PSG</span>
+          <img class="icon-24" src="assets/images/team-psg.png">
+        </div>
       </div>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
@@ -1799,17 +1871,22 @@
         </div>
         <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
       </div>
+      <div class="ec-divider"></div>
       <div class="event-details-row">
         <div class="badge-live"><div class="badge-live-dot"></div>LIVE '55</div>
         <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
         <img class="icon-16" src="assets/icons/hot-orange.svg">
       </div>
       <div class="ec-teams">
-        <img class="icon-20" src="assets/images/team-mexico.png">
-        <span class="team-name">Mexico</span>
+        <div class="ec-team-left">
+          <img class="icon-24" src="assets/images/team-mexico.png">
+          <span class="team-name">Mexico</span>
+        </div>
         <span class="ec-vs">1 : 1</span>
-        <span class="team-name">South Korea</span>
-        <img class="icon-20" src="assets/images/team-south-korea.png">
+        <div class="ec-team-right">
+          <span class="team-name">South Korea</span>
+          <img class="icon-24" src="assets/images/team-south-korea.png">
+        </div>
       </div>
       <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
       <div class="odds-row">
