@@ -508,6 +508,84 @@
   .swipe-bet-card:hover { background: linear-gradient(180deg, var(--bg-6) 0%, var(--bg-4) 100%); }
   .swipe-bet-left { display: flex; align-items: center; gap: 12px; }
   .swipe-bet-img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px 0 0 8px; flex-shrink: 0; }
+
+  /* ── Swipe Bet Card Animation ─────────────────────────────── */
+  .swipe-anim-wrap {
+    width: 64px; height: 64px;
+    border-radius: 8px 0 0 8px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .swipe-card {
+    position: absolute;
+    top: 4px; left: 8px;
+    width: 48px; height: 56px;
+    border-radius: 8px;
+    transform-origin: center bottom;
+    will-change: transform, opacity;
+  }
+  .swipe-card::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px; right: 6px;
+    height: 10px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.18);
+  }
+  .swipe-card::after {
+    content: '';
+    position: absolute;
+    top: 22px; left: 6px; right: 6px; bottom: 6px;
+    border-radius: 5px;
+    background: rgba(0,0,0,0.15);
+  }
+  .swipe-card-0 { background: #1e6ab3; }
+  .swipe-card-1 { background: #3d7020; }
+  .swipe-card-2 { background: #8b5010; }
+  .swipe-card-3 { background: #8b1010; }
+  /* behind-stack cards */
+  .swipe-card.behind-1 {
+    transform: scale(0.88) translateY(4px);
+    z-index: 1;
+  }
+  .swipe-card.behind-2 {
+    transform: scale(0.78) translateY(8px);
+    z-index: 0;
+  }
+  .swipe-card.active {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    z-index: 3;
+  }
+  .swipe-card.swipe-out-right {
+    animation: swipeOutRight 0.45s cubic-bezier(0.4,0,1,1) forwards;
+  }
+  .swipe-card.swipe-out-left {
+    animation: swipeOutLeft 0.45s cubic-bezier(0.4,0,1,1) forwards;
+  }
+  .swipe-card.promote-1 {
+    animation: promote1 0.45s ease forwards;
+  }
+  .swipe-card.promote-2 {
+    animation: promote2 0.45s ease forwards;
+  }
+  @keyframes swipeOutRight {
+    0%   { transform: scale(1) translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: scale(0.9) translateX(72px) translateY(-6px) rotate(18deg); opacity: 0; }
+  }
+  @keyframes swipeOutLeft {
+    0%   { transform: scale(1) translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: scale(0.9) translateX(-72px) translateY(-6px) rotate(-18deg); opacity: 0; }
+  }
+  @keyframes promote1 {
+    0%   { transform: scale(0.88) translateY(4px); z-index: 1; }
+    100% { transform: scale(1) translateY(0); z-index: 3; }
+  }
+  @keyframes promote2 {
+    0%   { transform: scale(0.78) translateY(8px); }
+    100% { transform: scale(0.88) translateY(4px); }
+  }
   .swipe-bet-title { font-size: 18px; font-weight: 600; color: var(--text-default); line-height: 1.4; }
   .swipe-bet-sub { font-size: 12px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
 
@@ -1048,8 +1126,8 @@
 <div class="ec3-market-line"></div>
 </div>
 <div class="ec3-odds">
-<div class="ec3-odd-btn"><div class="ec3-odd-value">1.90</div><div class="ec3-odd-label">Milwaukee</div></div>
-<div class="ec3-odd-btn"><div class="ec3-odd-value">2.75</div><div class="ec3-odd-label">NY Knicks</div></div>
+<div class="ec3-odd-btn"><div class="ec3-odd-value">1.90</div><div class="ec3-odd-label">Milwaukee Bucks</div></div>
+<div class="ec3-odd-btn"><div class="ec3-odd-value">2.75</div><div class="ec3-odd-label">New York Knicks</div></div>
 <div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
 </div>
 </div>
@@ -1081,7 +1159,7 @@
 <div class="ec3-odds">
 <div class="ec3-odd-btn"><div class="ec3-odd-value">2.40</div><div class="ec3-odd-label">Liverpool</div></div>
 <div class="ec3-odd-btn"><div class="ec3-odd-value">3.10</div><div class="ec3-odd-label">Draw</div></div>
-<div class="ec3-odd-btn"><div class="ec3-odd-value">2.80</div><div class="ec3-odd-label">Man City</div></div>
+<div class="ec3-odd-btn"><div class="ec3-odd-value">2.80</div><div class="ec3-odd-label">Manchester City</div></div>
 <div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
 </div>
 </div>
@@ -1095,7 +1173,12 @@
 <!-- ─── SWIPE BET CARD ─────────────────────────────────────── -->
 <div class="swipe-bet-card" style="margin-bottom:32px;">
 <div class="swipe-bet-left">
-<img class="swipe-bet-img" src="assets/images/swipe-bet-animation.png"/>
+<div class="swipe-anim-wrap" id="swipeAnimWrap">
+  <div class="swipe-card swipe-card-0 active" data-idx="0"></div>
+  <div class="swipe-card swipe-card-1 behind-1" data-idx="1"></div>
+  <div class="swipe-card swipe-card-2 behind-2" data-idx="2"></div>
+  <div class="swipe-card swipe-card-3" style="transform:scale(0.68) translateY(12px);opacity:0.6;z-index:0;" data-idx="3"></div>
+</div>
 <div>
 <div class="swipe-bet-title">Swipe Bet</div>
 <div class="swipe-bet-sub">Instant bets. Real-time odds</div>
@@ -1254,7 +1337,7 @@
 <span class="possible-win">$1,060.00</span>
 </div>
 </div>
-<button class="place-bet-btn" style="width:100%;">Add to betslip</button>
+<button class="place-bet-btn" style="width:100%;height:40px;">Add to betslip</button>
 </div>
 <!-- ─── LIVE BLOCK ────────────────────────────────────────── -->
 <div style="padding:0 16px;margin-bottom:0;">
@@ -1617,7 +1700,7 @@
 <span class="bb-win-num">$1,060.00</span>
 </div>
 </div>
-<button class="place-bet-btn" style="width:100%;">Add to betslip</button>
+<button class="place-bet-btn" style="width:100%;height:40px;">Add to betslip</button>
 </div>
 <!-- ─── FOOTBALL BLOCK ────────────────────────────────────── -->
 <div style="padding:0 16px;margin-bottom:0;">
@@ -1995,6 +2078,71 @@
     }
     lastY = y;
   }, { passive: true });
+})();
+
+// ── Swipe Bet Card Animation ──────────────────────────────────
+(function() {
+  const wrap = document.getElementById('swipeAnimWrap');
+  if (!wrap) return;
+  const cards = Array.from(wrap.querySelectorAll('.swipe-card'));
+  const n = cards.length;
+  let current = 0;
+  let swipeDir = 1; // 1 = right, -1 = left
+
+  function getOrder(activeIdx) {
+    // returns [active, behind1, behind2, hidden]
+    return [
+      activeIdx % n,
+      (activeIdx + 1) % n,
+      (activeIdx + 2) % n,
+      (activeIdx + 3) % n,
+    ];
+  }
+
+  function resetCard(card) {
+    card.className = card.className.replace(/\s*(active|behind-1|behind-2|swipe-out-right|swipe-out-left|promote-1|promote-2)\s*/g, ' ').trim();
+    card.style.transform = '';
+    card.style.opacity = '';
+    card.style.zIndex = '';
+  }
+
+  function applyStack(activeIdx) {
+    const [a, b1, b2, h] = getOrder(activeIdx);
+    cards.forEach(c => resetCard(c));
+    cards[a].classList.add('active');
+    cards[b1].classList.add('behind-1');
+    cards[b2].classList.add('behind-2');
+    cards[h].style.cssText = 'transform:scale(0.68) translateY(12px);opacity:0.6;z-index:0;';
+  }
+
+  function step() {
+    const [a, b1] = getOrder(current);
+    const outClass = swipeDir > 0 ? 'swipe-out-right' : 'swipe-out-left';
+
+    // animate top card out
+    cards[a].classList.remove('active');
+    cards[a].classList.add(outClass);
+
+    // promote b1 → active, b2 → behind-1, hidden → behind-2
+    cards[b1].classList.remove('behind-1');
+    cards[b1].classList.add('promote-1');
+
+    const b2 = (current + 2) % n;
+    const hid = (current + 3) % n;
+    cards[b2].classList.remove('behind-2');
+    cards[b2].classList.add('promote-2');
+    cards[hid].style.cssText = 'transform:scale(0.78) translateY(8px);opacity:0.8;z-index:0;transition:transform 0.45s ease,opacity 0.45s ease;';
+
+    swipeDir *= -1;
+    current = (current + 1) % n;
+
+    setTimeout(() => {
+      applyStack(current);
+    }, 460);
+  }
+
+  applyStack(0);
+  setInterval(step, 1800);
 })();
 
 </script>
