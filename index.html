@@ -300,10 +300,11 @@
   }
   .team-name {
     font-size: 12px; font-weight: 600; color: var(--text-default);
-    line-height: 1.4; max-width: 45%;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;
+    line-height: 1.4; min-width: 48px; max-width: 45%;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    display: block; text-align: center;
   }
-  .team-name-right { text-align: right; }
+  .team-name-right { text-align: center; }
   .icon-24 { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
   .icon-32 { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
   /* Row 4: market divider */
@@ -862,7 +863,7 @@
 <span>Live</span>
 </div>
 <div class="tag-pill">
-<img class="icon-20" src="assets/icons/icon-live-tag.svg"/>
+<img class="icon-20" src="assets/icons/hot.svg"/>
 <span>Top events</span>
 </div>
 <div class="tag-pill">
@@ -1102,58 +1103,6 @@
 </div>
 <div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div>
 </div>
-<!-- ─── TURBO COMBO CARD ───────────────────────────────────── -->
-<div class="turbo-combo-card" style="margin-bottom:32px;">
-<div class="turbo-combo-header">
-<span class="turbo-combo-title">Turbo combo</span>
-<div class="turbo-multiplier">
-<img height="16" src="assets/icons/turbo-rocket-orange.svg" style="flex-shrink:0;" width="16"/>
-<span>x1.58</span>
-</div>
-</div>
-<div class="divider-h"></div>
-<div class="show-selections-row">
-<div class="show-selections-left">
-<!-- Arrow Right turbo -->
-<div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div>
-<span>Show Selections</span>
-</div>
-<div class="team-logos-row">
-<img class="team-logo-sm" src="assets/images/team-combo-1.png"/>
-<img class="team-logo-sm" src="assets/images/team-combo-2.png"/>
-<img class="team-logo-sm" src="assets/images/team-combo-3.png"/>
-<img class="team-logo-sm" src="assets/images/team-combo-4.png"/>
-<img class="team-logo-sm" src="assets/images/team-combo-5.png"/>
-</div>
-</div>
-<div class="divider-h"></div>
-<div class="odds-win-row">
-<div class="odds-labels-left">
-<span>Total odds</span>
-<span>Possible win</span>
-</div>
-<div class="odds-labels-right">
-<div class="odds-values-row">
-<span class="odds-old">180.60</span>
-<span class="odds-new">270.5</span>
-</div>
-<span class="possible-win">$1,060.00</span>
-</div>
-</div>
-<div class="bet-input-row">
-<div class="bet-amount-input">
-<div class="bet-amount-texts">
-<span class="bet-label">Bet amount</span>
-<span class="bet-value">$20</span>
-</div>
-<div class="max-bet-btn">
-<span class="max-btn-top">Max</span>
-<span class="max-btn-bot">$1,000.50</span>
-</div>
-</div>
-<button class="place-bet-btn">Place bet</button>
-</div>
-</div>
 <!-- ─── POPULAR PLAYS ──────────────────────────────────────── -->
 <div style="padding:0 16px;margin-bottom:16px;">
 <div style="font-size:20px;font-weight:800;color:var(--text-default);line-height:1.4;">Popular Plays</div>
@@ -1266,6 +1215,46 @@
 </div>
 <div class="pagination" id="pg-popular" style="margin-bottom:32px;">
 <div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+</div>
+<!-- ─── TURBO COMBO CARD ───────────────────────────────────── -->
+<div class="turbo-combo-card" style="margin-bottom:32px;">
+<div class="turbo-combo-header">
+<span class="turbo-combo-title">Turbo combo</span>
+<div class="turbo-multiplier">
+<img height="16" src="assets/icons/turbo-rocket-orange.svg" style="flex-shrink:0;" width="16"/>
+<span>x1.58</span>
+</div>
+</div>
+<div class="divider-h"></div>
+<div class="show-selections-row">
+<div class="show-selections-left">
+<!-- Arrow Right turbo -->
+<div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div>
+<span>Show Selections</span>
+</div>
+<div class="team-logos-row">
+<img class="team-logo-sm" src="assets/images/team-combo-1.png"/>
+<img class="team-logo-sm" src="assets/images/team-combo-2.png"/>
+<img class="team-logo-sm" src="assets/images/team-combo-3.png"/>
+<img class="team-logo-sm" src="assets/images/team-combo-4.png"/>
+<img class="team-logo-sm" src="assets/images/team-combo-5.png"/>
+</div>
+</div>
+<div class="divider-h"></div>
+<div class="odds-win-row">
+<div class="odds-labels-left">
+<span>Total odds</span>
+<span>Possible win</span>
+</div>
+<div class="odds-labels-right">
+<div class="odds-values-row">
+<span class="odds-old">180.60</span>
+<span class="odds-new">270.5</span>
+</div>
+<span class="possible-win">$1,060.00</span>
+</div>
+</div>
+<button class="place-bet-btn" style="width:100%;">Add to betslip</button>
 </div>
 <!-- ─── LIVE BLOCK ────────────────────────────────────────── -->
 <div style="padding:0 16px;margin-bottom:0;">
@@ -1628,19 +1617,7 @@
 <span class="bb-win-num">$1,060.00</span>
 </div>
 </div>
-<div class="bet-input-row">
-<div class="bet-amount-input">
-<div class="bet-amount-texts">
-<span class="bet-label">Bet amount</span>
-<span class="bet-value">$20</span>
-</div>
-<div class="max-bet-btn">
-<span class="max-btn-top">Max</span>
-<span class="max-btn-bot">$1,000.50</span>
-</div>
-</div>
-<button class="place-bet-btn">Place bet</button>
-</div>
+<button class="place-bet-btn" style="width:100%;">Add to betslip</button>
 </div>
 <!-- ─── FOOTBALL BLOCK ────────────────────────────────────── -->
 <div style="padding:0 16px;margin-bottom:0;">
