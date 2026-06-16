@@ -511,7 +511,7 @@
 
   /* ── Swipe Bet Card Animation ─────────────────────────────── */
   .swipe-anim-wrap {
-    width: 64px; height: 64px;
+    width: 48px; height: 64px;
     border-radius: 8px 0 0 8px;
     flex-shrink: 0;
     position: relative;
@@ -520,11 +520,56 @@
   .swipe-card {
     position: absolute;
     width: 32px; height: 48px;
-    top: 8px; left: 16px;
+    top: 8px; left: 8px;
     transform-origin: center bottom;
     will-change: transform, opacity;
   }
   .swipe-card img { width: 100%; height: 100%; display: block; }
+
+  /* swipe gesture hint */
+  .swipe-gesture {
+    position: absolute;
+    bottom: 11px;
+    height: 5px; width: 28px;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 10;
+  }
+  .swipe-gesture::after {
+    content: '';
+    position: absolute;
+    top: -1.5px;
+    width: 8px; height: 8px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(255,255,255,0.7);
+  }
+  .swipe-gesture.fire-right {
+    left: 4px;
+    background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.15) 40%, rgba(255,255,255,0.55) 100%);
+    border-radius: 0 2px 2px 0;
+    animation: gestRight 0.6s ease-out forwards;
+  }
+  .swipe-gesture.fire-right::after { right: -3px; }
+  .swipe-gesture.fire-left {
+    right: 4px;
+    background: linear-gradient(to left, transparent 0%, rgba(255,255,255,0.15) 40%, rgba(255,255,255,0.55) 100%);
+    border-radius: 2px 0 0 2px;
+    animation: gestLeft 0.6s ease-out forwards;
+  }
+  .swipe-gesture.fire-left::after { left: -3px; }
+  @keyframes gestRight {
+    0%   { opacity: 0;    transform: translateX(0); }
+    12%  { opacity: 0.9; }
+    80%  { opacity: 0.6; }
+    100% { opacity: 0;    transform: translateX(26px); }
+  }
+  @keyframes gestLeft {
+    0%   { opacity: 0;    transform: translateX(0); }
+    12%  { opacity: 0.9; }
+    80%  { opacity: 0.6; }
+    100% { opacity: 0;    transform: translateX(-26px); }
+  }
   .swipe-bet-title { font-size: 18px; font-weight: 600; color: var(--text-default); line-height: 1.4; }
   .swipe-bet-sub { font-size: 12px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
 
@@ -1113,10 +1158,11 @@
 <div class="swipe-bet-card" style="margin-bottom:32px;">
 <div class="swipe-bet-left">
 <div class="swipe-anim-wrap" id="swipeAnimWrap">
-  <div class="swipe-card active" data-idx="0"><img src="assets/cards/card-blue.svg" alt=""></div>
-  <div class="swipe-card behind-1" data-idx="1"><img src="assets/cards/card-green.svg" alt=""></div>
-  <div class="swipe-card behind-2" data-idx="2"><img src="assets/cards/card-orange.svg" alt=""></div>
-  <div class="swipe-card" style="transform:scale(0.68) translateY(12px);opacity:0.6;z-index:0;" data-idx="3"><img src="assets/cards/card-red.svg" alt=""></div>
+  <div class="swipe-card" data-idx="0"><img src="assets/cards/card-blue.svg" alt=""></div>
+  <div class="swipe-card" data-idx="1"><img src="assets/cards/card-green.svg" alt=""></div>
+  <div class="swipe-card" data-idx="2"><img src="assets/cards/card-orange.svg" alt=""></div>
+  <div class="swipe-card" data-idx="3"><img src="assets/cards/card-red.svg" alt=""></div>
+  <div class="swipe-gesture" id="swipeGesture"></div>
 </div>
 <div>
 <div class="swipe-bet-title">Swipe Bet</div>
@@ -2051,34 +2097,45 @@
     order.forEach((ci, si) => set(cards[ci], stack[si], 'none'));
   }
 
+  function fireGesture() {
+    const g = document.getElementById('swipeGesture');
+    if (!g) return;
+    g.className = 'swipe-gesture';
+    void g.offsetWidth;
+    g.classList.add(toRight ? 'fire-right' : 'fire-left');
+  }
+
   function step() {
     if (animating) return;
     animating = true;
 
-    const front = cards[order[0]];
-    const tx = toRight ? '80px' : '-80px';
-    const rot = toRight ? '20deg' : '-20deg';
+    // gesture hint fires first
+    fireGesture();
+
     const ease = 'transform 0.38s cubic-bezier(0.4,0,1,1), opacity 0.38s ease';
     const promote = 'transform 0.38s ease, opacity 0.38s ease';
-
-    // fly out front card (z stays highest so it flies over everything)
-    front.style.transition = ease;
-    front.style.zIndex = '5';
-    front.style.transform = `translateX(${tx}) translateY(-6px) rotate(${rot}) scale(0.85)`;
-    front.style.opacity = '0';
-
-    // promote cards 1,2,3 → positions 0,1,2
-    [1, 2, 3].forEach(si => set(cards[order[si]], stack[si - 1], promote));
-
+    const currentToRight = toRight;
     toRight = !toRight;
 
+    // card flies 120ms after gesture starts
     setTimeout(() => {
-      // rotate order: front goes to back
-      order = [...order.slice(1), order[0]];
-      // snap back card to position 3 instantly (invisible)
-      set(cards[order[3]], stack[3], 'none');
-      animating = false;
-    }, 400);
+      const front = cards[order[0]];
+      const tx = currentToRight ? '80px' : '-80px';
+      const rot = currentToRight ? '20deg' : '-20deg';
+
+      front.style.transition = ease;
+      front.style.zIndex = '5';
+      front.style.transform = `translateX(${tx}) translateY(-6px) rotate(${rot}) scale(0.85)`;
+      front.style.opacity = '0';
+
+      [1, 2, 3].forEach(si => set(cards[order[si]], stack[si - 1], promote));
+
+      setTimeout(() => {
+        order = [...order.slice(1), order[0]];
+        set(cards[order[3]], stack[3], 'none');
+        animating = false;
+      }, 400);
+    }, 120);
   }
 
   applyStack();
