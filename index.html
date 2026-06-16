@@ -259,11 +259,10 @@
     background: var(--bg-2);
     border-radius: 12px;
     padding: 1px 8px;
-    height: 24px;
+    height: 20px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    align-self: center;
   }
   /* badges inside the pill lose their own bg/padding */
   .event-details-row .badge-live,
@@ -279,40 +278,34 @@
     background: none; padding: 0; border-radius: 0;
     font-size: 10px; font-weight: 600; color: var(--text-secondary); white-space: nowrap;
   }
-  /* Row 3: teams — logo on top, name below, score absolutely centered */
-  .ec-teams {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    position: relative;
-    width: 100%;
-    margin-top: -8px;
+  /* Row 3: teams — logo circles + center col */
+  .ec-logo-bg {
+    width: 48px; height: 48px;
+    background: var(--bg-2); border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
   }
-  .ec-team-left {
-    display: flex; flex-direction: column;
-    align-items: flex-start; gap: 8px;
-    width: 123px;
+  .ec-mid {
+    display: flex; justify-content: space-between; align-items: center; width: 100%;
   }
-  .ec-team-right {
-    display: flex; flex-direction: column;
-    align-items: flex-end; gap: 8px;
-    width: 117px;
+  .ec-center-col {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .ec-score {
+    font-size: 16px; font-weight: 600; color: var(--text-default);
+    line-height: 1.4; text-align: center; white-space: nowrap;
+  }
+  .ec-names-row {
+    display: flex; justify-content: space-between; align-items: flex-start; width: 100%;
   }
   .team-name {
-    font-size: 14px; font-weight: 400; color: var(--text-default);
-    line-height: 1.4; width: 100%;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    display: block;
+    font-size: 12px; font-weight: 600; color: var(--text-default);
+    line-height: 1.4; max-width: 45%;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;
   }
-  .ec-team-right .team-name { text-align: right; }
+  .team-name-right { text-align: right; }
   .icon-24 { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
   .icon-32 { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
-  .ec-vs {
-    position: absolute; left: 50%; top: 21.5px;
-    transform: translate(-50%, -50%);
-    font-size: 18px; font-weight: 600; color: var(--text-default);
-    white-space: nowrap; z-index: 1;
-  }
   /* Row 4: market divider */
   .market-divider {
     display: flex; align-items: center; gap: 12px;
@@ -388,44 +381,13 @@
     background: var(--bg-2);
     border-radius: 12px;
     padding: 1px 8px;
-    height: 24px;
+    height: 20px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    align-self: center;
     width: auto;
   }
-  .ec3-teams {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    position: relative;
-    width: 100%;
-    margin-top: -8px;
-  }
-  .ec3-team-left {
-    display: flex; flex-direction: column;
-    align-items: flex-start; gap: 8px;
-    width: 123px;
-  }
-  .ec3-team-right {
-    display: flex; flex-direction: column;
-    align-items: flex-end; gap: 8px;
-    width: 117px;
-  }
-  .ec3-team-logo { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
-  .ec3-team-name {
-    font-size: 14px; font-weight: 400; color: var(--text-default);
-    line-height: 1.4; width: 100%;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;
-  }
-  .ec3-team-right .ec3-team-name { text-align: right; }
-  .ec3-score, .ec3-dash {
-    position: absolute; left: 50%; top: 21.5px;
-    transform: translate(-50%, -50%);
-    font-size: 18px; font-weight: 600; color: var(--text-default);
-    white-space: nowrap; z-index: 1;
-  }
+
   .ec3-market {
     display: flex;
     align-items: center;
@@ -736,25 +698,7 @@
   .bb-heading { display: flex; align-items: center; gap: 8px; }
   .bb-title { font-size: 14px; font-weight: 600; color: var(--text-default); }
   .bb-odds-val-acc { font-size: 14px; font-weight: 600; color: var(--text-accent); }
-  .bb-event-date {
-    background: var(--bg-2);
-    border-radius: 12px;
-    padding: 1px 8px;
-    height: 24px;
-    display: inline-flex;
-    align-items: center;
-    align-self: center;
-    font-size: 10px; font-weight: 600;
-    color: var(--text-secondary);
-    white-space: nowrap;
-  }
-  .bb-teams-row { display: flex; justify-content: space-between; align-items: flex-start; position: relative; width: 100%; margin-top: -8px; }
-  .bb-team { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; width: 123px; }
-  .bb-team.bb-team-right { align-items: flex-end; width: 117px; }
-  .bb-team-logo { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
-  .bb-team-name { font-size: 14px; font-weight: 600; color: var(--text-default); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; width: 100%; }
-  .bb-team.bb-team-right .bb-team-name { text-align: right; }
-  .bb-vs { position: absolute; left: 50%; top: 21.5px; transform: translate(-50%, -50%); font-size: 18px; font-weight: 600; color: var(--text-default); white-space: nowrap; z-index: 1; }
+
   .bb-show-selections { display: flex; align-items: center; gap: 8px; cursor: pointer; }
   .bb-show-sel-text { font-size: 14px; font-weight: 400; color: var(--text-secondary); transition: color 0.15s; }
   .bb-show-selections:hover .bb-show-sel-text { color: var(--bg-active); }
@@ -867,1135 +811,1010 @@
     flex-shrink: 0; cursor: pointer;
   }
 </style>
-</head>
-<body>
 
+<body>
 <!-- ═══════════════════════════════════════════════════════════
      ICON MACROS (HTML templates defined via data URIs is not
      needed — we inline two-layer icons directly using .ic2 class)
 ═══════════════════════════════════════════════════════════ -->
-
 <!-- ─── STICKY HEADER ─────────────────────────────────────── -->
 <!-- Logo bar (fixed) -->
 <div class="logo-bar">
-    <img class="logo-mark" src="assets/icons/logo-vector.svg" alt="Logo">
-    <div class="logo-divider"></div>
-    <img class="logo-search-icon" src="assets/icons/search.svg" alt="">
-    <div class="logo-spacer"></div>
-    <div class="btn-registration">Registration</div>
-    <div class="btn-login">Login</div>
-  </div>
-</div>
-<!-- Nav bar (scroll-hide) -->
-<div class="nav-bar" id="scroll-nav">
-    <!-- Search field -->
-    <div class="nav-search">
-      <div class="ic"><img class="iv" src="assets/icons/search.svg"></div>
-      <span>Search</span>
-    </div>
-    <!-- My Bets button (single-layer icon works fine) -->
-    <div class="nav-mybets">
-      <img class="icon-20" src="assets/icons/my-bets.svg">
-      <span>My Bets</span>
-    </div>
-    <!-- Settings button (single-layer) -->
-    <div class="nav-settings">
-      <img class="icon-20" src="assets/icons/settings.svg">
-    </div>
+<img alt="Logo" class="logo-mark" src="assets/icons/logo-vector.svg"/>
+<div class="logo-divider"></div>
+<img alt="" class="logo-search-icon" src="assets/icons/search.svg"/>
+<div class="logo-spacer"></div>
+<div class="btn-registration">Registration</div>
+<div class="btn-login">Login</div>
 </div>
 
+<!-- Nav bar (scroll-hide) -->
+<div class="nav-bar" id="scroll-nav">
+<!-- Search field -->
+<div class="nav-search">
+<div class="ic"><img class="iv" src="assets/icons/search.svg"/></div>
+<span>Search</span>
+</div>
+<!-- My Bets button (single-layer icon works fine) -->
+<div class="nav-mybets">
+<img class="icon-20" src="assets/icons/my-bets.svg"/>
+<span>My Bets</span>
+</div>
+<!-- Settings button (single-layer) -->
+<div class="nav-settings">
+<img class="icon-20" src="assets/icons/settings.svg"/>
+</div>
+</div>
 <!-- ═══════════════════════════════════════════════════════════
      PAGE CONTENT
 ═══════════════════════════════════════════════════════════ -->
 <div class="page-content">
-
-  <!-- ─── HERO BANNER ───────────────────────────────────────── -->
-  <div class="hero-banner">
-    <video class="hero-bg" src="assets/videos/hero-banner-bg.mp4" autoplay muted loop playsinline></video>
-    <div class="hero-timer"><span id="ht-d">00</span>d<span class="hero-timer-blink"> : </span><span id="ht-h">22</span>h<span class="hero-timer-blink"> : </span><span id="ht-m">18</span>m</div>
-    <div class="hero-title">FIFA World Cup 2026</div>
-  </div>
-
-  <!-- ─── TAGS ───────────────────────────────────────────────── -->
-  <div class="tags-row" style="margin-bottom:32px;">
-    <div class="tag-pill">
-      <img class="icon-20" src="assets/icons/live.svg">
-      <span>Live</span>
-    </div>
-    <div class="tag-pill">
-      <img class="icon-20" src="assets/icons/icon-live-tag.svg">
-      <span>Top events</span>
-    </div>
-    <div class="tag-pill">
-      <img class="icon-20" src="assets/icons/icon-coming-up.svg">
-      <span>Coming up</span>
-    </div>
-    <div class="tag-pill">
-      <div class="ic"><img class="iv" src="assets/icons/favorites.svg"></div>
-      <span>Favorites</span>
-    </div>
-  </div>
-
-  <!-- ─── PICKS FOR YOU ─────────────────────────────────────── -->
-  <div style="padding:0 16px;margin-bottom:32px;">
-    <div class="block-header">
-      <div class="block-heading">
-        <!-- popular icon (single-layer) -->
-        <img class="icon-20" src="assets/icons/popular.svg">
-        <span class="block-heading-text">Picks for you</span>
-      </div>
-      <div class="dropdown-pill">
-        <span style="font-size:12px;color:var(--text-default);">Match winner</span>
-        <!-- Arrow Down -->
-        <div class="ic"><img class="iv" src="assets/icons/arrow-down.svg"></div>
-      </div>
-    </div>
-
-    <!-- Event cards (new v3 design from Figma 6047-819 / 6047-820) -->
-    <div style="display:flex;flex-direction:column;gap:8px;">
-
-      <!-- Card 1: Barcelona vs PSG — Pre-match, UEFA Champions League -->
-      <div class="ec3">
-        <div class="ec3-top">
-          <div class="ec3-top-left">
-            <img class="icon-20" src="assets/icons/football.svg">
-            <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
-          </div>
-          <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-        </div>
-        <div class="ec3-details">
-          <div class="badge-time">12 Jun • 20:00</div>
-          <img class="icon-16" src="assets/icons/betbuilder.svg">
-          <img class="icon-16" src="assets/icons/hot-orange.svg">
-        </div>
-        <div class="ec3-teams">
-          <div class="ec3-team-left">
-            <img class="ec3-team-logo" src="assets/teams/Football%20-%20Barcelona.png" alt="Barcelona">
-            <span class="ec3-team-name">Barcelona</span>
-          </div>
-          <span class="ec3-dash">-</span>
-          <div class="ec3-team-right">
-            <img class="ec3-team-logo" src="assets/teams/Football%20-%20PSG.png" alt="PSG">
-            <span class="ec3-team-name">PSG</span>
-          </div>
-        </div>
-        <div class="ec3-market">
-          <div class="ec3-market-line"></div>
-          <span class="ec3-market-label">Match Winner</span>
-          <div class="ec3-market-line"></div>
-        </div>
-        <div class="ec3-odds">
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">1.85</div><div class="ec3-odd-label">Barcelona</div></div>
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">3.20</div><div class="ec3-odd-label">Draw</div></div>
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">4.50</div><div class="ec3-odd-label">PSG</div></div>
-          <div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-        </div>
-      </div>
-
-      <!-- Card 2: Orlando Magic vs Indiana Pacers — LIVE, NBA -->
-      <div class="ec3">
-        <div class="ec3-top">
-          <div class="ec3-top-left">
-            <img class="icon-20" src="assets/icons/basketball.svg">
-            <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-          </div>
-          <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-        </div>
-        <div class="ec3-details">
-          <div class="badge-live">● LIVE '67</div>
-          <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-          <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-        </div>
-        <div class="ec3-teams">
-          <div class="ec3-team-left">
-            <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20Orlando%20Magic.png" alt="Orlando Magic">
-            <span class="ec3-team-name">Orlando Magic</span>
-          </div>
-          <span class="ec3-score">2&nbsp;&nbsp;:&nbsp;&nbsp;3</span>
-          <div class="ec3-team-right">
-            <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20Indiana%20Pacers.png" alt="Indiana Pacers">
-            <span class="ec3-team-name">Indiana Pacers</span>
-          </div>
-        </div>
-        <div class="ec3-market">
-          <div class="ec3-market-line"></div>
-          <span class="ec3-market-label">Match Winner</span>
-          <div class="ec3-market-line"></div>
-        </div>
-        <div class="ec3-odds">
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">3.5</div><div class="ec3-odd-label">Orlando Magic</div></div>
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">2.21</div><div class="ec3-odd-label">Indiana Pacers</div></div>
-          <div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-        </div>
-      </div>
-
-      <!-- Card 3: Boston Celtics vs Miami Heat — Pre-match, NBA -->
-      <div class="ec3">
-        <div class="ec3-top">
-          <div class="ec3-top-left">
-            <img class="icon-20" src="assets/icons/basketball.svg">
-            <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-          </div>
-          <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-        </div>
-        <div class="ec3-details">
-          <div class="badge-time">14 Jun • 18:00</div>
-          <img class="icon-16" src="assets/icons/hot-orange.svg">
-        </div>
-        <div class="ec3-teams">
-          <div class="ec3-team-left">
-            <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20Boston%20Celtics.png" alt="Boston Celtics">
-            <span class="ec3-team-name">Boston Celtics</span>
-          </div>
-          <span class="ec3-dash">-</span>
-          <div class="ec3-team-right">
-            <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20Miami%20Heat.png" alt="Miami Heat">
-            <span class="ec3-team-name">Miami Heat</span>
-          </div>
-        </div>
-        <div class="ec3-market">
-          <div class="ec3-market-line"></div>
-          <span class="ec3-market-label">Match Winner</span>
-          <div class="ec3-market-line"></div>
-        </div>
-        <div class="ec3-odds">
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">1.65</div><div class="ec3-odd-label">Boston Celtics</div></div>
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">2.10</div><div class="ec3-odd-label">Miami Heat</div></div>
-          <div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Hidden extra cards -->
-    <div id="picks-extra" style="display:none;flex-direction:column;gap:8px;margin-top:8px;">
-
-      <!-- Card 4: Bayern Munich vs Arsenal — Pre-match, UEFA CL -->
-      <div class="ec3">
-        <div class="ec3-top">
-          <div class="ec3-top-left">
-            <img class="icon-20" src="assets/icons/football.svg">
-            <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
-          </div>
-          <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-        </div>
-        <div class="ec3-details">
-          <div class="badge-time">15 Jun • 21:00</div>
-        </div>
-        <div class="ec3-teams">
-          <div class="ec3-team-left">
-            <img class="ec3-team-logo" src="assets/teams/Football%20-%20Bayern%20Munich.png" alt="Bayern Munich">
-            <span class="ec3-team-name">Bayern Munich</span>
-          </div>
-          <span class="ec3-dash">-</span>
-          <div class="ec3-team-right">
-            <img class="ec3-team-logo" src="assets/teams/Football%20-%20Arsenal.png" alt="Arsenal">
-            <span class="ec3-team-name">Arsenal</span>
-          </div>
-        </div>
-        <div class="ec3-market">
-          <div class="ec3-market-line"></div>
-          <span class="ec3-market-label">Match Winner</span>
-          <div class="ec3-market-line"></div>
-        </div>
-        <div class="ec3-odds">
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">2.10</div><div class="ec3-odd-label">Bayern Munich</div></div>
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">3.60</div><div class="ec3-odd-label">Draw</div></div>
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">3.25</div><div class="ec3-odd-label">Arsenal</div></div>
-          <div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-        </div>
-      </div>
-
-      <!-- Card 5: Milwaukee Bucks vs New York Knicks — LIVE, NBA -->
-      <div class="ec3">
-        <div class="ec3-top">
-          <div class="ec3-top-left">
-            <img class="icon-20" src="assets/icons/basketball.svg">
-            <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-          </div>
-          <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-        </div>
-        <div class="ec3-details">
-          <div class="badge-live">● LIVE '34</div>
-          <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-        </div>
-        <div class="ec3-teams">
-          <div class="ec3-team-left">
-            <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20Milwaukee%20Bucks.png" alt="Milwaukee Bucks">
-            <span class="ec3-team-name">Milwaukee Bucks</span>
-          </div>
-          <span class="ec3-score">1&nbsp;&nbsp;:&nbsp;&nbsp;0</span>
-          <div class="ec3-team-right">
-            <img class="ec3-team-logo" src="assets/teams/Basketball%20-%20New%20York%20Knicks.png" alt="New York Knicks">
-            <span class="ec3-team-name">New York Knicks</span>
-          </div>
-        </div>
-        <div class="ec3-market">
-          <div class="ec3-market-line"></div>
-          <span class="ec3-market-label">Match Winner</span>
-          <div class="ec3-market-line"></div>
-        </div>
-        <div class="ec3-odds">
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">1.90</div><div class="ec3-odd-label">Milwaukee</div></div>
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">2.75</div><div class="ec3-odd-label">NY Knicks</div></div>
-          <div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-        </div>
-      </div>
-
-      <!-- Card 6: Liverpool vs Manchester City — Pre-match -->
-      <div class="ec3">
-        <div class="ec3-top">
-          <div class="ec3-top-left">
-            <img class="icon-20" src="assets/icons/football.svg">
-            <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
-          </div>
-          <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-        </div>
-        <div class="ec3-details">
-          <div class="badge-time">16 Jun • 19:45</div>
-          <img class="icon-16" src="assets/icons/betbuilder.svg">
-          <img class="icon-16" src="assets/icons/hot-orange.svg">
-        </div>
-        <div class="ec3-teams">
-          <div class="ec3-team-left">
-            <img class="ec3-team-logo" src="assets/teams/Football%20-%20Liverpool.png" alt="Liverpool">
-            <span class="ec3-team-name">Liverpool</span>
-          </div>
-          <span class="ec3-dash">-</span>
-          <div class="ec3-team-right">
-            <img class="ec3-team-logo" src="assets/teams/Football%20-%20Manchester%20City.png" alt="Manchester City">
-            <span class="ec3-team-name">Man City</span>
-          </div>
-        </div>
-        <div class="ec3-market">
-          <div class="ec3-market-line"></div>
-          <span class="ec3-market-label">Match Winner</span>
-          <div class="ec3-market-line"></div>
-        </div>
-        <div class="ec3-odds">
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">2.40</div><div class="ec3-odd-label">Liverpool</div></div>
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">3.10</div><div class="ec3-odd-label">Draw</div></div>
-          <div class="ec3-odd-btn"><div class="ec3-odd-value">2.80</div><div class="ec3-odd-label">Man City</div></div>
-          <div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Show more -->
-    <div class="show-more" id="picks-show-more" onclick="document.getElementById('picks-extra').style.display='flex';document.getElementById('picks-show-more').style.display='none';">
-      <span>Show more</span>
-      <div class="ic"><img class="iv" src="assets/icons/arrow-down.svg" style="transition:transform 0.2s;"></div>
-    </div>
-  </div>
-
-  <!-- ─── SWIPE BET CARD ─────────────────────────────────────── -->
-  <div class="swipe-bet-card" style="margin-bottom:32px;">
-    <div class="swipe-bet-left">
-      <img class="swipe-bet-img" src="assets/images/swipe-bet-animation.png">
-      <div>
-        <div class="swipe-bet-title">Swipe Bet</div>
-        <div class="swipe-bet-sub">Instant bets. Real-time odds</div>
-      </div>
-    </div>
-    <div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div>
-  </div>
-
-  <!-- ─── TURBO COMBO CARD ───────────────────────────────────── -->
-  <div class="turbo-combo-card" style="margin-bottom:32px;">
-    <div class="turbo-combo-header">
-      <span class="turbo-combo-title">Turbo combo</span>
-      <div class="turbo-multiplier">
-        <img src="assets/icons/turbo-rocket-orange.svg" width="16" height="16" style="flex-shrink:0;">
-        <span>x1.58</span>
-      </div>
-    </div>
-    <div class="divider-h"></div>
-    <div class="show-selections-row">
-      <div class="show-selections-left">
-        <!-- Arrow Right turbo -->
-        <div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div>
-        <span>Show Selections</span>
-      </div>
-      <div class="team-logos-row">
-        <img class="team-logo-sm" src="assets/images/team-combo-1.png">
-        <img class="team-logo-sm" src="assets/images/team-combo-2.png">
-        <img class="team-logo-sm" src="assets/images/team-combo-3.png">
-        <img class="team-logo-sm" src="assets/images/team-combo-4.png">
-        <img class="team-logo-sm" src="assets/images/team-combo-5.png">
-      </div>
-    </div>
-    <div class="divider-h"></div>
-    <div class="odds-win-row">
-      <div class="odds-labels-left">
-        <span>Total odds</span>
-        <span>Possible win</span>
-      </div>
-      <div class="odds-labels-right">
-        <div class="odds-values-row">
-          <span class="odds-old">180.60</span>
-          <span class="odds-new">270.5</span>
-        </div>
-        <span class="possible-win">$1,060.00</span>
-      </div>
-    </div>
-    <div class="bet-input-row">
-      <div class="bet-amount-input">
-        <div class="bet-amount-texts">
-          <span class="bet-label">Bet amount</span>
-          <span class="bet-value">$20</span>
-        </div>
-        <div class="max-bet-btn">
-          <span class="max-btn-top">Max</span>
-          <span class="max-btn-bot">$1,000.50</span>
-        </div>
-      </div>
-      <button class="place-bet-btn">Place bet</button>
-    </div>
-  </div>
-
-  <!-- ─── POPULAR PLAYS ──────────────────────────────────────── -->
-  <div style="padding:0 16px;margin-bottom:16px;">
-    <div style="font-size:20px;font-weight:800;color:var(--text-default);line-height:1.4;">Popular Plays</div>
-  </div>
-  <div class="h-scroll" style="margin-bottom:8px;" id="hs-popular">
-    <div class="popular-card">
-      <div class="popular-top-line">
-        <img class="icon-20" src="assets/icons/american-football.svg">
-        <span class="league-link">American Football</span>
-        <span style="color:var(--text-secondary);font-size:12px;">•</span>
-        <span class="league-link">NFL</span>
-      </div>
-      <div class="popular-event-line">
-        <span class="popular-event-name">New York Jets - Houston Texans</span>
-        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
-      </div>
-      <div class="popular-outcome-row">
-        <div class="popular-outcome-left">
-          <img class="team-icon-lg" src="assets/images/team-houston-texans.png">
-          <div class="popular-team-info">
-            <span class="popular-team-name">Houston Texans</span>
-            <span class="popular-market">Match Winner</span>
-          </div>
-        </div>
-        <span class="popular-odd">1.82</span>
-      </div>
-      <button class="win-btn">
-        <span class="win-entry">Popular Entry: $20</span>
-        <span class="win-amount">Win $36.39!</span>
-      </button>
-    </div>
-    <div class="popular-card">
-      <div class="popular-top-line">
-        <img class="icon-20" src="assets/icons/football.svg">
-        <span class="league-link">Football</span>
-        <span style="color:var(--text-secondary);font-size:12px;">•</span>
-        <span class="league-link">UEFA Champions League</span>
-      </div>
-      <div class="popular-event-line">
-        <span class="popular-event-name">Barcelona - PSG</span>
-        <div class="badge-time">12 Jun • 20:00</div>
-      </div>
-      <div class="popular-outcome-row">
-        <div class="popular-outcome-left">
-          <img class="team-icon-lg" src="assets/images/team-barcelona.png">
-          <div class="popular-team-info">
-            <span class="popular-team-name">Barcelona</span>
-            <span class="popular-market">Match Winner</span>
-          </div>
-        </div>
-        <span class="popular-odd">1.85</span>
-      </div>
-      <button class="win-btn">
-        <span class="win-entry">Popular Entry: $20</span>
-        <span class="win-amount">Win $37.00!</span>
-      </button>
-    </div>
-    <div class="popular-card">
-      <div class="popular-top-line">
-        <img class="icon-20" src="assets/icons/basketball.svg">
-        <span class="league-link">Basketball</span>
-        <span style="color:var(--text-secondary);font-size:12px;">•</span>
-        <span class="league-link">NBA</span>
-      </div>
-      <div class="popular-event-line">
-        <span class="popular-event-name">Miami Heat - Indiana Pacers</span>
-        <div class="badge-live"><div class="badge-live-dot"></div>LIVE '34</div>
-      </div>
-      <div class="popular-outcome-row">
-        <div class="popular-outcome-left">
-          <img class="team-icon-lg" src="assets/images/team-miami-heat.png">
-          <div class="popular-team-info">
-            <span class="popular-team-name">Miami Heat</span>
-            <span class="popular-market">Match Winner</span>
-          </div>
-        </div>
-        <span class="popular-odd">2.10</span>
-      </div>
-      <button class="win-btn">
-        <span class="win-entry">Popular Entry: $20</span>
-        <span class="win-amount">Win $42.00!</span>
-      </button>
-    </div>
-    <div class="popular-card">
-      <div class="popular-top-line">
-        <img class="icon-20" src="assets/icons/american-football.svg">
-        <span class="league-link">American Football</span>
-        <span style="color:var(--text-secondary);font-size:12px;">•</span>
-        <span class="league-link">NFL</span>
-      </div>
-      <div class="popular-event-line">
-        <span class="popular-event-name">Houston Texans - NY Giants</span>
-        <div class="badge-time">13 Jun • 22:00</div>
-      </div>
-      <div class="popular-outcome-row">
-        <div class="popular-outcome-left">
-          <img class="team-icon-lg" src="assets/images/team-houston-texans.png">
-          <div class="popular-team-info">
-            <span class="popular-team-name">Houston Texans</span>
-            <span class="popular-market">Match Winner</span>
-          </div>
-        </div>
-        <span class="popular-odd">1.65</span>
-      </div>
-      <button class="win-btn">
-        <span class="win-entry">Popular Entry: $20</span>
-        <span class="win-amount">Win $33.00!</span>
-      </button>
-    </div>
-  </div>
-  <div class="pagination" style="margin-bottom:32px;" id="pg-popular">
-    <div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-  </div>
-
-  <!-- ─── LIVE BLOCK ────────────────────────────────────────── -->
-  <div style="padding:0 16px;margin-bottom:0;">
-    <div class="block-header">
-      <div class="block-heading">
-        <img class="icon-20" src="assets/icons/live.svg">
-        <span class="block-heading-text">Live</span>
-      </div>
-      <button class="btn-see-all">See all</button>
-    </div>
-  </div>
-  <div class="h-scroll" style="margin-bottom:8px;" id="hs-live">
-    <!-- Live card 1 -->
-    <div class="event-card event-card-sm">
-      <div class="ec-top">
-        <div class="ec-top-left">
-          <img class="icon-20" src="assets/icons/basketball.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-        </div>
-        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      </div>
-
-      <div class="event-details-row">
-        <div class="badge-live">● LIVE '67</div>
-        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-        <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-      </div>
-      <div class="ec-teams">
-        <div class="ec-team-left">
-          <img class="icon-32" src="assets/images/team-boston-celtics.png">
-          <span class="team-name">Boston Celtics</span>
-        </div>
-        <span class="ec-vs">4 : 2</span>
-        <div class="ec-team-right">
-          <img class="icon-32" src="assets/images/team-milwaukee-bucks.png">
-          <span class="team-name">Milwaukee Bucks</span>
-        </div>
-      </div>
-      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
-      <div class="odds-row">
-        <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">Boston Celtics</div></div>
-        <div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Milwaukee Bu...</div></div>
-        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-      </div>
-    </div>
-    <!-- Live card 2 -->
-    <div class="event-card event-card-sm">
-      <div class="ec-top">
-        <div class="ec-top-left">
-          <img class="icon-20" src="assets/icons/basketball.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-        </div>
-        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      </div>
-
-      <div class="event-details-row">
-        <div class="badge-live">● LIVE '67</div>
-        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-        <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-        <img class="icon-16" src="assets/icons/hot-orange.svg">
-      </div>
-      <div class="ec-teams">
-        <div class="ec-team-left">
-          <img class="icon-32" src="assets/images/team-ny-knicks.png">
-          <span class="team-name">New York Knicks</span>
-        </div>
-        <span class="ec-vs">4 : 2</span>
-        <div class="ec-team-right">
-          <img class="icon-32" src="assets/images/team-cleveland-cavs.png">
-          <span class="team-name">Cleveland Cavaliers</span>
-        </div>
-      </div>
-      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
-      <div class="odds-row">
-        <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">New York Knic...</div></div>
-        <div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Cleveland Cav...</div></div>
-        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-      </div>
-    </div>
-    <!-- Live card 3 -->
-    <div class="event-card event-card-sm">
-      <div class="ec-top">
-        <div class="ec-top-left">
-          <img class="icon-20" src="assets/icons/basketball.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-        </div>
-        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      </div>
-
-      <div class="event-details-row">
-        <div class="badge-live">● LIVE '43</div>
-        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-        <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-      </div>
-      <div class="ec-teams">
-        <div class="ec-team-left">
-          <img class="icon-32" src="assets/images/team-miami-heat.png">
-          <span class="team-name">Miami Heat</span>
-        </div>
-        <span class="ec-vs">3 : 1</span>
-        <div class="ec-team-right">
-          <img class="icon-32" src="assets/images/team-indiana-pacers.png">
-          <span class="team-name">Indiana Pacers</span>
-        </div>
-      </div>
-      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
-      <div class="odds-row">
-        <div class="odd-btn"><div class="odd-value">2.10</div><div class="odd-outcome">Miami Heat</div></div>
-        <div class="odd-btn"><div class="odd-value">4.20</div><div class="odd-outcome">Draw</div></div>
-        <div class="odd-btn"><div class="odd-value">2.75</div><div class="odd-outcome">Indiana Pacers</div></div>
-        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-      </div>
-    </div>
-    <!-- Live card 4 -->
-    <div class="event-card event-card-sm">
-      <div class="ec-top">
-        <div class="ec-top-left">
-          <img class="icon-20" src="assets/icons/football.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
-        </div>
-        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      </div>
-
-      <div class="event-details-row">
-        <div class="badge-live">● LIVE '80</div>
-        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-        <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-        <img class="icon-16" src="assets/icons/hot-orange.svg">
-      </div>
-      <div class="ec-teams">
-        <div class="ec-team-left">
-          <img class="icon-32" src="assets/images/team-barcelona.png">
-          <span class="team-name">Barcelona</span>
-        </div>
-        <span class="ec-vs">2 : 1</span>
-        <div class="ec-team-right">
-          <img class="icon-32" src="assets/images/team-psg.png">
-          <span class="team-name">PSG</span>
-        </div>
-      </div>
-      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
-      <div class="odds-row">
-        <div class="odd-btn"><div class="odd-value">1.85</div><div class="odd-outcome">Barcelona</div></div>
-        <div class="odd-btn"><div class="odd-value">3.20</div><div class="odd-outcome">Draw</div></div>
-        <div class="odd-btn"><div class="odd-value">4.50</div><div class="odd-outcome">PSG</div></div>
-        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="pagination" style="margin-bottom:32px;" id="pg-live">
-    <div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-  </div>
-
-  <!-- ─── LEADERBOARD ────────────────────────────────────────── -->
-  <div class="leaderboard-card" style="margin-bottom:32px;">
-    <div class="leaderboard-hero">
-      <img class="leaderboard-hero-bg" src="assets/images/leaderboard-hero-bg.png">
-      <div class="leaderboard-left">
-        <div class="leaderboard-timer">
-          <div class="timer-unit"><span class="timer-num" id="lb-d">00</span><span class="timer-label">days</span></div>
-          <span class="timer-sep timer-blink">:</span>
-          <div class="timer-unit"><span class="timer-num" id="lb-h">22</span><span class="timer-label">hrs</span></div>
-          <span class="timer-sep timer-blink">:</span>
-          <div class="timer-unit"><span class="timer-num" id="lb-m">18</span><span class="timer-label">min</span></div>
-          <span class="timer-sep timer-blink">:</span>
-          <div class="timer-unit"><span class="timer-num" id="lb-s">18</span><span class="timer-label">sec</span></div>
-        </div>
-        <div class="leaderboard-title">Profit Kings<br>Battle for Glory</div>
-        <div class="prize-pool-banner">
-          <div class="prize-pool-label">PRIZE<br>POOL</div>
-          <span class="prize-pool-amount">$2 999 999</span>
-        </div>
-      </div>
-      <button class="leaderboard-rules-btn">Rules</button>
-    </div>
-    <div class="leaderboard-places">
-      <img class="lb-places-bg" src="assets/icons/leaderboard-places-bg.svg">
-      <div class="lb-places-content">
-        <div class="lb-place">
-          <img class="lb-avatar" src="assets/images/avatar-odds-master.png">
-          <span class="lb-username">oddsMaster</span>
-          <div class="lb-podium" style="height:124px;">
-            <div class="lb-cup-badge"><img class="lb-cup-img" src="assets/images/cup-silver.png"></div>
-            <div class="lb-podium-box" style="height:100px;">
-              <span class="lb-prize">iPhone 16 Pro Max 128gb</span>
-              <div class="lb-divider"></div>
-              <span class="lb-points">189 points</span>
-            </div>
-          </div>
-        </div>
-        <div class="lb-place">
-          <img class="lb-avatar" src="assets/images/avatar-lucky-slip.png">
-          <span class="lb-username">LuckySlip</span>
-          <div class="lb-podium" style="height:134px;">
-            <div class="lb-cup-badge"><img class="lb-cup-img" src="assets/images/cup-gold.png"></div>
-            <div class="lb-podium-box" style="height:110px;">
-              <span class="lb-prize">MacBook Pro 14'' M4</span>
-              <div class="lb-divider"></div>
-              <span class="lb-points">346 points</span>
-            </div>
-          </div>
-        </div>
-        <div class="lb-place">
-          <img class="lb-avatar" src="assets/images/avatar-odds-master.png">
-          <span class="lb-username">Bet_sniper</span>
-          <div class="lb-podium" style="height:124px;">
-            <div class="lb-cup-badge"><img class="lb-cup-img" src="assets/images/cup-bronze.png"></div>
-            <div class="lb-podium-box" style="height:100px;">
-              <span class="lb-prize">200 Free Spins</span>
-              <div class="lb-divider"></div>
-              <span class="lb-points">77 points</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="lb-buttons">
-      <button class="lb-btn-secondary">Full Leaderboard</button>
-      <button class="lb-btn-primary">Participate</button>
-    </div>
-  </div>
-
-  <!-- ─── TOP EVENTS BLOCK ───────────────────────────────────── -->
-  <div style="padding:0 16px;margin-bottom:0;">
-    <div class="block-header">
-      <div class="block-heading">
-        <img class="icon-20" src="assets/icons/hot.svg">
-        <span class="block-heading-text">Top Events</span>
-      </div>
-      <button class="btn-see-all">See all</button>
-    </div>
-  </div>
-  <div class="h-scroll" style="margin-bottom:8px;" id="hs-top">
-    <div class="event-card event-card-sm">
-      <div class="ec-top">
-        <div class="ec-top-left">
-          <img class="icon-20" src="assets/icons/basketball.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-        </div>
-        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      </div>
-
-      <div class="event-details-row">
-        <div class="badge-time">9h</div>
-        <img class="icon-16" src="assets/icons/betbuilder.svg">
-        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-        <img class="icon-16" src="assets/icons/hot-orange.svg">
-      </div>
-      <div class="ec-teams">
-        <div class="ec-team-left">
-          <img class="icon-32" src="assets/images/team-boston-celtics-2.png">
-          <span class="team-name">Boston Celtics</span>
-        </div>
-        <span class="ec-vs">-</span>
-        <div class="ec-team-right">
-          <img class="icon-32" src="assets/images/team-milwaukee-bucks-2.png">
-          <span class="team-name">Milwaukee Bucks</span>
-        </div>
-      </div>
-      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
-      <div class="odds-row">
-        <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">Boston Celtics</div></div>
-        <div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
-        <div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Milwaukee Bu...</div></div>
-        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-      </div>
-    </div>
-    <div class="event-card event-card-sm">
-      <div class="ec-top">
-        <div class="ec-top-left">
-          <img class="icon-20" src="assets/icons/basketball.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-        </div>
-        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      </div>
-
-      <div class="event-details-row">
-        <div class="badge-live">● LIVE '67</div>
-        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-        <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-        <img class="icon-16" src="assets/icons/hot-orange.svg">
-      </div>
-      <div class="ec-teams">
-        <div class="ec-team-left">
-          <img class="icon-32" src="assets/images/team-ny-knicks-2.png">
-          <span class="team-name">New York Knicks</span>
-        </div>
-        <span class="ec-vs">4 : 2</span>
-        <div class="ec-team-right">
-          <img class="icon-32" src="assets/images/team-cleveland-cavs-2.png">
-          <span class="team-name">Cleveland Cavaliers</span>
-        </div>
-      </div>
-      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
-      <div class="odds-row">
-        <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">New York Knic...</div></div>
-        <div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
-        <div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Cleveland Cav...</div></div>
-        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-      </div>
-    </div>
-    <!-- Top Events card 3 -->
-    <div class="event-card event-card-sm">
-      <div class="ec-top">
-        <div class="ec-top-left">
-          <img class="icon-20" src="assets/icons/football.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
-        </div>
-        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      </div>
-
-      <div class="event-details-row">
-        <div class="badge-time">12h</div>
-        <img class="icon-16" src="assets/icons/betbuilder.svg">
-        <img class="icon-16" src="assets/icons/hot-orange.svg">
-      </div>
-      <div class="ec-teams">
-        <div class="ec-team-left">
-          <img class="icon-32" src="assets/images/team-barcelona.png">
-          <span class="team-name">Barcelona</span>
-        </div>
-        <span class="ec-vs">-</span>
-        <div class="ec-team-right">
-          <img class="icon-32" src="assets/images/team-psg.png">
-          <span class="team-name">PSG</span>
-        </div>
-      </div>
-      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
-      <div class="odds-row">
-        <div class="odd-btn"><div class="odd-value">1.85</div><div class="odd-outcome">Barcelona</div></div>
-        <div class="odd-btn"><div class="odd-value">3.20</div><div class="odd-outcome">Draw</div></div>
-        <div class="odd-btn"><div class="odd-value">4.50</div><div class="odd-outcome">PSG</div></div>
-        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-      </div>
-    </div>
-    <!-- Top Events card 4 -->
-    <div class="event-card event-card-sm">
-      <div class="ec-top">
-        <div class="ec-top-left">
-          <img class="icon-20" src="assets/icons/basketball.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
-        </div>
-        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      </div>
-
-      <div class="event-details-row">
-        <div class="badge-time">6h</div>
-        <div class="ic16"><img class="iv" src="assets/icons/insights.svg"></div>
-        <img class="icon-16" src="assets/icons/hot-orange.svg">
-      </div>
-      <div class="ec-teams">
-        <div class="ec-team-left">
-          <img class="icon-32" src="assets/images/team-miami-heat.png">
-          <span class="team-name">Miami Heat</span>
-        </div>
-        <span class="ec-vs">-</span>
-        <div class="ec-team-right">
-          <img class="icon-32" src="assets/images/team-orlando-magic.png">
-          <span class="team-name">Orlando Magic</span>
-        </div>
-      </div>
-      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
-      <div class="odds-row">
-        <div class="odd-btn"><div class="odd-value">1.70</div><div class="odd-outcome">Miami Heat</div></div>
-        <div class="odd-btn"><div class="odd-value">4.00</div><div class="odd-outcome">Draw</div></div>
-        <div class="odd-btn"><div class="odd-value">3.10</div><div class="odd-outcome">Orlando Magic</div></div>
-        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="pagination" style="margin-bottom:32px;" id="pg-top">
-    <div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-  </div>
-
-  <!-- ─── BET BUILDER CARD ───────────────────────────────────── -->
-  <div class="betbuilder-card" style="margin-bottom:32px;">
-    <div class="bb-heading">
-      <img class="icon-20" src="assets/icons/betbuilder-orange.svg">
-      <span class="bb-title">Bet Builder</span>
-      <!-- Close icon -->
-      <div class="ic"><img class="iv" src="assets/icons/close.svg"></div>
-      <span class="bb-odds-val-acc">2.75</span>
-    </div>
-    <div class="divider-h"></div>
-    <div class="bb-event-date">28 Jun 2024 10:00</div>
-    <div class="bb-teams-row">
-      <div class="bb-team">
-        <img class="bb-team-logo" src="assets/images/team-barcelona.png">
-        <span class="bb-team-name">Barcelona</span>
-      </div>
-      <span class="bb-vs">-</span>
-      <div class="bb-team bb-team-right">
-        <img class="bb-team-logo" src="assets/images/team-psg.png">
-        <span class="bb-team-name">PSG</span>
-      </div>
-    </div>
-    <div class="divider-h"></div>
-    <div class="bb-show-selections">
-      <!-- Arrow Right BB -->
-      <div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div>
-      <span class="bb-show-sel-text">Show 3 outcomes</span>
-    </div>
-    <div class="divider-h"></div>
-    <div class="bb-odds-row">
-      <div class="bb-odds-labels">
-        <span class="bb-odds-label">Betbuilder odds</span>
-        <span class="bb-odds-label">Possible win</span>
-      </div>
-      <div class="bb-odds-vals">
-        <span class="bb-odds-num">270.5</span>
-        <span class="bb-win-num">$1,060.00</span>
-      </div>
-    </div>
-    <div class="bet-input-row">
-      <div class="bet-amount-input">
-        <div class="bet-amount-texts">
-          <span class="bet-label">Bet amount</span>
-          <span class="bet-value">$20</span>
-        </div>
-        <div class="max-bet-btn">
-          <span class="max-btn-top">Max</span>
-          <span class="max-btn-bot">$1,000.50</span>
-        </div>
-      </div>
-      <button class="place-bet-btn">Place bet</button>
-    </div>
-  </div>
-
-  <!-- ─── FOOTBALL BLOCK ────────────────────────────────────── -->
-  <div style="padding:0 16px;margin-bottom:0;">
-    <div class="block-header">
-      <div class="block-heading">
-        <img class="icon-20" src="assets/icons/football.svg">
-        <span class="block-heading-text">Football</span>
-      </div>
-      <button class="btn-see-all">
-        <span>See all</span>
-      </button>
-    </div>
-  </div>
-  <div class="h-scroll" style="margin-bottom:8px;" id="hs-football">
-    <div class="event-card event-card-sm">
-      <div class="ec-top">
-        <div class="ec-top-left">
-          <img class="icon-20" src="assets/icons/football.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
-        </div>
-        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      </div>
-
-      <div class="event-details-row">
-        <div class="badge-time">9h</div>
-        <img class="icon-16" src="assets/icons/hot-orange.svg">
-      </div>
-      <div class="ec-teams">
-        <div class="ec-team-left">
-          <img class="icon-32" src="assets/images/team-mexico.png">
-          <span class="team-name">Mexico</span>
-        </div>
-        <span class="ec-vs">-</span>
-        <div class="ec-team-right">
-          <img class="icon-32" src="assets/images/team-south-africa.png">
-          <span class="team-name">South Africa</span>
-        </div>
-      </div>
-      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
-      <div class="odds-row">
-        <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">Mexico</div></div>
-        <div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
-        <div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">South Africa</div></div>
-        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-      </div>
-    </div>
-    <div class="event-card event-card-sm">
-      <div class="ec-top">
-        <div class="ec-top-left">
-          <img class="icon-20" src="assets/icons/football.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
-        </div>
-        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      </div>
-
-      <div class="event-details-row">
-        <div class="badge-time">9h</div>
-        <img class="icon-16" src="assets/icons/hot-orange.svg">
-      </div>
-      <div class="ec-teams">
-        <div class="ec-team-left">
-          <img class="icon-32" src="assets/images/team-south-korea.png">
-          <span class="team-name">South Korea</span>
-        </div>
-        <span class="ec-vs">-</span>
-        <div class="ec-team-right">
-          <img class="icon-32" src="assets/images/team-czech-republic.png">
-          <span class="team-name">Czech Republic</span>
-        </div>
-      </div>
-      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
-      <div class="odds-row">
-        <div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">South Korea</div></div>
-        <div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
-        <div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Czech Republic</div></div>
-        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-      </div>
-    </div>
-    <!-- Football card 3 -->
-    <div class="event-card event-card-sm">
-      <div class="ec-top">
-        <div class="ec-top-left">
-          <img class="icon-20" src="assets/icons/football.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
-        </div>
-        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      </div>
-
-      <div class="event-details-row">
-        <div class="badge-time">15 Jun • 21:00</div>
-        <img class="icon-16" src="assets/icons/betbuilder.svg">
-        <img class="icon-16" src="assets/icons/hot-orange.svg">
-      </div>
-      <div class="ec-teams">
-        <div class="ec-team-left">
-          <img class="icon-32" src="assets/images/team-barcelona.png">
-          <span class="team-name">Barcelona</span>
-        </div>
-        <span class="ec-vs">-</span>
-        <div class="ec-team-right">
-          <img class="icon-32" src="assets/images/team-psg.png">
-          <span class="team-name">PSG</span>
-        </div>
-      </div>
-      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
-      <div class="odds-row">
-        <div class="odd-btn"><div class="odd-value">1.85</div><div class="odd-outcome">Barcelona</div></div>
-        <div class="odd-btn"><div class="odd-value">3.20</div><div class="odd-outcome">Draw</div></div>
-        <div class="odd-btn"><div class="odd-value">4.50</div><div class="odd-outcome">PSG</div></div>
-        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-      </div>
-    </div>
-    <!-- Football card 4 -->
-    <div class="event-card event-card-sm">
-      <div class="ec-top">
-        <div class="ec-top-left">
-          <img class="icon-20" src="assets/icons/football.svg">
-          <div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
-        </div>
-        <div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"></div>
-      </div>
-
-      <div class="event-details-row">
-        <div class="badge-live">● LIVE '55</div>
-        <div class="ic16"><img class="iv" src="assets/icons/stream.svg"></div>
-        <img class="icon-16" src="assets/icons/hot-orange.svg">
-      </div>
-      <div class="ec-teams">
-        <div class="ec-team-left">
-          <img class="icon-32" src="assets/images/team-mexico.png">
-          <span class="team-name">Mexico</span>
-        </div>
-        <span class="ec-vs">1 : 1</span>
-        <div class="ec-team-right">
-          <img class="icon-32" src="assets/images/team-south-korea.png">
-          <span class="team-name">South Korea</span>
-        </div>
-      </div>
-      <div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
-      <div class="odds-row">
-        <div class="odd-btn"><div class="odd-value">2.30</div><div class="odd-outcome">Mexico</div></div>
-        <div class="odd-btn"><div class="odd-value">2.90</div><div class="odd-outcome">Draw</div></div>
-        <div class="odd-btn"><div class="odd-value">2.60</div><div class="odd-outcome">South Korea</div></div>
-        <div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="pagination" style="margin-bottom:0;" id="pg-football">
-    <div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-  </div>
-
-  <!-- ─── MOBILE FOOTER placeholder for spacing ──────────── -->
+<!-- ─── HERO BANNER ───────────────────────────────────────── -->
+<div class="hero-banner">
+<video autoplay="" class="hero-bg" loop="" muted="" playsinline="" src="assets/videos/hero-banner-bg.mp4"></video>
+<div class="hero-timer"><span id="ht-d">00</span>d<span class="hero-timer-blink"> : </span><span id="ht-h">22</span>h<span class="hero-timer-blink"> : </span><span id="ht-m">18</span>m</div>
+<div class="hero-title">FIFA World Cup 2026</div>
+</div>
+<!-- ─── TAGS ───────────────────────────────────────────────── -->
+<div class="tags-row" style="margin-bottom:32px;">
+<div class="tag-pill">
+<img class="icon-20" src="assets/icons/live.svg"/>
+<span>Live</span>
+</div>
+<div class="tag-pill">
+<img class="icon-20" src="assets/icons/icon-live-tag.svg"/>
+<span>Top events</span>
+</div>
+<div class="tag-pill">
+<img class="icon-20" src="assets/icons/icon-coming-up.svg"/>
+<span>Coming up</span>
+</div>
+<div class="tag-pill">
+<div class="ic"><img class="iv" src="assets/icons/favorites.svg"/></div>
+<span>Favorites</span>
+</div>
+</div>
+<!-- ─── PICKS FOR YOU ─────────────────────────────────────── -->
+<div style="padding:0 16px;margin-bottom:32px;">
+<div class="block-header">
+<div class="block-heading">
+<!-- popular icon (single-layer) -->
+<img class="icon-20" src="assets/icons/popular.svg"/>
+<span class="block-heading-text">Picks for you</span>
+</div>
+<div class="dropdown-pill">
+<span style="font-size:12px;color:var(--text-default);">Match winner</span>
+<!-- Arrow Down -->
+<div class="ic"><img class="iv" src="assets/icons/arrow-down.svg"/></div>
+</div>
+</div>
+<!-- Event cards (new v3 design from Figma 6047-819 / 6047-820) -->
+<div style="display:flex;flex-direction:column;gap:8px;">
+<!-- Card 1: Barcelona vs PSG — Pre-match, UEFA Champions League -->
+<div class="ec3">
+<div class="ec3-top">
+<div class="ec3-top-left">
+<img class="icon-20" src="assets/icons/football.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img alt="Barcelona" class="icon-32" src="assets/teams/Football%20-%20Barcelona.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-time">12 Jun • 20:00</div> <img class="icon-16" src="assets/icons/betbuilder.svg"/> <img class="icon-16" src="assets/icons/hot-orange.svg"/></div>
+</div>
+<div class="ec-logo-bg"><img alt="PSG" class="icon-32" src="assets/teams/Football%20-%20PSG.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Barcelona</span>
+<span class="team-name team-name-right">PSG</span>
+</div>
+<div class="ec3-market">
+<div class="ec3-market-line"></div>
+<span class="ec3-market-label">Match Winner</span>
+<div class="ec3-market-line"></div>
+</div>
+<div class="ec3-odds">
+<div class="ec3-odd-btn"><div class="ec3-odd-value">1.85</div><div class="ec3-odd-label">Barcelona</div></div>
+<div class="ec3-odd-btn"><div class="ec3-odd-value">3.20</div><div class="ec3-odd-label">Draw</div></div>
+<div class="ec3-odd-btn"><div class="ec3-odd-value">4.50</div><div class="ec3-odd-label">PSG</div></div>
+<div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+<!-- Card 2: Orlando Magic vs Indiana Pacers — LIVE, NBA -->
+<div class="ec3">
+<div class="ec3-top">
+<div class="ec3-top-left">
+<img class="icon-20" src="assets/icons/basketball.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img alt="Orlando Magic" class="icon-32" src="assets/teams/Basketball%20-%20Orlando%20Magic.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-live">● LIVE '67</div> <div class="ic16"><img class="iv" src="assets/icons/insights.svg"/></div> <div class="ic16"><img class="iv" src="assets/icons/stream.svg"/></div></div>
+<div class="ec-score">2  :  3</div>
+</div>
+<div class="ec-logo-bg"><img alt="Indiana Pacers" class="icon-32" src="assets/teams/Basketball%20-%20Indiana%20Pacers.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Orlando Magic</span>
+<span class="team-name team-name-right">Indiana Pacers</span>
+</div>
+<div class="ec3-market">
+<div class="ec3-market-line"></div>
+<span class="ec3-market-label">Match Winner</span>
+<div class="ec3-market-line"></div>
+</div>
+<div class="ec3-odds">
+<div class="ec3-odd-btn"><div class="ec3-odd-value">3.5</div><div class="ec3-odd-label">Orlando Magic</div></div>
+<div class="ec3-odd-btn"><div class="ec3-odd-value">2.21</div><div class="ec3-odd-label">Indiana Pacers</div></div>
+<div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+<!-- Card 3: Boston Celtics vs Miami Heat — Pre-match, NBA -->
+<div class="ec3">
+<div class="ec3-top">
+<div class="ec3-top-left">
+<img class="icon-20" src="assets/icons/basketball.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img alt="Boston Celtics" class="icon-32" src="assets/teams/Basketball%20-%20Boston%20Celtics.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-time">14 Jun • 18:00</div> <img class="icon-16" src="assets/icons/hot-orange.svg"/></div>
+</div>
+<div class="ec-logo-bg"><img alt="Miami Heat" class="icon-32" src="assets/teams/Basketball%20-%20Miami%20Heat.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Boston Celtics</span>
+<span class="team-name team-name-right">Miami Heat</span>
+</div>
+<div class="ec3-market">
+<div class="ec3-market-line"></div>
+<span class="ec3-market-label">Match Winner</span>
+<div class="ec3-market-line"></div>
+</div>
+<div class="ec3-odds">
+<div class="ec3-odd-btn"><div class="ec3-odd-value">1.65</div><div class="ec3-odd-label">Boston Celtics</div></div>
+<div class="ec3-odd-btn"><div class="ec3-odd-value">2.10</div><div class="ec3-odd-label">Miami Heat</div></div>
+<div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+</div>
+<!-- Hidden extra cards -->
+<div id="picks-extra" style="display:none;flex-direction:column;gap:8px;margin-top:8px;">
+<!-- Card 4: Bayern Munich vs Arsenal — Pre-match, UEFA CL -->
+<div class="ec3">
+<div class="ec3-top">
+<div class="ec3-top-left">
+<img class="icon-20" src="assets/icons/football.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img alt="Bayern Munich" class="icon-32" src="assets/teams/Football%20-%20Bayern%20Munich.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-time">15 Jun • 21:00</div></div>
+</div>
+<div class="ec-logo-bg"><img alt="Arsenal" class="icon-32" src="assets/teams/Football%20-%20Arsenal.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Bayern Munich</span>
+<span class="team-name team-name-right">Arsenal</span>
+</div>
+<div class="ec3-market">
+<div class="ec3-market-line"></div>
+<span class="ec3-market-label">Match Winner</span>
+<div class="ec3-market-line"></div>
+</div>
+<div class="ec3-odds">
+<div class="ec3-odd-btn"><div class="ec3-odd-value">2.10</div><div class="ec3-odd-label">Bayern Munich</div></div>
+<div class="ec3-odd-btn"><div class="ec3-odd-value">3.60</div><div class="ec3-odd-label">Draw</div></div>
+<div class="ec3-odd-btn"><div class="ec3-odd-value">3.25</div><div class="ec3-odd-label">Arsenal</div></div>
+<div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+<!-- Card 5: Milwaukee Bucks vs New York Knicks — LIVE, NBA -->
+<div class="ec3">
+<div class="ec3-top">
+<div class="ec3-top-left">
+<img class="icon-20" src="assets/icons/basketball.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img alt="Milwaukee Bucks" class="icon-32" src="assets/teams/Basketball%20-%20Milwaukee%20Bucks.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-live">● LIVE '34</div> <div class="ic16"><img class="iv" src="assets/icons/insights.svg"/></div></div>
+<div class="ec-score">1  :  0</div>
+</div>
+<div class="ec-logo-bg"><img alt="New York Knicks" class="icon-32" src="assets/teams/Basketball%20-%20New%20York%20Knicks.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Milwaukee Bucks</span>
+<span class="team-name team-name-right">New York Knicks</span>
+</div>
+<div class="ec3-market">
+<div class="ec3-market-line"></div>
+<span class="ec3-market-label">Match Winner</span>
+<div class="ec3-market-line"></div>
+</div>
+<div class="ec3-odds">
+<div class="ec3-odd-btn"><div class="ec3-odd-value">1.90</div><div class="ec3-odd-label">Milwaukee</div></div>
+<div class="ec3-odd-btn"><div class="ec3-odd-value">2.75</div><div class="ec3-odd-label">NY Knicks</div></div>
+<div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+<!-- Card 6: Liverpool vs Manchester City — Pre-match -->
+<div class="ec3">
+<div class="ec3-top">
+<div class="ec3-top-left">
+<img class="icon-20" src="assets/icons/football.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img alt="Liverpool" class="icon-32" src="assets/teams/Football%20-%20Liverpool.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-time">16 Jun • 19:45</div> <img class="icon-16" src="assets/icons/betbuilder.svg"/> <img class="icon-16" src="assets/icons/hot-orange.svg"/></div>
+</div>
+<div class="ec-logo-bg"><img alt="Manchester City" class="icon-32" src="assets/teams/Football%20-%20Manchester%20City.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Liverpool</span>
+<span class="team-name team-name-right">Man City</span>
+</div>
+<div class="ec3-market">
+<div class="ec3-market-line"></div>
+<span class="ec3-market-label">Match Winner</span>
+<div class="ec3-market-line"></div>
+</div>
+<div class="ec3-odds">
+<div class="ec3-odd-btn"><div class="ec3-odd-value">2.40</div><div class="ec3-odd-label">Liverpool</div></div>
+<div class="ec3-odd-btn"><div class="ec3-odd-value">3.10</div><div class="ec3-odd-label">Draw</div></div>
+<div class="ec3-odd-btn"><div class="ec3-odd-value">2.80</div><div class="ec3-odd-label">Man City</div></div>
+<div class="ec3-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+</div>
+<!-- Show more -->
+<div class="show-more" id="picks-show-more" onclick="document.getElementById('picks-extra').style.display='flex';document.getElementById('picks-show-more').style.display='none';">
+<span>Show more</span>
+<div class="ic"><img class="iv" src="assets/icons/arrow-down.svg" style="transition:transform 0.2s;"/></div>
+</div>
+</div>
+<!-- ─── SWIPE BET CARD ─────────────────────────────────────── -->
+<div class="swipe-bet-card" style="margin-bottom:32px;">
+<div class="swipe-bet-left">
+<img class="swipe-bet-img" src="assets/images/swipe-bet-animation.png"/>
+<div>
+<div class="swipe-bet-title">Swipe Bet</div>
+<div class="swipe-bet-sub">Instant bets. Real-time odds</div>
+</div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div>
+</div>
+<!-- ─── TURBO COMBO CARD ───────────────────────────────────── -->
+<div class="turbo-combo-card" style="margin-bottom:32px;">
+<div class="turbo-combo-header">
+<span class="turbo-combo-title">Turbo combo</span>
+<div class="turbo-multiplier">
+<img height="16" src="assets/icons/turbo-rocket-orange.svg" style="flex-shrink:0;" width="16"/>
+<span>x1.58</span>
+</div>
+</div>
+<div class="divider-h"></div>
+<div class="show-selections-row">
+<div class="show-selections-left">
+<!-- Arrow Right turbo -->
+<div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div>
+<span>Show Selections</span>
+</div>
+<div class="team-logos-row">
+<img class="team-logo-sm" src="assets/images/team-combo-1.png"/>
+<img class="team-logo-sm" src="assets/images/team-combo-2.png"/>
+<img class="team-logo-sm" src="assets/images/team-combo-3.png"/>
+<img class="team-logo-sm" src="assets/images/team-combo-4.png"/>
+<img class="team-logo-sm" src="assets/images/team-combo-5.png"/>
+</div>
+</div>
+<div class="divider-h"></div>
+<div class="odds-win-row">
+<div class="odds-labels-left">
+<span>Total odds</span>
+<span>Possible win</span>
+</div>
+<div class="odds-labels-right">
+<div class="odds-values-row">
+<span class="odds-old">180.60</span>
+<span class="odds-new">270.5</span>
+</div>
+<span class="possible-win">$1,060.00</span>
+</div>
+</div>
+<div class="bet-input-row">
+<div class="bet-amount-input">
+<div class="bet-amount-texts">
+<span class="bet-label">Bet amount</span>
+<span class="bet-value">$20</span>
+</div>
+<div class="max-bet-btn">
+<span class="max-btn-top">Max</span>
+<span class="max-btn-bot">$1,000.50</span>
+</div>
+</div>
+<button class="place-bet-btn">Place bet</button>
+</div>
+</div>
+<!-- ─── POPULAR PLAYS ──────────────────────────────────────── -->
+<div style="padding:0 16px;margin-bottom:16px;">
+<div style="font-size:20px;font-weight:800;color:var(--text-default);line-height:1.4;">Popular Plays</div>
+</div>
+<div class="h-scroll" id="hs-popular" style="margin-bottom:8px;">
+<div class="popular-card">
+<div class="popular-top-line">
+<img class="icon-20" src="assets/icons/american-football.svg"/>
+<span class="league-link">American Football</span>
+<span style="color:var(--text-secondary);font-size:12px;">•</span>
+<span class="league-link">NFL</span>
+</div>
+<div class="popular-event-line">
+<span class="popular-event-name">New York Jets - Houston Texans</span>
+<div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
+</div>
+<div class="popular-outcome-row">
+<div class="popular-outcome-left">
+<img class="team-icon-lg" src="assets/images/team-houston-texans.png"/>
+<div class="popular-team-info">
+<span class="popular-team-name">Houston Texans</span>
+<span class="popular-market">Match Winner</span>
+</div>
+</div>
+<span class="popular-odd">1.82</span>
+</div>
+<button class="win-btn">
+<span class="win-entry">Popular Entry: $20</span>
+<span class="win-amount">Win $36.39!</span>
+</button>
+</div>
+<div class="popular-card">
+<div class="popular-top-line">
+<img class="icon-20" src="assets/icons/football.svg"/>
+<span class="league-link">Football</span>
+<span style="color:var(--text-secondary);font-size:12px;">•</span>
+<span class="league-link">UEFA Champions League</span>
+</div>
+<div class="popular-event-line">
+<span class="popular-event-name">Barcelona - PSG</span>
+<div class="badge-time">12 Jun • 20:00</div>
+</div>
+<div class="popular-outcome-row">
+<div class="popular-outcome-left">
+<img class="team-icon-lg" src="assets/images/team-barcelona.png"/>
+<div class="popular-team-info">
+<span class="popular-team-name">Barcelona</span>
+<span class="popular-market">Match Winner</span>
+</div>
+</div>
+<span class="popular-odd">1.85</span>
+</div>
+<button class="win-btn">
+<span class="win-entry">Popular Entry: $20</span>
+<span class="win-amount">Win $37.00!</span>
+</button>
+</div>
+<div class="popular-card">
+<div class="popular-top-line">
+<img class="icon-20" src="assets/icons/basketball.svg"/>
+<span class="league-link">Basketball</span>
+<span style="color:var(--text-secondary);font-size:12px;">•</span>
+<span class="league-link">NBA</span>
+</div>
+<div class="popular-event-line">
+<span class="popular-event-name">Miami Heat - Indiana Pacers</span>
+<div class="badge-live"><div class="badge-live-dot"></div>LIVE '34</div>
+</div>
+<div class="popular-outcome-row">
+<div class="popular-outcome-left">
+<img class="team-icon-lg" src="assets/images/team-miami-heat.png"/>
+<div class="popular-team-info">
+<span class="popular-team-name">Miami Heat</span>
+<span class="popular-market">Match Winner</span>
+</div>
+</div>
+<span class="popular-odd">2.10</span>
+</div>
+<button class="win-btn">
+<span class="win-entry">Popular Entry: $20</span>
+<span class="win-amount">Win $42.00!</span>
+</button>
+</div>
+<div class="popular-card">
+<div class="popular-top-line">
+<img class="icon-20" src="assets/icons/american-football.svg"/>
+<span class="league-link">American Football</span>
+<span style="color:var(--text-secondary);font-size:12px;">•</span>
+<span class="league-link">NFL</span>
+</div>
+<div class="popular-event-line">
+<span class="popular-event-name">Houston Texans - NY Giants</span>
+<div class="badge-time">13 Jun • 22:00</div>
+</div>
+<div class="popular-outcome-row">
+<div class="popular-outcome-left">
+<img class="team-icon-lg" src="assets/images/team-houston-texans.png"/>
+<div class="popular-team-info">
+<span class="popular-team-name">Houston Texans</span>
+<span class="popular-market">Match Winner</span>
+</div>
+</div>
+<span class="popular-odd">1.65</span>
+</div>
+<button class="win-btn">
+<span class="win-entry">Popular Entry: $20</span>
+<span class="win-amount">Win $33.00!</span>
+</button>
+</div>
+</div>
+<div class="pagination" id="pg-popular" style="margin-bottom:32px;">
+<div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+</div>
+<!-- ─── LIVE BLOCK ────────────────────────────────────────── -->
+<div style="padding:0 16px;margin-bottom:0;">
+<div class="block-header">
+<div class="block-heading">
+<img class="icon-20" src="assets/icons/live.svg"/>
+<span class="block-heading-text">Live</span>
+</div>
+<button class="btn-see-all">See all</button>
+</div>
+</div>
+<div class="h-scroll" id="hs-live" style="margin-bottom:8px;">
+<!-- Live card 1 -->
+<div class="event-card event-card-sm">
+<div class="ec-top">
+<div class="ec-top-left">
+<img class="icon-20" src="assets/icons/basketball.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-boston-celtics.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-live">● LIVE '67</div> <div class="ic16"><img class="iv" src="assets/icons/insights.svg"/></div> <div class="ic16"><img class="iv" src="assets/icons/stream.svg"/></div></div>
+<div class="ec-score">4 : 2</div>
+</div>
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-milwaukee-bucks.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Boston Celtics</span>
+<span class="team-name team-name-right">Milwaukee Bucks</span>
+</div>
+<div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+<div class="odds-row">
+<div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">Boston Celtics</div></div>
+<div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Milwaukee Bu...</div></div>
+<div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+<!-- Live card 2 -->
+<div class="event-card event-card-sm">
+<div class="ec-top">
+<div class="ec-top-left">
+<img class="icon-20" src="assets/icons/basketball.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-ny-knicks.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-live">● LIVE '67</div> <div class="ic16"><img class="iv" src="assets/icons/insights.svg"/></div> <div class="ic16"><img class="iv" src="assets/icons/stream.svg"/></div> <img class="icon-16" src="assets/icons/hot-orange.svg"/></div>
+<div class="ec-score">4 : 2</div>
+</div>
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-cleveland-cavs.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">New York Knicks</span>
+<span class="team-name team-name-right">Cleveland Cavaliers</span>
+</div>
+<div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+<div class="odds-row">
+<div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">New York Knic...</div></div>
+<div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Cleveland Cav...</div></div>
+<div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+<!-- Live card 3 -->
+<div class="event-card event-card-sm">
+<div class="ec-top">
+<div class="ec-top-left">
+<img class="icon-20" src="assets/icons/basketball.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-miami-heat.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-live">● LIVE '43</div> <div class="ic16"><img class="iv" src="assets/icons/insights.svg"/></div> <div class="ic16"><img class="iv" src="assets/icons/stream.svg"/></div></div>
+<div class="ec-score">3 : 1</div>
+</div>
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-indiana-pacers.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Miami Heat</span>
+<span class="team-name team-name-right">Indiana Pacers</span>
+</div>
+<div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+<div class="odds-row">
+<div class="odd-btn"><div class="odd-value">2.10</div><div class="odd-outcome">Miami Heat</div></div>
+<div class="odd-btn"><div class="odd-value">4.20</div><div class="odd-outcome">Draw</div></div>
+<div class="odd-btn"><div class="odd-value">2.75</div><div class="odd-outcome">Indiana Pacers</div></div>
+<div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+<!-- Live card 4 -->
+<div class="event-card event-card-sm">
+<div class="ec-top">
+<div class="ec-top-left">
+<img class="icon-20" src="assets/icons/football.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-barcelona.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-live">● LIVE '80</div> <div class="ic16"><img class="iv" src="assets/icons/insights.svg"/></div> <div class="ic16"><img class="iv" src="assets/icons/stream.svg"/></div> <img class="icon-16" src="assets/icons/hot-orange.svg"/></div>
+<div class="ec-score">2 : 1</div>
+</div>
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-psg.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Barcelona</span>
+<span class="team-name team-name-right">PSG</span>
+</div>
+<div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+<div class="odds-row">
+<div class="odd-btn"><div class="odd-value">1.85</div><div class="odd-outcome">Barcelona</div></div>
+<div class="odd-btn"><div class="odd-value">3.20</div><div class="odd-outcome">Draw</div></div>
+<div class="odd-btn"><div class="odd-value">4.50</div><div class="odd-outcome">PSG</div></div>
+<div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+</div>
+<div class="pagination" id="pg-live" style="margin-bottom:32px;">
+<div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+</div>
+<!-- ─── LEADERBOARD ────────────────────────────────────────── -->
+<div class="leaderboard-card" style="margin-bottom:32px;">
+<div class="leaderboard-hero">
+<img class="leaderboard-hero-bg" src="assets/images/leaderboard-hero-bg.png"/>
+<div class="leaderboard-left">
+<div class="leaderboard-timer">
+<div class="timer-unit"><span class="timer-num" id="lb-d">00</span><span class="timer-label">days</span></div>
+<span class="timer-sep timer-blink">:</span>
+<div class="timer-unit"><span class="timer-num" id="lb-h">22</span><span class="timer-label">hrs</span></div>
+<span class="timer-sep timer-blink">:</span>
+<div class="timer-unit"><span class="timer-num" id="lb-m">18</span><span class="timer-label">min</span></div>
+<span class="timer-sep timer-blink">:</span>
+<div class="timer-unit"><span class="timer-num" id="lb-s">18</span><span class="timer-label">sec</span></div>
+</div>
+<div class="leaderboard-title">Profit Kings<br/>Battle for Glory</div>
+<div class="prize-pool-banner">
+<div class="prize-pool-label">PRIZE<br/>POOL</div>
+<span class="prize-pool-amount">$2 999 999</span>
+</div>
+</div>
+<button class="leaderboard-rules-btn">Rules</button>
+</div>
+<div class="leaderboard-places">
+<img class="lb-places-bg" src="assets/icons/leaderboard-places-bg.svg"/>
+<div class="lb-places-content">
+<div class="lb-place">
+<img class="lb-avatar" src="assets/images/avatar-odds-master.png"/>
+<span class="lb-username">oddsMaster</span>
+<div class="lb-podium" style="height:124px;">
+<div class="lb-cup-badge"><img class="lb-cup-img" src="assets/images/cup-silver.png"/></div>
+<div class="lb-podium-box" style="height:100px;">
+<span class="lb-prize">iPhone 16 Pro Max 128gb</span>
+<div class="lb-divider"></div>
+<span class="lb-points">189 points</span>
+</div>
+</div>
+</div>
+<div class="lb-place">
+<img class="lb-avatar" src="assets/images/avatar-lucky-slip.png"/>
+<span class="lb-username">LuckySlip</span>
+<div class="lb-podium" style="height:134px;">
+<div class="lb-cup-badge"><img class="lb-cup-img" src="assets/images/cup-gold.png"/></div>
+<div class="lb-podium-box" style="height:110px;">
+<span class="lb-prize">MacBook Pro 14'' M4</span>
+<div class="lb-divider"></div>
+<span class="lb-points">346 points</span>
+</div>
+</div>
+</div>
+<div class="lb-place">
+<img class="lb-avatar" src="assets/images/avatar-odds-master.png"/>
+<span class="lb-username">Bet_sniper</span>
+<div class="lb-podium" style="height:124px;">
+<div class="lb-cup-badge"><img class="lb-cup-img" src="assets/images/cup-bronze.png"/></div>
+<div class="lb-podium-box" style="height:100px;">
+<span class="lb-prize">200 Free Spins</span>
+<div class="lb-divider"></div>
+<span class="lb-points">77 points</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lb-buttons">
+<button class="lb-btn-secondary">Full Leaderboard</button>
+<button class="lb-btn-primary">Participate</button>
+</div>
+</div>
+<!-- ─── TOP EVENTS BLOCK ───────────────────────────────────── -->
+<div style="padding:0 16px;margin-bottom:0;">
+<div class="block-header">
+<div class="block-heading">
+<img class="icon-20" src="assets/icons/hot.svg"/>
+<span class="block-heading-text">Top Events</span>
+</div>
+<button class="btn-see-all">See all</button>
+</div>
+</div>
+<div class="h-scroll" id="hs-top" style="margin-bottom:8px;">
+<div class="event-card event-card-sm">
+<div class="ec-top">
+<div class="ec-top-left">
+<img class="icon-20" src="assets/icons/basketball.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-boston-celtics-2.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-time">9h</div> <img class="icon-16" src="assets/icons/betbuilder.svg"/> <div class="ic16"><img class="iv" src="assets/icons/insights.svg"/></div> <img class="icon-16" src="assets/icons/hot-orange.svg"/></div>
+</div>
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-milwaukee-bucks-2.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Boston Celtics</span>
+<span class="team-name team-name-right">Milwaukee Bucks</span>
+</div>
+<div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+<div class="odds-row">
+<div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">Boston Celtics</div></div>
+<div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
+<div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Milwaukee Bu...</div></div>
+<div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+<div class="event-card event-card-sm">
+<div class="ec-top">
+<div class="ec-top-left">
+<img class="icon-20" src="assets/icons/basketball.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-ny-knicks-2.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-live">● LIVE '67</div> <div class="ic16"><img class="iv" src="assets/icons/insights.svg"/></div> <div class="ic16"><img class="iv" src="assets/icons/stream.svg"/></div> <img class="icon-16" src="assets/icons/hot-orange.svg"/></div>
+<div class="ec-score">4 : 2</div>
+</div>
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-cleveland-cavs-2.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">New York Knicks</span>
+<span class="team-name team-name-right">Cleveland Cavaliers</span>
+</div>
+<div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+<div class="odds-row">
+<div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">New York Knic...</div></div>
+<div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
+<div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Cleveland Cav...</div></div>
+<div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+<!-- Top Events card 3 -->
+<div class="event-card event-card-sm">
+<div class="ec-top">
+<div class="ec-top-left">
+<img class="icon-20" src="assets/icons/football.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-barcelona.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-time">12h</div> <img class="icon-16" src="assets/icons/betbuilder.svg"/> <img class="icon-16" src="assets/icons/hot-orange.svg"/></div>
+</div>
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-psg.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Barcelona</span>
+<span class="team-name team-name-right">PSG</span>
+</div>
+<div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+<div class="odds-row">
+<div class="odd-btn"><div class="odd-value">1.85</div><div class="odd-outcome">Barcelona</div></div>
+<div class="odd-btn"><div class="odd-value">3.20</div><div class="odd-outcome">Draw</div></div>
+<div class="odd-btn"><div class="odd-value">4.50</div><div class="odd-outcome">PSG</div></div>
+<div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+<!-- Top Events card 4 -->
+<div class="event-card event-card-sm">
+<div class="ec-top">
+<div class="ec-top-left">
+<img class="icon-20" src="assets/icons/basketball.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Basketball</span><div class="ec3-league-dot"></div><span class="ec3-league-link">NBA</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-miami-heat.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-time">6h</div> <div class="ic16"><img class="iv" src="assets/icons/insights.svg"/></div> <img class="icon-16" src="assets/icons/hot-orange.svg"/></div>
+</div>
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-orlando-magic.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Miami Heat</span>
+<span class="team-name team-name-right">Orlando Magic</span>
+</div>
+<div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+<div class="odds-row">
+<div class="odd-btn"><div class="odd-value">1.70</div><div class="odd-outcome">Miami Heat</div></div>
+<div class="odd-btn"><div class="odd-value">4.00</div><div class="odd-outcome">Draw</div></div>
+<div class="odd-btn"><div class="odd-value">3.10</div><div class="odd-outcome">Orlando Magic</div></div>
+<div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+</div>
+<div class="pagination" id="pg-top" style="margin-bottom:32px;">
+<div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+</div>
+<!-- ─── BET BUILDER CARD ───────────────────────────────────── -->
+<div class="betbuilder-card" style="margin-bottom:32px;">
+<div class="bb-heading">
+<img class="icon-20" src="assets/icons/betbuilder-orange.svg"/>
+<span class="bb-title">Bet Builder</span>
+<!-- Close icon -->
+<div class="ic"><img class="iv" src="assets/icons/close.svg"/></div>
+<span class="bb-odds-val-acc">2.75</span>
+</div>
+<div class="divider-h"></div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-barcelona.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-time">28 Jun 2024 10:00</div></div>
+</div>
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-psg.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Barcelona</span>
+<span class="team-name team-name-right">PSG</span>
+</div>
+<div class="divider-h"></div>
+<div class="bb-show-selections">
+<!-- Arrow Right BB -->
+<div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div>
+<span class="bb-show-sel-text">Show 3 outcomes</span>
+</div>
+<div class="divider-h"></div>
+<div class="bb-odds-row">
+<div class="bb-odds-labels">
+<span class="bb-odds-label">Betbuilder odds</span>
+<span class="bb-odds-label">Possible win</span>
+</div>
+<div class="bb-odds-vals">
+<span class="bb-odds-num">270.5</span>
+<span class="bb-win-num">$1,060.00</span>
+</div>
+</div>
+<div class="bet-input-row">
+<div class="bet-amount-input">
+<div class="bet-amount-texts">
+<span class="bet-label">Bet amount</span>
+<span class="bet-value">$20</span>
+</div>
+<div class="max-bet-btn">
+<span class="max-btn-top">Max</span>
+<span class="max-btn-bot">$1,000.50</span>
+</div>
+</div>
+<button class="place-bet-btn">Place bet</button>
+</div>
+</div>
+<!-- ─── FOOTBALL BLOCK ────────────────────────────────────── -->
+<div style="padding:0 16px;margin-bottom:0;">
+<div class="block-header">
+<div class="block-heading">
+<img class="icon-20" src="assets/icons/football.svg"/>
+<span class="block-heading-text">Football</span>
+</div>
+<button class="btn-see-all">
+<span>See all</span>
+</button>
+</div>
+</div>
+<div class="h-scroll" id="hs-football" style="margin-bottom:8px;">
+<div class="event-card event-card-sm">
+<div class="ec-top">
+<div class="ec-top-left">
+<img class="icon-20" src="assets/icons/football.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-mexico.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-time">9h</div> <img class="icon-16" src="assets/icons/hot-orange.svg"/></div>
+</div>
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-south-africa.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Mexico</span>
+<span class="team-name team-name-right">South Africa</span>
+</div>
+<div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+<div class="odds-row">
+<div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">Mexico</div></div>
+<div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
+<div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">South Africa</div></div>
+<div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+<div class="event-card event-card-sm">
+<div class="ec-top">
+<div class="ec-top-left">
+<img class="icon-20" src="assets/icons/football.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-south-korea.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-time">9h</div> <img class="icon-16" src="assets/icons/hot-orange.svg"/></div>
+</div>
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-czech-republic.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">South Korea</span>
+<span class="team-name team-name-right">Czech Republic</span>
+</div>
+<div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+<div class="odds-row">
+<div class="odd-btn"><div class="odd-value">1.23</div><div class="odd-outcome">South Korea</div></div>
+<div class="odd-btn"><div class="odd-value">2.55</div><div class="odd-outcome">Draw</div></div>
+<div class="odd-btn"><div class="odd-value">3.33</div><div class="odd-outcome">Czech Republic</div></div>
+<div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+<!-- Football card 3 -->
+<div class="event-card event-card-sm">
+<div class="ec-top">
+<div class="ec-top-left">
+<img class="icon-20" src="assets/icons/football.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">UEFA Champions League</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-barcelona.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-time">15 Jun • 21:00</div> <img class="icon-16" src="assets/icons/betbuilder.svg"/> <img class="icon-16" src="assets/icons/hot-orange.svg"/></div>
+</div>
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-psg.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Barcelona</span>
+<span class="team-name team-name-right">PSG</span>
+</div>
+<div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+<div class="odds-row">
+<div class="odd-btn"><div class="odd-value">1.85</div><div class="odd-outcome">Barcelona</div></div>
+<div class="odd-btn"><div class="odd-value">3.20</div><div class="odd-outcome">Draw</div></div>
+<div class="odd-btn"><div class="odd-value">4.50</div><div class="odd-outcome">PSG</div></div>
+<div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+<!-- Football card 4 -->
+<div class="event-card event-card-sm">
+<div class="ec-top">
+<div class="ec-top-left">
+<img class="icon-20" src="assets/icons/football.svg"/>
+<div class="ec3-league"><span class="ec3-league-link">Football</span><div class="ec3-league-dot"></div><span class="ec3-league-link">FIFA World Cup 2026</span></div>
+</div>
+<div class="ic"><img class="iv" src="assets/icons/favorites-blank.svg"/></div>
+</div>
+<div class="ec-mid">
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-mexico.png"/></div>
+<div class="ec-center-col">
+<div class="event-details-row"><div class="badge-live">● LIVE '55</div> <div class="ic16"><img class="iv" src="assets/icons/stream.svg"/></div> <img class="icon-16" src="assets/icons/hot-orange.svg"/></div>
+<div class="ec-score">1 : 1</div>
+</div>
+<div class="ec-logo-bg"><img class="icon-32" src="assets/images/team-south-korea.png"/></div>
+</div>
+<div class="ec-names-row">
+<span class="team-name">Mexico</span>
+<span class="team-name team-name-right">South Korea</span>
+</div>
+<div class="market-divider"><div class="divider-line"></div><span class="market-label">Match Winner</span><div class="divider-line"></div></div>
+<div class="odds-row">
+<div class="odd-btn"><div class="odd-value">2.30</div><div class="odd-outcome">Mexico</div></div>
+<div class="odd-btn"><div class="odd-value">2.90</div><div class="odd-outcome">Draw</div></div>
+<div class="odd-btn"><div class="odd-value">2.60</div><div class="odd-outcome">South Korea</div></div>
+<div class="view-more-btn"><div class="ic"><img class="iv" src="assets/icons/arrow-right.svg"/></div></div>
+</div>
+</div>
+</div>
+<div class="pagination" id="pg-football" style="margin-bottom:0;">
+<div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+</div>
+<!-- ─── MOBILE FOOTER placeholder for spacing ──────────── -->
 </div><!-- end page-content -->
-
 <div class="scroll-fade-top"></div>
 <div class="scroll-fade-bottom"></div>
-
 <!-- FIXED FOOTER NAV -->
 <div class="mobile-footer-nav" id="footer-nav">
-    <div class="footer-tab">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="#8a8a8a"/></svg>
-      <span>Menu</span>
-    </div>
-    <div class="footer-tab">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C9.243 2 7 4.243 7 7C7 8.279 7.478 9.44 8.257 10.33C6.329 11.197 5 13.145 5 15.5V17H7V15.5C7 13.57 8.57 12 10.5 12C11.328 12 12.09 12.3 12.686 12.8C11.661 13.66 11 14.953 11 16.4C11 19.0 13.0 21 15.6 21C18.2 21 20 19.0 20 16.4C20 14.953 19.339 13.66 18.314 12.8C18.91 12.3 19.672 12 20.5 12V10C18.57 10 17 8.43 17 6.5C17 4.57 15.43 3 13.5 3C13.109 3 12.733 3.064 12.378 3.18C12.258 2.509 12 2 12 2ZM13.5 5C14.328 5 15 5.672 15 6.5C15 7.328 14.328 8 13.5 8C12.672 8 12 7.328 12 6.5C12 5.672 12.672 5 13.5 5ZM15.6 14.6C16.926 14.6 18 15.674 18 17C18 18.326 16.926 19.4 15.6 19.4C14.274 19.4 13.2 18.326 13.2 17C13.2 15.674 14.274 14.6 15.6 14.6Z" fill="#8a8a8a"/></svg>
-      <span>Casino</span>
-    </div>
-    <div class="footer-tab footer-tab-active">
-      <div class="footer-tab-circle">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="white"/></svg>
-      </div>
-      <span style="color:#0081f9;">Registration</span>
-    </div>
-    <div class="footer-tab">
-      <img src="assets/icons/football.svg" width="24" height="24" style="opacity:0.55;">
-      <span>Sports</span>
-    </div>
-    <div class="footer-tab">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 1C7.589 1 4 4.589 4 9C4 11.386 5.018 13.527 6.657 15.02L5.293 20.707L11 19.343C11.326 19.444 11.657 19.5 12 19.5C16.411 19.5 20 15.911 20 11.5V9C20 4.589 16.411 1 12 1ZM12 17.5C11.698 17.5 11.4 17.458 11.11 17.38L8.707 17.98L9.307 15.577C7.89 14.382 7 12.792 7 11C7 7.134 9.134 5 13 5C15.761 5 18 7.239 18 10C18 13.866 15.866 17.5 12 17.5Z" fill="#8a8a8a"/></svg>
-      <span>Support</span>
-    </div>
-  </div>
-
-
+<div class="footer-tab">
+<svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="#8a8a8a"></path></svg>
+<span>Menu</span>
+</div>
+<div class="footer-tab">
+<svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C9.243 2 7 4.243 7 7C7 8.279 7.478 9.44 8.257 10.33C6.329 11.197 5 13.145 5 15.5V17H7V15.5C7 13.57 8.57 12 10.5 12C11.328 12 12.09 12.3 12.686 12.8C11.661 13.66 11 14.953 11 16.4C11 19.0 13.0 21 15.6 21C18.2 21 20 19.0 20 16.4C20 14.953 19.339 13.66 18.314 12.8C18.91 12.3 19.672 12 20.5 12V10C18.57 10 17 8.43 17 6.5C17 4.57 15.43 3 13.5 3C13.109 3 12.733 3.064 12.378 3.18C12.258 2.509 12 2 12 2ZM13.5 5C14.328 5 15 5.672 15 6.5C15 7.328 14.328 8 13.5 8C12.672 8 12 7.328 12 6.5C12 5.672 12.672 5 13.5 5ZM15.6 14.6C16.926 14.6 18 15.674 18 17C18 18.326 16.926 19.4 15.6 19.4C14.274 19.4 13.2 18.326 13.2 17C13.2 15.674 14.274 14.6 15.6 14.6Z" fill="#8a8a8a"></path></svg>
+<span>Casino</span>
+</div>
+<div class="footer-tab footer-tab-active">
+<div class="footer-tab-circle">
+<svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="white"></path></svg>
+</div>
+<span style="color:#0081f9;">Registration</span>
+</div>
+<div class="footer-tab">
+<img height="24" src="assets/icons/football.svg" style="opacity:0.55;" width="24"/>
+<span>Sports</span>
+</div>
+<div class="footer-tab">
+<svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1C7.589 1 4 4.589 4 9C4 11.386 5.018 13.527 6.657 15.02L5.293 20.707L11 19.343C11.326 19.444 11.657 19.5 12 19.5C16.411 19.5 20 15.911 20 11.5V9C20 4.589 16.411 1 12 1ZM12 17.5C11.698 17.5 11.4 17.458 11.11 17.38L8.707 17.98L9.307 15.577C7.89 14.382 7 12.792 7 11C7 7.134 9.134 5 13 5C15.761 5 18 7.239 18 10C18 13.866 15.866 17.5 12 17.5Z" fill="#8a8a8a"></path></svg>
+<span>Support</span>
+</div>
+</div>
 <!-- ─── COLLAPSED BETSLIP (fixed) ────────────────────────── -->
 <div class="betslip-bar">
-  <div class="betslip-btn">
-    <span class="betslip-label">Betslip</span>
-    <div class="betslip-counter" id="betslip-count">0</div>
-  </div>
-  <div class="betslip-quickbet">
-    <div class="betslip-toggle-btn">
-      <!-- Quick Bet icon -->
-      <div class="ic"><img class="iv" src="assets/icons/quick-bet.svg"></div>
-    </div>
-  </div>
-  <div class="betslip-spin">
-    <img class="icon-20" src="assets/icons/slots.svg">
-  </div>
+<div class="betslip-btn">
+<span class="betslip-label">Betslip</span>
+<div class="betslip-counter" id="betslip-count">0</div>
 </div>
-
-
+<div class="betslip-quickbet">
+<div class="betslip-toggle-btn">
+<!-- Quick Bet icon -->
+<div class="ic"><img class="iv" src="assets/icons/quick-bet.svg"/></div>
+</div>
+</div>
+<div class="betslip-spin">
+<img class="icon-20" src="assets/icons/slots.svg"/>
+</div>
+</div>
 <script>
 (function() {
   // ── Odds selection + betslip counter ──────────────────────
@@ -2203,4 +2022,4 @@
 
 </script>
 </body>
-</html>
+
