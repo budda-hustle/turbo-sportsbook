@@ -517,34 +517,18 @@
     position: relative;
     overflow: hidden;
   }
+  /* SVG cards: 100×150 → display at 32×48, centered in 64×64 with 8px padding */
   .swipe-card {
     position: absolute;
-    top: 4px; left: 8px;
-    width: 48px; height: 56px;
-    border-radius: 8px;
+    width: 32px; height: 48px;
+    top: 8px; left: 16px;
     transform-origin: center bottom;
     will-change: transform, opacity;
   }
-  .swipe-card::before {
-    content: '';
-    position: absolute;
-    top: 6px; left: 6px; right: 6px;
-    height: 10px;
-    border-radius: 4px;
-    background: rgba(255,255,255,0.18);
+  .swipe-card img {
+    width: 100%; height: 100%;
+    display: block;
   }
-  .swipe-card::after {
-    content: '';
-    position: absolute;
-    top: 22px; left: 6px; right: 6px; bottom: 6px;
-    border-radius: 5px;
-    background: rgba(0,0,0,0.15);
-  }
-  .swipe-card-0 { background: #1e6ab3; }
-  .swipe-card-1 { background: #3d7020; }
-  .swipe-card-2 { background: #8b5010; }
-  .swipe-card-3 { background: #8b1010; }
-  /* behind-stack cards */
   .swipe-card.behind-1 {
     transform: scale(0.88) translateY(4px);
     z-index: 1;
@@ -579,8 +563,8 @@
     100% { transform: scale(0.9) translateX(-72px) translateY(-6px) rotate(-18deg); opacity: 0; }
   }
   @keyframes promote1 {
-    0%   { transform: scale(0.88) translateY(4px); z-index: 1; }
-    100% { transform: scale(1) translateY(0); z-index: 3; }
+    0%   { transform: scale(0.88) translateY(4px); }
+    100% { transform: scale(1) translateY(0); }
   }
   @keyframes promote2 {
     0%   { transform: scale(0.78) translateY(8px); }
@@ -1174,10 +1158,10 @@
 <div class="swipe-bet-card" style="margin-bottom:32px;">
 <div class="swipe-bet-left">
 <div class="swipe-anim-wrap" id="swipeAnimWrap">
-  <div class="swipe-card swipe-card-0 active" data-idx="0"></div>
-  <div class="swipe-card swipe-card-1 behind-1" data-idx="1"></div>
-  <div class="swipe-card swipe-card-2 behind-2" data-idx="2"></div>
-  <div class="swipe-card swipe-card-3" style="transform:scale(0.68) translateY(12px);opacity:0.6;z-index:0;" data-idx="3"></div>
+  <div class="swipe-card active" data-idx="0"><img src="assets/cards/card-blue.svg" alt=""></div>
+  <div class="swipe-card behind-1" data-idx="1"><img src="assets/cards/card-green.svg" alt=""></div>
+  <div class="swipe-card behind-2" data-idx="2"><img src="assets/cards/card-orange.svg" alt=""></div>
+  <div class="swipe-card" style="transform:scale(0.68) translateY(12px);opacity:0.6;z-index:0;" data-idx="3"><img src="assets/cards/card-red.svg" alt=""></div>
 </div>
 <div>
 <div class="swipe-bet-title">Swipe Bet</div>
