@@ -264,6 +264,21 @@
     align-items: center;
     gap: 8px;
   }
+  /* base badge styles */
+  .badge-live {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--bg-2); border-radius: 20px; padding: 3px 10px;
+    font-size: 12px; font-weight: 600; color: var(--bg-accent); white-space: nowrap;
+  }
+  .badge-live-dot {
+    width: 8px; height: 8px; background: var(--bg-accent);
+    border-radius: 50%; flex-shrink: 0;
+  }
+  .badge-time {
+    display: inline-flex; align-items: center;
+    background: var(--bg-2); border-radius: 20px; padding: 3px 10px;
+    font-size: 12px; font-weight: 400; color: var(--text-secondary); white-space: nowrap;
+  }
   /* badges inside the pill lose their own bg/padding */
   .event-details-row .badge-live,
   .ec3-details .badge-live {
