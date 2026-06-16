@@ -645,21 +645,41 @@
 
   /* ── Popular Plays ───────────────────────────────────────── */
   .popular-card {
-    width: 320px;
-    background: linear-gradient(180deg, var(--bg-4) 0%, var(--bg-2) 100%);
-    border-radius: 8px; padding: 12px;
-    display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;
+    width: 240px;
+    background: var(--bg-2);
+    border-radius: 12px;
+    display: flex; flex-direction: column; flex-shrink: 0;
+    overflow: hidden;
   }
-  .popular-top-line { display: flex; align-items: center; gap: 8px; }
-  .popular-event-line { display: flex; align-items: center; gap: 8px; }
-  .popular-event-name { font-size: 12px; font-weight: 400; color: var(--text-secondary); white-space: nowrap; }
-  .popular-outcome-row { display: flex; align-items: flex-start; justify-content: space-between; width: 100%; }
-  .popular-outcome-left { display: flex; align-items: flex-start; gap: 8px; }
-  .team-icon-lg { width: 40px; height: 40px; object-fit: contain; flex-shrink: 0; }
-  .popular-team-info { display: flex; flex-direction: column; gap: 4px; width: 103px; }
-  .popular-team-name { font-size: 14px; font-weight: 400; color: var(--text-default); line-height: 1.4; }
-  .popular-market { font-size: 12px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
-  .popular-odd { font-size: 14px; font-weight: 600; color: var(--text-default); text-align: right; line-height: 1.4; white-space: nowrap; }
+  .pp-hero {
+    background: linear-gradient(150deg, #6B3FF8 0%, #0081f9 100%);
+    padding: 12px 12px 16px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .pp-hero-top {
+    display: flex; align-items: center; justify-content: space-between; width: 100%;
+  }
+  .pp-label {
+    font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.9);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .pp-logo-circle {
+    width: 56px; height: 56px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 28px;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 4px;
+  }
+  .pp-logo-circle img { width: 40px; height: 40px; object-fit: contain; }
+  .pp-team-name { font-size: 16px; font-weight: 700; color: #fff; line-height: 1.3; text-align: center; }
+  .pp-market { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.65); line-height: 1.4; text-align: center; }
+  .pp-odds { font-size: 36px; font-weight: 800; color: #fff; line-height: 1.1; text-align: center; margin-top: 2px; }
+  .pp-bottom {
+    padding: 10px 12px 12px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .pp-event-row { display: flex; align-items: center; gap: 6px; }
+  .pp-event-name { font-size: 11px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .win-btn {
     width: 100%; background: var(--bg-active); border-radius: 8px;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -1176,110 +1196,99 @@
 <div style="font-size:20px;font-weight:800;color:var(--text-default);line-height:1.4;">Popular Plays</div>
 </div>
 <div class="h-scroll" id="hs-popular" style="margin-bottom:8px;">
+
+<!-- Popular card 1 -->
 <div class="popular-card">
-<div class="popular-top-line">
-<img class="icon-20" src="assets/icons/american-football.svg"/>
-<span class="league-link">American Football</span>
-<span style="color:var(--text-secondary);font-size:12px;">•</span>
-<span class="league-link">NFL</span>
-</div>
-<div class="popular-event-line">
-<span class="popular-event-name">New York Jets - Houston Texans</span>
+<div class="pp-hero">
+<div class="pp-hero-top">
+<span class="pp-label">⚡ Popular Play</span>
 <div class="badge-live"><div class="badge-live-dot"></div>LIVE '67</div>
 </div>
-<div class="popular-outcome-row">
-<div class="popular-outcome-left">
-<img class="team-icon-lg" src="assets/images/team-houston-texans.png"/>
-<div class="popular-team-info">
-<span class="popular-team-name">Houston Texans</span>
-<span class="popular-market">Match Winner</span>
+<div class="pp-logo-circle"><img src="assets/images/team-houston-texans.png" alt="Houston Texans"></div>
+<div class="pp-team-name">Houston Texans</div>
+<div class="pp-market">Match Winner</div>
+<div class="pp-odds">1.82</div>
 </div>
-</div>
-<span class="popular-odd">1.82</span>
+<div class="pp-bottom">
+<div class="pp-event-row">
+<span class="pp-event-name">New York Jets - Houston Texans</span>
 </div>
 <button class="win-btn">
 <span class="win-entry">Popular Entry: $20</span>
 <span class="win-amount">Win $36.39!</span>
 </button>
 </div>
-<div class="popular-card">
-<div class="popular-top-line">
-<img class="icon-20" src="assets/icons/football.svg"/>
-<span class="league-link">Football</span>
-<span style="color:var(--text-secondary);font-size:12px;">•</span>
-<span class="league-link">UEFA Champions League</span>
 </div>
-<div class="popular-event-line">
-<span class="popular-event-name">Barcelona - PSG</span>
+
+<!-- Popular card 2 -->
+<div class="popular-card">
+<div class="pp-hero">
+<div class="pp-hero-top">
+<span class="pp-label">⚡ Popular Play</span>
 <div class="badge-time">12 Jun • 20:00</div>
 </div>
-<div class="popular-outcome-row">
-<div class="popular-outcome-left">
-<img class="team-icon-lg" src="assets/images/team-barcelona.png"/>
-<div class="popular-team-info">
-<span class="popular-team-name">Barcelona</span>
-<span class="popular-market">Match Winner</span>
+<div class="pp-logo-circle"><img src="assets/images/team-barcelona.png" alt="Barcelona"></div>
+<div class="pp-team-name">Barcelona</div>
+<div class="pp-market">Match Winner</div>
+<div class="pp-odds">1.85</div>
 </div>
-</div>
-<span class="popular-odd">1.85</span>
+<div class="pp-bottom">
+<div class="pp-event-row">
+<span class="pp-event-name">Barcelona - PSG</span>
 </div>
 <button class="win-btn">
 <span class="win-entry">Popular Entry: $20</span>
 <span class="win-amount">Win $37.00!</span>
 </button>
 </div>
-<div class="popular-card">
-<div class="popular-top-line">
-<img class="icon-20" src="assets/icons/basketball.svg"/>
-<span class="league-link">Basketball</span>
-<span style="color:var(--text-secondary);font-size:12px;">•</span>
-<span class="league-link">NBA</span>
 </div>
-<div class="popular-event-line">
-<span class="popular-event-name">Miami Heat - Indiana Pacers</span>
+
+<!-- Popular card 3 -->
+<div class="popular-card">
+<div class="pp-hero">
+<div class="pp-hero-top">
+<span class="pp-label">⚡ Popular Play</span>
 <div class="badge-live"><div class="badge-live-dot"></div>LIVE '34</div>
 </div>
-<div class="popular-outcome-row">
-<div class="popular-outcome-left">
-<img class="team-icon-lg" src="assets/images/team-miami-heat.png"/>
-<div class="popular-team-info">
-<span class="popular-team-name">Miami Heat</span>
-<span class="popular-market">Match Winner</span>
+<div class="pp-logo-circle"><img src="assets/images/team-miami-heat.png" alt="Miami Heat"></div>
+<div class="pp-team-name">Miami Heat</div>
+<div class="pp-market">Match Winner</div>
+<div class="pp-odds">2.10</div>
 </div>
-</div>
-<span class="popular-odd">2.10</span>
+<div class="pp-bottom">
+<div class="pp-event-row">
+<span class="pp-event-name">Miami Heat - Indiana Pacers</span>
 </div>
 <button class="win-btn">
 <span class="win-entry">Popular Entry: $20</span>
 <span class="win-amount">Win $42.00!</span>
 </button>
 </div>
-<div class="popular-card">
-<div class="popular-top-line">
-<img class="icon-20" src="assets/icons/american-football.svg"/>
-<span class="league-link">American Football</span>
-<span style="color:var(--text-secondary);font-size:12px;">•</span>
-<span class="league-link">NFL</span>
 </div>
-<div class="popular-event-line">
-<span class="popular-event-name">Houston Texans - NY Giants</span>
+
+<!-- Popular card 4 -->
+<div class="popular-card">
+<div class="pp-hero">
+<div class="pp-hero-top">
+<span class="pp-label">⚡ Popular Play</span>
 <div class="badge-time">13 Jun • 22:00</div>
 </div>
-<div class="popular-outcome-row">
-<div class="popular-outcome-left">
-<img class="team-icon-lg" src="assets/images/team-houston-texans.png"/>
-<div class="popular-team-info">
-<span class="popular-team-name">Houston Texans</span>
-<span class="popular-market">Match Winner</span>
+<div class="pp-logo-circle"><img src="assets/images/team-houston-texans.png" alt="Houston Texans"></div>
+<div class="pp-team-name">Houston Texans</div>
+<div class="pp-market">Match Winner</div>
+<div class="pp-odds">1.65</div>
 </div>
-</div>
-<span class="popular-odd">1.65</span>
+<div class="pp-bottom">
+<div class="pp-event-row">
+<span class="pp-event-name">Houston Texans - NY Giants</span>
 </div>
 <button class="win-btn">
 <span class="win-entry">Popular Entry: $20</span>
 <span class="win-amount">Win $33.00!</span>
 </button>
 </div>
+</div>
+
 </div>
 <div class="pagination" id="pg-popular" style="margin-bottom:32px;">
 <div class="dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
